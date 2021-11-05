@@ -1,0 +1,104 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 150px;
+}
+.formContainer {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top:-100px
+}
+.input {
+    z-index: 10;
+    outline: none;
+    width: 60%;
+    height: 30px;
+    padding: 0px 10px;
+    border: 1px solid white;
+    border-radius: 12px;
+    margin-bottom: 25px; 
+}
+.input:focus {
+    outline: none;
+    border: 2px solid rgb(26, 39, 133);
+    transition: all, 100ms ease-in-out;
+}
+.postC {
+    
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly
+}
+.inputP {
+    z-index: 10;
+    outline: none;
+    width: 20%;
+    height: 30px;
+    padding: 0px 10px;
+    border: 1px solid white;
+    border-radius: 12px;
+    margin-bottom: 25px; 
+}
+.inputC {
+    z-index: 10;
+    outline: none;
+    width: 20%;
+    height: 30px;
+    padding: 0px 10px;
+    border: 1px solid white;
+    border-radius: 12px;
+    margin-bottom: 25px; 
+}
+.button {
+    width: 50%;
+    padding: 11px;
+    color: white;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all, 240ms ease-in-out;
+    background: rgba(143,2,224,1);
+}
+.button:hover {
+    filter: brightness(1.3);
+}
+.linkBox {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+}
+.links {
+    font-size: 12px;
+    text-decoration: none;
+    margin-top: 8px;
+}
+.links:hover { 
+    filter: brightness(1.2);
+}
+.titles {
+    color: white;
+    z-index: 10;
+    margin-bottom: 6px;
+}
+.titleP {
+    color: white;
+    z-index: 10;
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+}
+.postal {
+    margin-left: -5px;
+}
+.city {
+    margin-left: 80px;
+}
