@@ -6,12 +6,61 @@
     margin-top: 10px;
     margin-bottom: 150px;
 }
-.formContainer {
+.loginContainer {
     align-items: center;
-    width: 100%;
+    width: 400px;
+    height: 750px;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    margin-top:-100px
+    border-radius: 19px;
+    padding: 2px;
+    border: solid 2px rgba(116,4,185,0.8);
+    overflow: hidden;
+    position: relative;
+}
+.formContainer {
+    width: 100%;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 1.8em;
+}
+.containerColor {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(100,5,175,1) 0%, rgba(120,4,185,1) 35%, rgba(175,0,255,1) 100%);    
+    width: 200%;
+    left: -50%;
+    height: 950px;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50%;
+    transform: rotate(90deg);
+}
+.textContainerR {
+    align-self: center;
+    z-index: 10;
+    color: rgba(120,4,185,1);
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.paragraphR {
+    z-index: 10;
+    font-size: 14px;
+    color: rgba(120,4,185,1);
+    margin-bottom: 60px;
+    margin-top: 14px;
+}
+.boldLink {
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
 }
 .input {
     z-index: 10;
@@ -26,10 +75,8 @@
 .input:focus {
     outline: none;
     border: 2px solid rgb(26, 39, 133);
-    transition: all, 100ms ease-in-out;
 }
 .postC {
-    
     z-index: 10;
     display: flex;
     flex-direction: row;
@@ -45,43 +92,28 @@
     border-radius: 12px;
     margin-bottom: 25px; 
 }
-.inputC {
-    z-index: 10;
+.inputP:focus {
     outline: none;
-    width: 20%;
-    height: 30px;
-    padding: 0px 10px;
-    border: 1px solid white;
-    border-radius: 12px;
-    margin-bottom: 25px; 
+    border: 2px solid rgb(26, 39, 133); 
 }
 .button {
+    z-index: 10;
     width: 50%;
     padding: 11px;
-    color: white;
+    color: rgba(143,2,224,1);
     border: none;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     border-radius: 100px;
     transition: all, 240ms ease-in-out;
-    background: rgba(143,2,224,1);
+    background: white;
+    margin-top: 18px;
 }
 .button:hover {
+    background:rgba(143,2,224,1);
+    color: white;
     filter: brightness(1.3);
-}
-.linkBox {
-    margin-top: 14px;
-    display: flex;
-    flex-direction: column;
-}
-.links {
-    font-size: 12px;
-    text-decoration: none;
-    margin-top: 8px;
-}
-.links:hover { 
-    filter: brightness(1.2);
 }
 .titles {
     color: white;

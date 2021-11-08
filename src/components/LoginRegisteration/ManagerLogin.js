@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import styles from './ManagerLogin.module.css';
 import { FormContext } from './FormContext';
 
-export default function ManagerLogin(props) {
+export default function ManagerLogin() {
     
     const { register } = useContext(FormContext);
 
