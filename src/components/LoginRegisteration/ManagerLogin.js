@@ -1,22 +1,62 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styles from './ManagerLogin.module.css';
 import { FormContext } from './FormContext';
+import { motion } from 'framer-motion';
+
+const colorVariants = {
+    expanded: {
+        width: "300%",
+        borderRadius: "0%",
+        left: "-150%",
+        bottom: "-450px",
+    },
+    collapsed: {
+        width: "200%",
+        left: "-50%",
+        height: "950px",
+        borderBottomRadius: "50%",
+    },
+};
+const transform = {
+    type: "spring",
+    duration: 3,
+    stiffness: 30,
+};
 
 export default function ManagerLogin() {
-    
-    const { register } = useContext(FormContext);
+    const [isExpanded, setExpanded] = useState(true);
+    const transformColor = () => {
+        setExpanded(false);
+    };
+    const registeration = () => {
+        transformColor();
+        setTimeout(register, 600);
+    }
+    const loginAnimation = () => {
+        transformColor();
+        setTimeout(login, 400);
+    }
+    const { register, login } = useContext(FormContext);
 
     return (
-        <div className={ styles.container } >
+<>  
+    <div className={ styles.container } >
+        <div className={ styles.loginContainer } >
             <div className={ styles.formContainer } >
-                <input className={ styles.input } type="username" placeholder="Enter your username"></input>
-                <input className={ styles.input } type="password" placeholder="Enter your password"></input>
-                <button className={ styles.button } type="submit">Log in</button>
-                    <div className={ styles.linkBox } > 
-                    <a className={ styles.links } href="#" onClick={ register }>Create an account</a>
-                    <a className={ styles.links } href="#">Manager log in</a>
-                    </div>
+                <div className= { styles.textContainer } >Log in as a</div>
+                <span className={ styles.paragraph } >Restaurant manager</span>
+                <span className={ styles.p } >Back to consumer <span className={ styles.boldLink } onClick={ loginAnimation }>Log in</span></span>
+                    <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
+                    </motion.div> 
             </div>
+            <div className={ styles.inputContainer } >
+                <span className={ styles.labels }>Username</span><input className={ styles.input } type="username" placeholder="Enter your username"></input>
+                <span className={ styles.labels }>Password</span><input className={ styles.input } type="password" placeholder="Enter your password"></input>
+              </div> 
+                <button className={ styles.button } type="submit">Log in</button>
+            
         </div>
+    </div>
+</>
     )
 }

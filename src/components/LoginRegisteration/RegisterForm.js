@@ -42,9 +42,9 @@ export default function RegisterForm() {
                 </div>
                 <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                 </motion.div>
-                <span className={ styles.titles }>Enter username</span>
+                <span className={ styles.titles }>Username</span>
                 <input className={ styles.input } type="username" placeholder="Username"></input>
-                <span className={ styles.titles }>Enter password</span>
+                <span className={ styles.titles }>Password</span>
                 <input className={ styles.input } type="password" placeholder="Password"></input>
                 <span className={ styles.titles }>Email address</span>
                 <input className={ styles.input } type="email" placeholder="Email address"></input>

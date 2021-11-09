@@ -29,11 +29,15 @@ export default function LoginForm(props) {
     const transformColor = () => {
         setExpanded(true);
     };
-    const registerAnimation = () => {
+    const registeration = () => {
         transformColor();
         setTimeout(register, 600);
     }
-    const { register } = useContext(FormContext);
+    const managerLogin = () => {
+        transformColor();
+        setTimeout(manager, 600);
+    }
+    const { register, manager } = useContext(FormContext);
     return (
 <>  
     <div className={ styles.container } >
@@ -45,12 +49,12 @@ export default function LoginForm(props) {
                     </motion.div> 
             </div>
             <div className={ styles.inputContainer } >
-                <input className={ styles.input } type="username" placeholder="Enter your username"></input>
-                <input className={ styles.input } type="password" placeholder="Enter your password"></input>
+            <span className={ styles.labels }>Username</span><input className={ styles.input } type="username" placeholder="Enter your username"></input>
+            <span className={ styles.labels }>Password</span><input className={ styles.input } type="password" placeholder="Enter your password"></input>
                 <button className={ styles.button } type="submit">Log in</button>
                     <div className={ styles.linkBox } > 
-                    <a className={ styles.links } href="#" onClick={ registerAnimation }>Create an account</a>
-                    <a className={ styles.links } href="#">Manager log in</a>
+                    <a className={ styles.links } href="#" onClick={ registeration }>Create an account</a>
+                    <a className={ styles.links } href="#" onClick={ managerLogin }>Manager log in</a>
                 </div>
             </div>
         </div>

@@ -87,6 +87,7 @@
     border-radius: 100px;
     transition: all, 240ms ease-in-out;
     background: rgba(143,2,224,1);
+    margin-top: 10px;
 }
 .button:hover {
     filter: brightness(1.3);
@@ -104,33 +105,9 @@
 .links:hover { 
     filter: brightness(1.2);
 }
-
-
-
-.postC {
-    
-    z-index: 10;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly
-}
-.inputP {
-    z-index: 10;
-    outline: none;
-    width: 20%;
-    height: 30px;
-    padding: 0px 10px;
-    border: 1px solid white;
-    border-radius: 12px;
-    margin-bottom: 25px; 
-}
-.inputC {
-    z-index: 10;
-    outline: none;
-    width: 20%;
-    height: 30px;
-    padding: 0px 10px;
-    border: 1px solid white;
-    border-radius: 12px;
-    margin-bottom: 25px; 
+.labels {
+    color: rgba(143,2,224,1);
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 6px;
 }

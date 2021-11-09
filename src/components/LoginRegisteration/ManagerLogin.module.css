@@ -1,9 +1,10 @@
 .container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-top: 150px;
+    margin-top: 10px;
+    margin-bottom: 150px;
 }
 .loginContainer {
     align-items: center;
@@ -26,6 +27,13 @@
     justify-content: flex-end;
     padding: 0 1.8em;
 }
+.inputContainer {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
 .containerColor {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(100,5,175,1) 0%, rgba(120,4,185,1) 35%, rgba(175,0,255,1) 100%);    
@@ -42,37 +50,70 @@
 .textContainer {
     align-self: center;
     z-index: 10;
-    color: white;
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-.textContainerR {
-    align-self: center;
-    z-index: 10;
     color: rgba(120,4,185,1);
     font-size: 30px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 70px;
     display: flex;
     flex-direction: column;
 }
 .paragraph {
     z-index: 10;
-    font-size: 14px;
+    font-size: 30px;
+    font-weight: 500;
     color: white;
-    margin-bottom: 200px;
+    margin-bottom: 20px;
 }
-.paragraphR {
+.input {
     z-index: 10;
+    outline: none;
+    width: 60%;
+    height: 40px;
+    padding: 0px 10px;
+    border: 1px solid gray;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+.input:focus {
+    outline: none;
+    border: 2px solid rgba(143,2,224,1);
+    transition: all, 160ms ease-in-out;
+}
+.button {
+    z-index: 10;
+    width: 50%;
+    padding: 11px;
+    color: rgba(143,2,224,1);
+    border: 1px solid rgba(143,2,224,1);
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all, 240ms ease-in-out;
+    background: white;
+    margin-top: 28px;
+    margin-bottom: 120px;
+}
+.button:hover {
+    background:rgba(143,2,224,1);
+    color: white;
+    filter: brightness(1.3);
+    border: 1px solid white;
+}
+.labels {
+    z-index: 10;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+.p {
+    color: white;
+    z-index: 10;
+    margin-bottom: 115px;
     font-size: 14px;
-    color: rgba(120,4,185,1);
-    margin-bottom: 200px;
 }
 .boldLink {
-    font-size: 15px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
 }
