@@ -1,0 +1,48 @@
+.container {
+    width: 100%;
+    background-color: rgba(143,2,224,1);
+    height: 80px;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20%;
+    margin-right: 25%;
+    height: 100%;
+    align-items: center;
+}
+.inputSearch {
+    height: 35px;
+    width: 400px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid gray;
+    margin-left: 70px;
+}
+.inputSearch::placeholder{
+    padding-left: 6px;
+}
+.login {
+    background-color: rgba(143,2,224,1);
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 12px;
+}
+.search {
+    display: flex;
+    flex-direction: row;
+}
+.searchIcon {
+    margin-top: 6px;
+}
+.buttonContainer {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: 200px;
+}

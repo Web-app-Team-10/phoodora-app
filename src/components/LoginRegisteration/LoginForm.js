@@ -3,6 +3,8 @@ import styles from './LoginForm.module.css';
 import { FormContext } from './FormContext';
 import { ManagerLogin } from './ManagerLogin';
 import { motion } from 'framer-motion';
+import { RiCloseCircleLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 const colorVariants = {
     expanded: {
@@ -40,19 +42,20 @@ export default function LoginForm(props) {
     const { register, manager } = useContext(FormContext);
     return (
 <>  
-    <div className={ styles.container } >
-        <div className={ styles.loginContainer } >
-            <div className={ styles.formContainer } >
-                <div className= { styles.textContainer } >Already a user?</div>
+    <div className={ styles.container }>
+        <div className={ styles.loginContainer }>
+            <Link to="/" style={{ zIndex:10, color: "white", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
+            <div className={ styles.formContainer }>
+                <div className= { styles.textContainer }>Already a user?</div>
                 <span className={ styles.paragraph } >Sign in or create an account</span>
                     <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                     </motion.div> 
             </div>
-            <div className={ styles.inputContainer } >
+            <div className={ styles.inputContainer }>
             <span className={ styles.labels }>Username</span><input className={ styles.input } type="username" placeholder="Enter your username"></input>
             <span className={ styles.labels }>Password</span><input className={ styles.input } type="password" placeholder="Enter your password"></input>
                 <button className={ styles.button } type="submit">Log in</button>
-                    <div className={ styles.linkBox } > 
+                    <div className={ styles.linkBox }> 
                     <a className={ styles.links } href="#" onClick={ registeration }>Create an account</a>
                     <a className={ styles.links } href="#" onClick={ managerLogin }>Manager log in</a>
                 </div>

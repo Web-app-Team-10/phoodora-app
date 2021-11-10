@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import styles from './ManagerLogin.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { RiCloseCircleLine } from 'react-icons/ri';
 
 const colorVariants = {
     expanded: {
@@ -42,6 +44,7 @@ export default function ManagerLogin() {
 <>  
     <div className={ styles.container } >
         <div className={ styles.loginContainer } >
+            <Link to="/" style={{ zIndex:10, color: "rgba(143,2,224,1)", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
             <div className={ styles.formContainer } >
                 <div className= { styles.textContainer } >Log in as a</div>
                 <span className={ styles.paragraph } >Restaurant manager</span>
