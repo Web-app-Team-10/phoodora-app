@@ -1,0 +1,70 @@
+{
+    "restaurants": [
+        {
+            "id":1,
+            "name":"Ravintola Sarkka",
+            "address":"Some address asddasd 21",
+            "city": "Oulu",
+            "category": "burger",
+            "pricerange": "€",
+            "operatinghours": "09:00-22:00",
+            "image": "sarkka.png",
+            "menu":[]
+        },
+        {
+            "id":2,
+            "name":"Hanko Sushi Oulu",
+            "address":"Isokatu 25",
+            "city":"Oulu",
+            "category": "sushi",
+            "pricerange": "€€",
+            "operatinghours": "10:30-19:30",
+            "image": "hankosushi.png",
+            "menu":[]
+        },
+        {
+            "id":3,
+            "name":"Da Mario Oulu",
+            "address":"asdasd",
+            "city":"Oulu",
+            "category": "pizza",
+            "pricerange": "€€",
+            "operatinghours": "10:30-21:30",
+            "image": "damario.png",
+            "menu":[]
+        },
+        {
+            "id":4,
+            "name":"Oulun Verona",
+            "address":"Puusepänkatu 4b",
+            "city": "Oulu",
+            "category": "pizza",
+            "pricerange": "€€",
+            "operatinghours": "10:30-21:30",
+            "image": "verona.png",
+            "menu":[]
+        },
+        {
+            "id":5,
+            "name":"Korson Pizza keskus",
+            "address":"Maakotkantie 22",
+            "city":"Vantaa",
+            "category": "pizza",
+            "pricerange": "€",
+            "operatinghours": "10:00-22:00",
+            "image": "korso.png",
+            "menu":[]
+        }
+        ,{
+            "id":6,
+            "name":"R-Kioski",
+            "address":"Mannerheimintie 12",
+            "city":"Helsinki",
+            "category": "Coffee, pastry, snacks",
+            "pricerange": "€",
+            "operatinghours": "06:30-21:30",
+            "image": "sarkka.png",
+            "menu":[]
+        }
+    ]
+}
