@@ -10,7 +10,7 @@ export default function Header() {
         <div className={ styles.container }>
             <div className={ styles.header }>
                 <Link to="/"><div className={ styles.logo }>
-                    <img className={ styles.logo } src={ "/images/logo.png" }></img>
+                    <img className={ styles.logo } src={ "/images/logo2.png" }></img>
                 </div></Link>
                 <div className={ styles.search }>
                     <input className={ styles.inputSearch } type="text" placeholder="Search for restaurants, grocery stores and more" />

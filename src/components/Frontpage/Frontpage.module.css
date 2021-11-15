@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.locationContainer {
+    width: 500px;
+    height: 300px;
+    border: 2px solid rgba(143,2,224,1);
+    border-radius: 10px;
+    margin-top: 150px;
+}
+.title {
+    width: 150px;
+    font-size: 28px;
+    margin-top: 100px;
+    border-bottom: 2px solid rgba(143,2,224,1);
+}
+.restaurants{
+    display: flex;
+    flex-direction: row;
+    margin-top: 80px;
+}
+.restaurant {
+    width: 150px;
+    height: 180px;
+    border: 2px solid black;
+}

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
+
 const colorVariants = {
     expanded: {
         width: "300%",
@@ -44,7 +45,7 @@ export default function LoginForm(props) {
 <>  
     <div className={ styles.container }>
         <div className={ styles.loginContainer }>
-            <Link to="/" style={{ zIndex:10, color: "white", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
+            <img className={ styles.logo } src={ "/images/logo2.png" }></img><Link to="/" style={{ zIndex:10, color: "white", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
             <div className={ styles.formContainer }>
                 <div className= { styles.textContainer }>Already a user?</div>
                 <span className={ styles.paragraph } >Sign in or create an account</span>
