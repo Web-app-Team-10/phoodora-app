@@ -7,7 +7,7 @@
             "city": "Oulu",
             "category": "burger",
             "pricerange": "€",
-            "operatinghours": "09:00-22:00",
+            "hours": "09:00-22:00",
             "image": "sarkka.png",
             "menu":[]
         },
@@ -18,7 +18,7 @@
             "city":"Oulu",
             "category": "sushi",
             "pricerange": "€€",
-            "operatinghours": "10:30-19:30",
+            "hours": "10:30-19:30",
             "image": "hankosushi.png",
             "menu":[]
         },
@@ -29,7 +29,7 @@
             "city":"Oulu",
             "category": "pizza",
             "pricerange": "€€",
-            "operatinghours": "10:30-21:30",
+            "hours": "10:30-21:30",
             "image": "damario.png",
             "menu":[]
         },
@@ -40,7 +40,7 @@
             "city": "Oulu",
             "category": "pizza",
             "pricerange": "€€",
-            "operatinghours": "10:30-21:30",
+            "hours": "10:30-21:30",
             "image": "verona.png",
             "menu":[]
         },
@@ -51,7 +51,7 @@
             "city":"Vantaa",
             "category": "pizza",
             "pricerange": "€",
-            "operatinghours": "10:00-22:00",
+            "hours": "10:00-22:00",
             "image": "korso.png",
             "menu":[]
         }
@@ -62,8 +62,8 @@
             "city":"Helsinki",
             "category": "Coffee, pastry, snacks",
             "pricerange": "€",
-            "operatinghours": "06:30-21:30",
-            "image": "sarkka.png",
+            "hours": "06:30-21:30",
+            "image": "rkioski.png",
             "menu":[]
         }
     ]

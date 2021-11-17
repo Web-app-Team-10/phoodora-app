@@ -6,14 +6,14 @@ import Frontpage from './components/Frontpage/Frontpage';
 import data from './data.json';
 
 export default function App() {
-  
+  const restaurants = data.restaurants;
   return (
     
     <BrowserRouter>
       <>
         <Header />
         <Routes>
-          <Route path="/" element={ <Frontpage restaurants={ data }/> }> </Route>
+          <Route path="/" element={ <Frontpage restaurants={ restaurants }/> }> </Route>
           <Route path="/forms" element={ <Login /> }></Route>
         </Routes>
       </>
