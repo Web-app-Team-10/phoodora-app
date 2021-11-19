@@ -57,13 +57,57 @@
         }
         ,{
             "id":6,
+            "name":"Ravintola Willihanhi",
+            "address":"Mannerheimintie 12",
+            "city":"Helsinki",
+            "type": "Casual dining",
+            "pricerange": "€€",
+            "hours": "12:30-18:30",
+            "image": "willi.jpg",
+            "menu":[]
+        },
+        {
+            "id":7,
+            "name":"Subway Dixi",
+            "address":"Ratatie 11",
+            "city":"Vantaa",
+            "type": "Fast food",
+            "pricerange": "€",
+            "hours": "10:30-17:30",
+            "image": "subway.jpg",
+            "menu":[]
+        },
+        {
+            "id":8,
+            "name":"Hokkaido Sushi Flamingo",
+            "address":"Tasetie 8",
+            "city":"Vantaa",
+            "type": "Casual dining",
+            "pricerange": "€€",
+            "hours": "11:00-21:00",
+            "image": "hokkaido.jpg",
+            "menu":[]
+        },
+        {
+            "id": 9,
+            "name":"Restaurant Savoy",
+            "address":"Eteläesplanadi 14",
+            "city":"Helsinki",
+            "type": "Fine dining",
+            "pricerange": "€€€€",
+            "hours": "11:30-14:30 & 18:00-24:00",
+            "image": "rkioski.png",
+            "menu":[]
+        },
+        {
+            "id": 10,
             "name":"R-Kioski",
             "address":"Mannerheimintie 12",
             "city":"Helsinki",
             "type": "Coffee, pastry, snacks",
             "pricerange": "€",
             "hours": "06:30-21:30",
-            "image": "rkioski.png",
+            "image": "savoy.jpg",
             "menu":[]
         }
     ]

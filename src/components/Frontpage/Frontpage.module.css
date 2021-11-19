@@ -27,6 +27,7 @@
 .restaurants {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 80px;
     justify-content: space-between;
 }

@@ -11,7 +11,7 @@ export default function Restaurant(props) {
         </div>
         <div>{ props.city }</div>
         <div>{ props.hours }</div>
-         </div>
+    </div>
     )
 }
 
