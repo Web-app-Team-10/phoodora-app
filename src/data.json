@@ -3,11 +3,19 @@
         {
             "id":1,
             "name":"Ravintola Sarkka",
+<<<<<<< HEAD
             "address":"Hallituskatu 13",
             "city": "Oulu",
             "type": "Casual dining",
             "pricerange": "€",
             "hours": "09:00-22:00",
+=======
+            "address":"Some address asddasd 21",
+            "city": "Oulu",
+            "category": "burger",
+            "pricerange": "€",
+            "operatinghours": "09:00-22:00",
+>>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "sarkka.png",
             "menu":[]
         },
@@ -16,15 +24,22 @@
             "name":"Hanko Sushi Oulu",
             "address":"Isokatu 25",
             "city":"Oulu",
+<<<<<<< HEAD
             "type": "Casual dining",
             "pricerange": "€€",
             "hours": "10:30-19:30",
+=======
+            "category": "sushi",
+            "pricerange": "€€",
+            "operatinghours": "10:30-19:30",
+>>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "hankosushi.png",
             "menu":[]
         },
         {
             "id":3,
             "name":"Da Mario Oulu",
+<<<<<<< HEAD
             "address":"Torikatu 24",
             "city":"Oulu",
             "type": "Fast casual",
@@ -34,31 +49,56 @@
             "menu":[
                 
             ]
+=======
+            "address":"asdasd",
+            "city":"Oulu",
+            "category": "pizza",
+            "pricerange": "€€",
+            "operatinghours": "10:30-21:30",
+            "image": "damario.png",
+            "menu":[]
+>>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
         },
         {
             "id":4,
             "name":"Oulun Verona",
             "address":"Puusepänkatu 4b",
             "city": "Oulu",
+<<<<<<< HEAD
             "type": "Fast casual",
             "pricerange": "€€",
             "hours": "10:30-21:30",
+=======
+            "category": "pizza",
+            "pricerange": "€€",
+            "operatinghours": "10:30-21:30",
+>>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "verona.png",
             "menu":[]
         },
         {
             "id":5,
+<<<<<<< HEAD
             "name":"Korson pizza keskus",
             "address":"Maakotkantie 22",
             "city":"Vantaa",
             "type": "Fast casual",
             "pricerange": "€",
             "hours": "10:00-22:00",
+=======
+            "name":"Korson Pizza keskus",
+            "address":"Maakotkantie 22",
+            "city":"Vantaa",
+            "category": "pizza",
+            "pricerange": "€",
+            "operatinghours": "10:00-22:00",
+>>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "korso.png",
             "menu":[]
         }
         ,{
             "id":6,
+<<<<<<< HEAD
             "name":"Ravintola Willihanhi",
             "address":"Mannerheimintie 12",
             "city":"Helsinki",
@@ -110,6 +150,15 @@
             "pricerange": "€€",
             "hours": "10:30-21:30",
             "image": "ristorante.jpg",
+=======
+            "name":"R-Kioski",
+            "address":"Mannerheimintie 12",
+            "city":"Helsinki",
+            "category": "Coffee, pastry, snacks",
+            "pricerange": "€",
+            "operatinghours": "06:30-21:30",
+            "image": "sarkka.png",
+>>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "menu":[]
         }
     ]
