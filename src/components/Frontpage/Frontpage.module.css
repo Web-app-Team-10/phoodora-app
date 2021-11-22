@@ -15,12 +15,7 @@
 .title {
     width: 190px;
     font-size: 28px;
-    margin-top: 100px;
-    border-bottom: 2px solid rgba(143,2,224,1);
-}
-.title2 {
-    width: 190px;
-    font-size: 28px;
+    font-weight: 600;
     margin-top: 100px;
     border-bottom: 2px solid rgba(143,2,224,1);
 }
@@ -28,7 +23,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 80px;
+    margin-top: 30px;
     justify-content: space-between;
 }
 .buttonContainer {
@@ -61,4 +56,21 @@
 }
 .setWidth {
     width: 750px;
+}
+.first {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.select {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.type {
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    height: 30px;
 }

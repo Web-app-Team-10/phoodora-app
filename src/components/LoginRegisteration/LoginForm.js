@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './LoginForm.module.css';
 import { FormContext } from './FormContext';
-import { ManagerLogin } from './ManagerLogin';
 import { motion } from 'framer-motion';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';

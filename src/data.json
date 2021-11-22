@@ -31,7 +31,9 @@
             "pricerange": "€€",
             "hours": "10:30-21:30",
             "image": "damario.png",
-            "menu":[]
+            "menu":[
+                
+            ]
         },
         {
             "id":4,
@@ -96,18 +98,18 @@
             "type": "Fine dining",
             "pricerange": "€€€€",
             "hours": "11:30-14:30 & 18:00-24:00",
-            "image": "rkioski.png",
+            "image": "savoy.jpg",
             "menu":[]
         },
         {
             "id": 10,
-            "name":"R-Kioski",
-            "address":"Mannerheimintie 12",
+            "name":"Ristorante Uno",
+            "address":"Oulunkyläntie 2",
             "city":"Helsinki",
-            "type": "Coffee, pastry, snacks",
-            "pricerange": "€",
-            "hours": "06:30-21:30",
-            "image": "savoy.jpg",
+            "type": "Fast casual",
+            "pricerange": "€€",
+            "hours": "10:30-21:30",
+            "image": "ristorante.jpg",
             "menu":[]
         }
     ]
