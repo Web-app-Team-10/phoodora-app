@@ -1,0 +1,59 @@
+.container {
+    width: 48%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    margin-left: 12px;
+}
+.container:hover {
+    background-color: rgba(143,2,224,1);
+    color: white;
+    border-radius: 18px;
+}
+.container:hover > .info > .price {
+    color: white;
+}
+.container:hover > .info > .price > .icon {
+    color: white;
+}
+.image {
+    width: 140px;
+    height: 120px;
+    border-radius: 18px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.details {
+    margin-left: 6px;
+    margin-top: 6px;
+    font-size: 14px;
+}
+.title {
+    margin-left: 6px;
+    margin-top: 6px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.price {
+    margin-left: 6px;
+    margin-top: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgba(143,2,224,1);
+    filter: brightness(1.2);
+}
+.icon {
+    color: rgba(143,2,224,1);
+    filter: brightness(1.2);
+    cursor: pointer;
+    margin-right: 20px;
+}
+.icon:hover {
+    color: rgb(25, 218, 25) !important;
+}

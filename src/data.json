@@ -3,19 +3,11 @@
         {
             "id":1,
             "name":"Ravintola Sarkka",
-<<<<<<< HEAD
             "address":"Hallituskatu 13",
             "city": "Oulu",
             "type": "Casual dining",
             "pricerange": "€",
             "hours": "09:00-22:00",
-=======
-            "address":"Some address asddasd 21",
-            "city": "Oulu",
-            "category": "burger",
-            "pricerange": "€",
-            "operatinghours": "09:00-22:00",
->>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "sarkka.png",
             "menu":[]
         },
@@ -24,22 +16,15 @@
             "name":"Hanko Sushi Oulu",
             "address":"Isokatu 25",
             "city":"Oulu",
-<<<<<<< HEAD
             "type": "Casual dining",
             "pricerange": "€€",
             "hours": "10:30-19:30",
-=======
-            "category": "sushi",
-            "pricerange": "€€",
-            "operatinghours": "10:30-19:30",
->>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "hankosushi.png",
             "menu":[]
         },
         {
             "id":3,
             "name":"Da Mario Oulu",
-<<<<<<< HEAD
             "address":"Torikatu 24",
             "city":"Oulu",
             "type": "Fast casual",
@@ -47,58 +32,128 @@
             "hours": "10:30-21:30",
             "image": "damario.png",
             "menu":[
-                
+                {
+                    "id": 1,
+                    "category": "Pizza",
+                    "name": "Huge pizza",
+                    "price": 17,
+                    "description": "Huge pizza for an extra hungry individual",
+                    "image": "huge.jpg" 
+                },
+                {
+                    "id": 2,
+                    "category": "Pizza",
+                    "name": "Big pizza",
+                    "price": 14,
+                    "description": "Big pizza for a relatively hungry individual",
+                    "image": "big.jpg" 
+                },
+                {
+                    "id": 3,
+                    "category": "Pizza",
+                    "name": "Standard pizza",
+                    "price": 11,
+                    "description": "Standard size pizza for ordinary hunger",
+                    "image": "standard.jpg" 
+                },
+                {
+                    "id": 4,
+                    "category": "Pizza",
+                    "name": "Small pizza",
+                    "price": 8,
+                    "description": "Small pizza for small hunger",
+                    "image": "small.jpg" 
+                },
+                {
+                    "id": 5,
+                    "category": "Burger",
+                    "name": "Huge burger",
+                    "price": 15,
+                    "description": "Huge burger for an extra hungry individual",
+                    "image": "hugeBurger.jpg" 
+                },
+                {
+                    "id": 6,
+                    "category": "Burger",
+                    "name": "Big burger",
+                    "price": 12,
+                    "description": "Big burger for a relatively hungry individual",
+                    "image": "bigBurger.jpg" 
+                },
+                {
+                    "id": 7,
+                    "category": "Burger",
+                    "name": "Standard burger",
+                    "price": 8,
+                    "description": "Standard size burger for ordinary hunger",
+                    "image": "standardBurger.jpg" 
+                },
+                {
+                    "id": 8,
+                    "category": "Burger",
+                    "name": "Small burger",
+                    "price": 4,
+                    "description": "Small burger for small hunger",
+                    "image": "smallBurger.jpg" 
+                },
+                {
+                    "id": 9,
+                    "category": "Wings",
+                    "name": "Huge amount of wings",
+                    "price": 13,
+                    "description": "Huge amount of wings for an extra hungry individual",
+                    "image": "hugeWings.jpg" 
+                },
+                {
+                    "id": 10,
+                    "category": "Wings",
+                    "name": "Large amount of wings",
+                    "price": 11,
+                    "description": "Large amount of wings for a relatively hungry individual",
+                    "image": "bigWings.jpg" 
+                },
+                {
+                    "id": 11,
+                    "category": "Wings",
+                    "name": "Standard amount of wings",
+                    "price": 9,
+                    "description": "Standard amount of wings for ordinary hunger",
+                    "image": "standardWings.jpg" 
+                },
+                {
+                    "id": 12,
+                    "category": "Wings",
+                    "name": "Small amount of wings",
+                    "price": 7,
+                    "description": "Handful of wings",
+                    "image": "smallWings.jpg" 
+                }
             ]
-=======
-            "address":"asdasd",
-            "city":"Oulu",
-            "category": "pizza",
-            "pricerange": "€€",
-            "operatinghours": "10:30-21:30",
-            "image": "damario.png",
-            "menu":[]
->>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
         },
         {
             "id":4,
             "name":"Oulun Verona",
             "address":"Puusepänkatu 4b",
             "city": "Oulu",
-<<<<<<< HEAD
             "type": "Fast casual",
             "pricerange": "€€",
             "hours": "10:30-21:30",
-=======
-            "category": "pizza",
-            "pricerange": "€€",
-            "operatinghours": "10:30-21:30",
->>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "verona.png",
             "menu":[]
         },
         {
             "id":5,
-<<<<<<< HEAD
             "name":"Korson pizza keskus",
             "address":"Maakotkantie 22",
             "city":"Vantaa",
             "type": "Fast casual",
             "pricerange": "€",
             "hours": "10:00-22:00",
-=======
-            "name":"Korson Pizza keskus",
-            "address":"Maakotkantie 22",
-            "city":"Vantaa",
-            "category": "pizza",
-            "pricerange": "€",
-            "operatinghours": "10:00-22:00",
->>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "image": "korso.png",
             "menu":[]
         }
         ,{
             "id":6,
-<<<<<<< HEAD
             "name":"Ravintola Willihanhi",
             "address":"Mannerheimintie 12",
             "city":"Helsinki",
@@ -150,15 +205,6 @@
             "pricerange": "€€",
             "hours": "10:30-21:30",
             "image": "ristorante.jpg",
-=======
-            "name":"R-Kioski",
-            "address":"Mannerheimintie 12",
-            "city":"Helsinki",
-            "category": "Coffee, pastry, snacks",
-            "pricerange": "€",
-            "operatinghours": "06:30-21:30",
-            "image": "sarkka.png",
->>>>>>> a46809386cd6d87fbb1a33024f72307e7c90a7fd
             "menu":[]
         }
     ]
