@@ -9,9 +9,10 @@ import data from './data.json';
 
 export default function App() {
   const [SearchTerm, setSearchTerm] = useState("");
-
+  const [managerModeActive, activateManagerMode] = useState(false);
 
   let restaurants = data.restaurants;
+  let manager;
   if (SearchTerm.length > 1){
     restaurants = restaurants.filter((restaurants) => restaurants.name.toLowerCase().includes(SearchTerm.toLowerCase()))
   }
@@ -31,18 +32,35 @@ export default function App() {
     const randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
     const randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
     
-  return (
-    
-    <BrowserRouter>
-      <>
-        <Header setSearchTerm = {setSearchTerm} SearchTerm = {SearchTerm} />
-        <Routes>
-          <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
-          <Route path="/forms" element={ <Login /> }></Route>
-          <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
-          <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
-        </Routes>
-      </>
-    </BrowserRouter>
+    let output = <BrowserRouter>
+    <>
+      <Header setSearchTerm = {setSearchTerm} SearchTerm = {SearchTerm} />
+      <Routes>
+        <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
+        <Route path="/forms" element={ <Login /> }></Route>
+        <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
+        <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
+      </Routes>
+    </>
+  </BrowserRouter>
+
+  if(managerModeActive) {
+   manager = <div>Very secret manager mode</div>;
+  } else {
+    manager = <div>Unauthorized access</div>;
+  }
+  
+  return ( <BrowserRouter>
+    <>
+      <Header setSearchTerm = {setSearchTerm} SearchTerm = {SearchTerm} />
+      <Routes>
+        <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
+        <Route path="/forms" element={ <Login /> }></Route>
+        <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
+        <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
+        <Route path="/restaurants/:id/manager" element={ manager }></Route>
+      </Routes>
+    </>
+  </BrowserRouter>
   );
 };
