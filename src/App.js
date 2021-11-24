@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import data from './data.json';
 
+
 export default function App() {
   const restaurants = data.restaurants;
   const uniqCity = [];
