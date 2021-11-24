@@ -9,6 +9,7 @@ import data from './data.json';
 export default function App() {
   const restaurants = data.restaurants;
   const uniqCity = [];
+  
     restaurants.map( unique => { 
         if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
     });
