@@ -7,6 +7,7 @@
 }
 .container:hover {
     background-color: rgba(143,2,224,1);
+    filter: brightness(1.2);
     color: white;
     border-radius: 18px;
 }
