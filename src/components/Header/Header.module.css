@@ -23,6 +23,7 @@
 .inputSearch::placeholder{
     padding-left: 6px;
 }
+
 .login {
     background-color: rgba(143,2,224,1);
     border: none;
@@ -35,8 +36,7 @@
 .search {
     display: flex;
     flex-direction: row;
-}
-.searchIcon {
+}.searchIcon {
     margin-top: 6px;
 }
 .buttonContainer {

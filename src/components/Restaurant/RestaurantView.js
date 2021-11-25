@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './RestaurantView.module.css';
 import Welcome from './Welcome';
 import Categories from './Categories';
