@@ -4,6 +4,7 @@
     flex-direction: row;
     margin-bottom: 30px;
     margin-left: 12px;
+    
 }
 .container:hover {
     background-color: rgba(143,2,224,1);
