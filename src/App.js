@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from './components/Header/Header';
 import Login from './components/LoginRegisteration/Login';
 import RestaurantView from './components/Restaurant/RestaurantView';
-import CreateRestaurant from './components/CreateRestaurant/Create';
+import Manager from './components/Manager/Manager';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import data from './data.json';
@@ -11,9 +11,9 @@ import { v4 as uuid_v4 } from 'uuid';
 export default function App() {
   const [SearchTerm, setSearchTerm] = useState("");
   const [managerModeActive, activateManagerMode] = useState(false);
-
-  let restaurants = data.restaurants;
-  let manager;
+  
+  let restaurants = [];
+  data.manager.map(manager => { restaurants = manager.restaurants });
 
   const addNewRestaurant = (name, address, city, hours, type, pricerange, image) => {
     let newRestaurant = {
@@ -26,7 +26,7 @@ export default function App() {
     pricerange: pricerange,
     image: image,
     menu: [] }
-    restaurants.push(newRestaurant);    
+    restaurants.push(newRestaurant);   
     restaurants.map( unique => { 
         if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
     });
@@ -36,7 +36,7 @@ export default function App() {
     restaurants = restaurants.filter((restaurants) => restaurants.name.toLowerCase().includes(SearchTerm.toLowerCase()))
   }
   else{
-    restaurants = data.restaurants;
+    data.manager.map(manager => { restaurants = manager.restaurants });
   }
   const uniqCity = [];
   
@@ -52,8 +52,10 @@ export default function App() {
     const randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
     const randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
 
+    let manager;
+
   if(managerModeActive) {
-   manager = <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } />;
+   manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } />;
   } else {
     manager = <><div>Unauthorized access</div>
             <div><button onClick={ activateManagerMode }>Click to gain access</button></div></>;
@@ -61,7 +63,7 @@ export default function App() {
   
   return ( <BrowserRouter>
     <>
-      <Header setSearchTerm = {setSearchTerm} SearchTerm = {SearchTerm} />
+      <Header setSearchTerm = {setSearchTerm} SearchTerm = {SearchTerm} activateManagerMode={ activateManagerMode }/>
       <Routes>
         <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         <Route path="/forms" element={ <Login /> }></Route>

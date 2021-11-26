@@ -27,7 +27,7 @@ export default function Header(props) {
                 </div>
                 <div className={ styles.buttonContainer }>
                     <HiOutlineShoppingCart size={ 28 } style={{ color: "white", cursor: "pointer" }} />
-                    <FaUser size={ 25 } style={{ color: "white", cursor: "pointer", marginLeft: "12px" }} />
+                    <Link to="manager"><FaUser size={ 25 } style={{ color: "white", cursor: "pointer", marginLeft: "12px" }}  /></Link>
                     <Link to="forms"><button className={ styles.login }>Log in</button></Link>
                 </div>
             </div>

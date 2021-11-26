@@ -1,0 +1,57 @@
+.container {
+    border-radius: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+}
+.container:hover {
+    background-color: rgba(143,2,224,1);
+    color: white;
+    filter: brightness(1.1);
+}
+.image {
+    width: 220px;
+    height: 180px;
+    border-radius: 20px;
+}
+.title {
+    margin-left: 20px;
+    margin-top: 6px;
+    font-weight: 500;
+    width: 470px;
+}
+.description {
+    margin-left: 15px;
+    font-weight: 400;
+}
+.edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.button, .button2, .button3 {
+    cursor: pointer;
+    border: none;
+    width: 100px;
+    height: 40px;
+    background-color: green;
+    border-radius: 8px;
+    color: white;
+}
+.button {
+    margin-left: 130px;
+}
+.button:hover, .button2:hover, .button3:hover {
+    border: 2px solid white;
+}
+.button2 {
+    background-color: red;
+    margin-left: 30px;
+}
+.button3 {
+    background-color: blue;
+}
+.lowerB {
+    display: flex;
+    flex-direction: row;
+}

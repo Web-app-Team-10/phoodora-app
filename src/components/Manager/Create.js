@@ -18,7 +18,7 @@ export default function Create(props) {
     return (
         <div className={ styles.container}>
             <div className={ styles.title }>Register a restaurant and become restaurant manager</div>
-            <button className={ styles.button } onClick={ () => props.activateManagerMode() }>Go back</button>
+            <button className={ styles.button } onClick={ () => props.setCreate() }>Go back</button>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant name:</div>
                 <div><input className={ styles.input } onChange={ (event) => setNewName(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="Name restaurant"></input></div>
@@ -38,6 +38,7 @@ export default function Create(props) {
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant type:</div>
                 <div><select className={ styles.select } onChange={ (event) => setNewType(event.target.value) }>
+                    <option value="" selected disabled hidden>Choose here</option>
                     <option value="Fast food">Fast food</option>
                     <option value="Fast casual">Fast casual</option>
                     <option value="Casual dining">Casual dining</option>
@@ -46,7 +47,8 @@ export default function Create(props) {
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant price level:</div>
-                <div><select className={ styles.select } onChange={ (event) => setNewPricerange(event.target.value) } name="pricerange">
+                <div><select className={ styles.select } onChange={ (event) => setNewPricerange(event.target.value) }>
+                    <option value="" selected disabled hidden>Choose here</option>
                     <option value="€">€</option>
                     <option value="€€">€€</option>
                     <option value="€€€">€€€</option>
