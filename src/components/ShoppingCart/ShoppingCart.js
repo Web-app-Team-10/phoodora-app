@@ -10,8 +10,9 @@ export default function ShoppingCart(props) {
     return (
 
         <div className={styles.ShoppingCartContainer}>
+            <button onClick={ () => console.log("Cart -->", props.shoppingCart) }>Print cart in console</button>
         <div className = {styles.addedItems}>
-        {/*{ shoppingCart.map( shoppingCart =>  <ShoppingCartItem  key={ shoppingCart.id }  {...shoppingCart} />)}*/}
+        { props.shoppingCart.map( shoppingCart =>  <ShoppingCartItem  key={ shoppingCart.id }  {...shoppingCart} />)}
 
 
 

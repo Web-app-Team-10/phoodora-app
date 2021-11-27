@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export default function Restaurant(props) {
     
-    const shoppingCart = [];
+    /*const shoppingCart = [];*/
     const { id } = useParams();
     const { category } = useParams("");
     
@@ -24,9 +24,9 @@ export default function Restaurant(props) {
 
     if(category != null) {
         sortedMenu = restaurant.menu.filter((menu) => menu.category.toLowerCase().includes(category.toLowerCase()))
-        menu = <>{ sortedMenu.map( menu => <Menu key={ menu.id } menu={ menu } shoppingCart={ shoppingCart }/>)}</>
+        menu = <>{ sortedMenu.map( menu => <Menu key={ menu.id } menu={ menu } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart }/>)}</>
     } else {
-        menu = <>{ restaurant.menu.map( menu => <Menu key={ menu.id } menu={ menu } shoppingCart={ shoppingCart } />)}</>
+        menu = <>{ restaurant.menu.map( menu => <Menu key={ menu.id } menu={ menu } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart } />)}</>
     }
 
     return (
