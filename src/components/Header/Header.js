@@ -26,7 +26,7 @@ export default function Header(props) {
                 <div className={ styles.searchIcon }><ImSearch size={ 25 } style={{ color: "white", cursor: "pointer", marginLeft: "8px" }} /></div>
                 </div>
                 <div className={ styles.buttonContainer }>
-                    <HiOutlineShoppingCart size={ 28 } style={{ color: "white", cursor: "pointer" }} />
+                    <Link to="/shopping_cart"><HiOutlineShoppingCart size={ 28 } style={{ color: "white", cursor: "pointer" }} /></Link>
                     <FaUser size={ 25 } style={{ color: "white", cursor: "pointer", marginLeft: "12px" }} />
                     <Link to="forms"><button className={ styles.login }>Log in</button></Link>
                 </div>
