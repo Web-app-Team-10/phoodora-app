@@ -17,7 +17,7 @@ export default function Manager(props) {
         output = <>
             <button className={ styles.button } onClick={ () => setCreate(true) }>Create a new restaurant</button>
             {console.log(props)}
-            { props.restaurants.map(restaurant => <ManageRestaurant key={ restaurant.id } {...restaurant}/>)}
+            { props.restaurants.map(restaurant => <ManageRestaurant key={ restaurant.id } {...restaurant} deleteRestaurant={ props.deleteRestaurant }/>)}
         </>;
         createRestaurant = <></>;
     }

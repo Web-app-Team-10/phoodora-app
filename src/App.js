@@ -31,6 +31,12 @@ export default function App() {
         if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
     });
   };
+
+  const deleteRestaurant = restaurantId => {
+    console.log(restaurants)
+    let newRestaurants = restaurants.filter((restaurant) => restaurant.id !== restaurantId);
+    console.log(newRestaurants);
+  }
   
   if (SearchTerm.length > 0){
     restaurants = restaurants.filter((restaurants) => restaurants.name.toLowerCase().includes(SearchTerm.toLowerCase()))
@@ -55,7 +61,7 @@ export default function App() {
     let manager;
 
   if(managerModeActive) {
-   manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } />;
+   manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/>;
   } else {
     manager = <><div>Unauthorized access</div>
             <div><button onClick={ activateManagerMode }>Click to gain access</button></div></>;

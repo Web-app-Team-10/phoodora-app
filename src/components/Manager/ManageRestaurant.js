@@ -2,6 +2,10 @@ import React from 'react';
 import styles from './ManageRestaurant.module.css';
 
 export default function ManagerRestaurant(props) {
+
+    const deleteRestaurantClick = (restaurantId) => {
+        props.deleteRestaurant(restaurantId);
+    }
     return (
         <div className={ styles.container }>
             <img src={ `/images/${props.image}`} className={ styles.image }></img>
@@ -15,7 +19,7 @@ export default function ManagerRestaurant(props) {
             <div className={ styles.edit }>
                 <button className={ styles.button }>Edit details</button>
                 <button className={ styles.button }>Edit menu</button>
-                <div className={ styles.lowerB }><button className={ styles.button3 }>View order history</button><button className={ styles.button2 }>Delete restaurant</button></div>
+                <div className={ styles.lowerB }><button className={ styles.button3 }>View order history</button><button className={ styles.button2 } onClick={ () => deleteRestaurantClick(props.id) }>Delete restaurant</button></div>
             </div>
         </div>
     )
