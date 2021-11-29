@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ManageRestaurant.module.css';
+import { Link } from 'react-router-dom';
 
 export default function ManagerRestaurant(props) {
 
@@ -18,7 +19,7 @@ export default function ManagerRestaurant(props) {
             </div>
             <div className={ styles.edit }>
                 <button className={ styles.button }>Edit details</button>
-                <button className={ styles.button }>Edit menu</button>
+                <Link to={`/manager/${props.id}/menu`}><button className={ styles.button }>Edit menu</button> </Link>
                 <div className={ styles.lowerB }><button className={ styles.button3 }>View order history</button><button className={ styles.button2 } onClick={ () => deleteRestaurantClick(props.id) }>Delete restaurant</button></div>
             </div>
         </div>

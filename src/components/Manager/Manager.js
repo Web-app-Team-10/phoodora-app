@@ -4,7 +4,7 @@ import CreateRestaurant from './Create';
 import ManageRestaurant from './ManageRestaurant';
 
 export default function Manager(props) {
-
+ 
     const [create, setCreate] = useState(false);
 
     let createRestaurant;
@@ -16,7 +16,6 @@ export default function Manager(props) {
     } else {
         output = <>
             <button className={ styles.button } onClick={ () => setCreate(true) }>Create a new restaurant</button>
-            {console.log(props)}
             { props.restaurants.map(restaurant => <ManageRestaurant key={ restaurant.id } {...restaurant} deleteRestaurant={ props.deleteRestaurant }/>)}
         </>;
         createRestaurant = <></>;
@@ -27,9 +26,7 @@ export default function Manager(props) {
        <div className={ styles.container }>
             <div className={ styles.title }>Hello manager</div>
             { output }
-
         </div>
-        
         { createRestaurant }
         </>
     )

@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from './components/Header/Header';
 import Login from './components/LoginRegisteration/Login';
 import RestaurantView from './components/Restaurant/RestaurantView';
 import Manager from './components/Manager/Manager';
+import EditMenu from './components/Manager/EditMenu';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import data from './data.json';
 import { v4 as uuid_v4 } from 'uuid';
 
 export default function App() {
+  let [restaurants, setRestaurants] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
   const [managerModeActive, activateManagerMode] = useState(false);
   
-  let restaurants = [];
-  data.manager.map(manager => { restaurants = manager.restaurants });
+  data.manager.map(manager => restaurants = manager.restaurants );
 
   const addNewRestaurant = (name, address, city, hours, type, pricerange, image) => {
     let newRestaurant = {
@@ -32,38 +33,40 @@ export default function App() {
     });
   };
 
+
   const deleteRestaurant = restaurantId => {
-    console.log(restaurants)
-    let newRestaurants = restaurants.filter((restaurant) => restaurant.id !== restaurantId);
-    console.log(newRestaurants);
+    let index = restaurants.map(restaurant => { return restaurant.id; }).indexOf(restaurantId);
+    setRestaurants(restaurants.splice(index, 1));
+    console.log(restaurants);
   }
   
   if (SearchTerm.length > 0){
     restaurants = restaurants.filter((restaurants) => restaurants.name.toLowerCase().includes(SearchTerm.toLowerCase()))
   }
   else{
-    data.manager.map(manager => { restaurants = manager.restaurants });
+    data.manager.map(manager => restaurants = manager.restaurants );
+    
   }
-  const uniqCity = [];
+  let uniqCity = [];
   
     restaurants.map( unique => { 
         if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
     });
-
-    const randomCities = uniqCity.sort(() => Math.random() - Math.random()).slice(0, 2);
-    const randomCity_1 = randomCities.slice(0, 1)
-    const randomCity_2 = randomCities.slice(1, 2)
-    const restaurants_1 = restaurants.filter((restaurants) => restaurants.city.includes(randomCity_1));
-    const restaurants_2 = restaurants.filter((restaurants) => restaurants.city.includes(randomCity_2));
-    const randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
-    const randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
+   
+    let randomCities = uniqCity.sort(() => Math.random() - Math.random()).slice(0, 2);
+    let randomCity_1 = randomCities.slice(0, 1);
+    let randomCity_2 = randomCities.slice(1, 2);
+    let restaurants_1 = restaurants.filter((restaurants) => restaurants.city.includes(randomCity_1));
+    let restaurants_2 = restaurants.filter((restaurants) => restaurants.city.includes(randomCity_2));
+    let randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
+    let randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
 
     let manager;
 
   if(managerModeActive) {
    manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/>;
   } else {
-    manager = <><div>Unauthorized access</div>
+    manager = <><div>No access</div>
             <div><button onClick={ activateManagerMode }>Click to gain access</button></div></>;
   }
   
@@ -76,6 +79,7 @@ export default function App() {
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/manager" element={ manager }></Route>
+        <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants }/>}></Route>
       </Routes>
     </>
   </BrowserRouter>
