@@ -2,6 +2,7 @@
   "name": "phoodora-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://web-app-team-10.github.io/phoodora-frontend/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
