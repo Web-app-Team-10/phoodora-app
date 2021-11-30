@@ -9,6 +9,14 @@ export default function EditMenu(props) {
     const [product, setProduct] = useState(false);
     const { id } = useParams();
 
+    const deleteFromMenu = productId => {
+        console.log(productId);
+        let index = restaurant.menu.map(product => { return product.id; }).indexOf(productId);
+        console.log(index);
+        props.setRestaurants(restaurant.menu.splice(index, 1));
+        console.log(restaurant.menu);
+      }
+
     let restaurant;
     let output;
     let createProduct;
@@ -25,22 +33,20 @@ export default function EditMenu(props) {
         image: image,
         }
         restaurant.menu.push(newProduct); 
-      };
+    };
 
-
-    if(product=== true ) {
+    if(product === true) {
         output = <></>;
         createProduct = <CreateProduct setProduct={ setProduct } addNewProduct={ addNewProduct } />;
     } else {
         output = <>
             <div className={ styles.name }>Menu of <i>{ restaurant.name }</i></div>
             <div className={ styles.addRow }><button className={ styles.button } onClick={ () => setProduct(true) }>Add to menu</button></div>
-            <div className={ styles.products }>{ restaurant.menu.map(menu => <Product key={ menu.id } {...menu} />)}</div>
+            <div className={ styles.products }>{ restaurant.menu.map(menu => <Product key={ menu.id } {...menu} deleteFromMenu={ deleteFromMenu }/>)}</div>
         </>;
         createProduct = <></>;
     }
     
-
     return (
         <div className={ styles.container }>
             { output }
@@ -48,7 +54,3 @@ export default function EditMenu(props) {
         </div>
     )
 }
-
-/*<div className={ styles.name }>Menu of <i>{ restaurant.name }</i></div>
-            <div className={ styles.addRow }><button className={ styles.button } onClick={ () => setCreate(true) }>Add to menu</button></div>
-            <div className={ styles.products }>{ restaurant.menu.map(menu => <Product key={ menu.id } {...menu} />)}</div>*/

@@ -33,7 +33,6 @@ export default function App() {
     });
   };
 
-
   const deleteRestaurant = restaurantId => {
     let index = restaurants.map(restaurant => { return restaurant.id; }).indexOf(restaurantId);
     setRestaurants(restaurants.splice(index, 1));
@@ -48,7 +47,6 @@ export default function App() {
     
   }
   let uniqCity = [];
-  
     restaurants.map( unique => { 
         if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
     });
@@ -60,13 +58,12 @@ export default function App() {
     let restaurants_2 = restaurants.filter((restaurants) => restaurants.city.includes(randomCity_2));
     let randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
     let randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
-
     let manager;
 
   if(managerModeActive) {
    manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/>;
   } else {
-    manager = <><div>No access</div>
+    manager = <><div>Unauthorized access</div>
             <div><button onClick={ activateManagerMode }>Click to gain access</button></div></>;
   }
   
@@ -79,7 +76,7 @@ export default function App() {
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/manager" element={ manager }></Route>
-        <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants }/>}></Route>
+        <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
       </Routes>
     </>
   </BrowserRouter>

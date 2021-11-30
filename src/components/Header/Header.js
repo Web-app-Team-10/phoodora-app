@@ -11,8 +11,6 @@ export default function Header(props) {
         const searchWord = event.target.value;
         props.setSearchTerm(searchWord);
         console.log(searchWord);
-        
-  
   }
 
     return (
