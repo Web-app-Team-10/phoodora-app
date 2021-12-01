@@ -160,7 +160,6 @@ export default function Frontpage(props) {
                     { <Location city={ props.uniqCity } setView={ setView } setCity={ setCity }  />}
                 </div>
                 { output }
-                <button>plus</button>
             </div>         
         </div>
     )

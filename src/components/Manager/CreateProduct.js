@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CreateProduct.module.css';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { SpinnerRoundOutlined } from 'spinners-react';
 
 export default function CreateProduct(props) {
     const [ newName, setNewName ] = useState("");
@@ -8,16 +9,19 @@ export default function CreateProduct(props) {
     const [ newPrice, setNewPrice ] = useState("");
     const [ newCategory, setNewCategory ] = useState("");
     const [ newImage, setNewImage ] = useState("");
-
-    const navigate = useNavigate();
+    const [ processing, setProcessing ] = useState("idle");
 
     const addNewProduct = () => {
         props.addNewProduct(newName, newDescription, newPrice, newCategory, newImage);
+        setProcessing("processing");
         setTimeout(() => {
-            navigate('/manager/:id/menu');
-        }, 2000)
+            props.setProduct(false)
+        }, 1500)
     }
-    return (
+    let output;
+
+    switch(processing) {
+        case "idle": output = <>
         <div className={ styles.container}>
             <div className={ styles.title }>Create a new product to your restaurants menu</div>
             <button className={ styles.button } onClick={ () => props.setProduct() }>Go back</button>
@@ -43,5 +47,19 @@ export default function CreateProduct(props) {
             </div>
             <button className={ styles.button2 } onClick={ addNewProduct }>Create Product</button>
         </div>
+        </>;
+        break;
+        case "processing": output = <>
+            <div className={ styles.creationContainer }><SpinnerRoundOutlined size={60} color={'rgba(120,4,185,1)'} filter={'brightness(1.3)'}/><div className={ styles.creating }> Creating product ....</div></div>
+        </>
+        break;
+        case "failure": output = <>
+            <div className={ styles.creationContainer }><div className={ styles.creating }> Creating product failed ....</div></div>
+        </>
+    }
+    return (
+       <>
+       { output }
+       </>
     )
 }

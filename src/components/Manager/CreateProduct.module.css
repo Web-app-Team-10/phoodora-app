@@ -65,3 +65,17 @@
     -webkit-appearance: none;
     margin: 0;
 }
+.creationContainer {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-top: 150px;
+}
+.creating {
+    margin-left: 20px;
+    margin-bottom: 6px;
+    font-size: 35px;
+    color: rgba(143,2,224,1);
+    font-weight: 600;
+    align-self: center;
+}
