@@ -21,18 +21,17 @@ export default function ShoppingCart(props) {
         }
     }
 
-        let product;
-        
-        const deleteItem = productId => {
-            props.shoppingCart.map(find => { if (find.id == productId){ product = find } });
-            console.log(productId);
-            let index = product.map(product => { return product.id; }).indexOf(productId);
-            console.log(index);
-            props.setShoppingCart(product.splice(index, 1));
-            console.log(product);
+        const deleteItem = (productId) => {
+            props.setShoppingCart(props.shoppingCart.filter(product => product.id !== productId));
         }
-
-
+        const increaseQuantity = (productId) => {
+            props.shoppingCart.map(find => { if(find.id === productId) { find.quantity++; } })
+            props.setShoppingCart([...props.shoppingCart]);
+        }
+        const decreaseQuantity = (productId) => {
+            props.shoppingCart.map(find => { if(find.id === productId) { find.quantity--; }  } )
+            props.setShoppingCart([...props.shoppingCart]);
+        }
 
     return (
 
@@ -40,9 +39,9 @@ export default function ShoppingCart(props) {
         <Link to= '/' className={styles.linkBtn}> <button className={styles.goBackBtn}><BsFillArrowLeftCircleFill size={20}/> Go back</button></Link>
         {/* <button onClick={ () => console.log("Cart -->", props.shoppingCart) }>Print cart in console</button>*/}
         <div className = {styles.addedItems}>
-        { props.shoppingCart.map( shoppingCart =>  <ShoppingCartItem deleteItem={deleteItem} key={ shoppingCart.id }  {...shoppingCart} />)}
+        { props.shoppingCart.map( shoppingCart =>  <ShoppingCartItem key={ shoppingCart.id } deleteItem={deleteItem} increaseQuantity={ increaseQuantity } decreaseQuantity={ decreaseQuantity } {...shoppingCart} setShoppingCart={ props.setShoppingCart } shoppingCart={ props.shoppingCart }/>)}
 
-        <ShoppingCartItem />
+        
         </div>
         <h2 className={styles.deliveryAddress}>Delivery address:</h2>
         <input className = { styles.deliveryInput} type="text" placeholder = "Type here"></input> 

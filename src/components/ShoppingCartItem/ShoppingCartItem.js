@@ -7,12 +7,21 @@ import {AiOutlineMinus} from 'react-icons/ai';
 
 export default function ShoppingCartItem(props) {
 
-    const deleteItemClick = (productId) => {
+
+    const deleteItemClick = productId => {
         props.deleteItem(productId);
     }
+    const increaseQuantityClick = productId => {
+        props.increaseQuantity(productId)
+    }
+    const decreaseQuantityClick = productId => {
+        
+        props.decreaseQuantity(productId)
+    }
+    if(props.quantity < 1 ) {
+        deleteItemClick(props.id)
+    }
 
-
-    
     return (
         
         
@@ -24,9 +33,9 @@ export default function ShoppingCartItem(props) {
         <div>{props.name}</div>
         
         <span>
-            <button  className={styles.quantityBtn} onClick = { () =>  props.quantity - 1}><AiOutlineMinus size={18}/> </button>
+            <button  className={styles.quantityBtn} onClick = { () =>  decreaseQuantityClick(props.id) }><AiOutlineMinus size={18}/> </button>
             <span>{props.quantity}</span>
-            <button className={styles.quantityBtn} onClick={ () =>   props.quantity + 1}> <AiOutlinePlus size={18}/></button>
+            <button className={styles.quantityBtn} onClick={ () => increaseQuantityClick(props.id)  }> <AiOutlinePlus size={18}/></button>
         </span>
         <div className={styles.priceContainer}>
             <div  className = {styles.closeIcon} ><GrClose onClick={ () => deleteItemClick(props.id)} size={ 20 }/></div>

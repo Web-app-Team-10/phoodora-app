@@ -13,8 +13,6 @@ export default function App() {
   const [SearchTerm, setSearchTerm] = useState("");
   const [shoppingCart, setShoppingCart] = useState([]);
 
-  /*const shoppingCart = [];*/
-
   const addToCart = (id, name, price, description, image) => {
     let product = {
         quantity: 1,
