@@ -4,6 +4,7 @@ import Login from './components/LoginRegisteration/Login';
 import RestaurantView from './components/Restaurant/RestaurantView';
 import Manager from './components/Manager/Manager';
 import EditMenu from './components/Manager/EditMenu';
+import CreateRestaurant from './components/Manager/Create';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import data from './data.json';
@@ -13,6 +14,7 @@ export default function App() {
   let [restaurants, setRestaurants] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
   const [managerModeActive, activateManagerMode] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   data.manager.map(manager => restaurants = manager.restaurants );
 
@@ -66,17 +68,30 @@ export default function App() {
     manager = <><div>Unauthorized access</div>
             <div><button onClick={ activateManagerMode }>Click to gain access</button></div></>;
   }
+
+  let authRoutes;
+
+  if(isLoggedIn === true) {
+    authRoutes = <>
+      ;
+      </>
+  } else {
+    authRoutes = <></>;
+  }
   
   return ( <BrowserRouter>
     <>
       <Header setSearchTerm = {setSearchTerm} SearchTerm = {SearchTerm} activateManagerMode={ activateManagerMode }/>
       <Routes>
+        <Route path="*" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         <Route path="/forms" element={ <Login /> }></Route>
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
-        <Route path="/manager" element={ manager }></Route>
+        <Route path="/manager" element={ manager } setIsLoggedIn={ setIsLoggedIn }></Route>
+        <Route path="/manager/create" element={ <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } /> }></Route>
         <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
+        { authRoutes }
       </Routes>
     </>
   </BrowserRouter>

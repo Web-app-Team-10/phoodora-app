@@ -10,7 +10,6 @@ export default function EditMenu(props) {
     const { id } = useParams();
 
     const deleteFromMenu = productId => {
-        console.log(productId);
         let index = restaurant.menu.map(product => { return product.id; }).indexOf(productId);
         console.log(index);
         props.setRestaurants(restaurant.menu.splice(index, 1));
@@ -37,7 +36,7 @@ export default function EditMenu(props) {
 
     if(product === true) {
         output = <></>;
-        createProduct = <CreateProduct setProduct={ setProduct } addNewProduct={ addNewProduct } />;
+        createProduct = <CreateProduct setProduct={ setProduct } addNewProduct={ addNewProduct }/>;
     } else {
         output = <>
             <div className={ styles.name }>Menu of <i>{ restaurant.name }</i></div>

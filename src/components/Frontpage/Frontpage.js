@@ -54,10 +54,10 @@ export default function Frontpage(props) {
             matchCity = "all";
         }
         setSelectedValue(event.value);
-        if(selectedValue != "all" && matchCity == "all") {
+        if(selectedValue !== "all" && matchCity === "all") {
             setView('4');
         }
-        if(selectedValue != "all" && matchCity != "all") {
+        if(selectedValue !== "all" && matchCity !== "all") {
             matchCity = currentCity;
             setView('5');
       }
@@ -160,6 +160,7 @@ export default function Frontpage(props) {
                     { <Location city={ props.uniqCity } setView={ setView } setCity={ setCity }  />}
                 </div>
                 { output }
+                <button>plus</button>
             </div>         
         </div>
     )

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Create.module.css';
+import { SpinnerRoundOutlined } from 'spinners-react';
+import { useNavigate } from "react-router-dom";
 
 export default function Create(props) {
 
@@ -11,14 +13,23 @@ export default function Create(props) {
     const [ newPricerange, setNewPricerange ] = useState("");
     const [ newImage, setNewImage ] = useState("");
 
+    const [ processing, setProcessing ] = useState("idle");
+    const navigate = useNavigate();
+
     const addNewRestaurant = () => {
         props.addNewRestaurant(newName, newAddress, newCity, newHours, newType, newPricerange, newImage);
+        setProcessing("creating");
+        setTimeout(() => {
+            navigate('/manager');
+        }, 2000)
     }
-
-    return (
-        <div className={ styles.container}>
-            <div className={ styles.title }>Register a restaurant and become restaurant manager</div>
-            <button className={ styles.button } onClick={ () => props.setCreate() }>Go back</button>
+  
+    let output;
+    switch(processing) {
+        case "idle":
+        output = <>
+        <div className={ styles.title }>Register a restaurant and become restaurant manager</div>
+            <button className={ styles.button } onClick={ () => navigate('/manager') }>Go back</button>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant name:</div>
                 <div><input className={ styles.input } onChange={ (event) => setNewName(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="Name restaurant"></input></div>
@@ -37,8 +48,8 @@ export default function Create(props) {
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant type:</div>
-                <div><select className={ styles.select } onChange={ (event) => setNewType(event.target.value) }>
-                    <option value="" selected disabled hidden>Choose here</option>
+                <div><select defaultValue="" className={ styles.select } onChange={ (event) => setNewType(event.target.value) }>
+                    <option value="" hidden disabled>Choose here</option>
                     <option value="Fast food">Fast food</option>
                     <option value="Fast casual">Fast casual</option>
                     <option value="Casual dining">Casual dining</option>
@@ -47,8 +58,8 @@ export default function Create(props) {
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant price level:</div>
-                <div><select className={ styles.select } onChange={ (event) => setNewPricerange(event.target.value) }>
-                    <option value="" selected disabled hidden>Choose here</option>
+                <div><select defaultValue="" className={ styles.select } onChange={ (event) => setNewPricerange(event.target.value) }>
+                    <option value="" hidden disabled>Choose here</option>
                     <option value="€">€</option>
                     <option value="€€">€€</option>
                     <option value="€€€">€€€</option>
@@ -60,6 +71,24 @@ export default function Create(props) {
                 <div><input className={ styles.input } onChange={ (event) => setNewImage(event.target.value) } type="text" placeholder="Image address"></input></div>
             </div>
             <button className={ styles.button2 } onClick={ addNewRestaurant }>Create Restaurant</button>
+            </>;
+            break;
+
+            case "creating": 
+            output = <>
+                <div className={ styles.creationContainer }><SpinnerRoundOutlined size={60} color={'rgba(120,4,185,1)'} filter={'brightness(1.3)'}/><div className={ styles.creating }> Creating your restaurant ....</div></div>
+            </>;
+            break;
+            
+            case "failure": 
+            output = <>
+                <div>Error ....</div>
+            </>;
+        }
+
+    return (
+        <div className={ styles.container}>
+            { output }
         </div>
     )
 }

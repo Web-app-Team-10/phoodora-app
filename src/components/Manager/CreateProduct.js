@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './CreateProduct.module.css';
+import { useNavigate  } from 'react-router-dom';
 
 export default function CreateProduct(props) {
     const [ newName, setNewName ] = useState("");
@@ -8,8 +9,13 @@ export default function CreateProduct(props) {
     const [ newCategory, setNewCategory ] = useState("");
     const [ newImage, setNewImage ] = useState("");
 
+    const navigate = useNavigate();
+
     const addNewProduct = () => {
         props.addNewProduct(newName, newDescription, newPrice, newCategory, newImage);
+        setTimeout(() => {
+            navigate('/manager/:id/menu');
+        }, 2000)
     }
     return (
         <div className={ styles.container}>

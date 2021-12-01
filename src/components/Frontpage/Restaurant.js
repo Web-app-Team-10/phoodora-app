@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Restaurant(props) {
 
     return (
-        <Link to={ `/restaurants/${ props.id }` } className={ styles.link }>
+    <Link to={ `/restaurants/${ props.id }` } className={ styles.link }>
         <div className={ styles.container }>
             <div className={ styles.imageContainer }><img className={ styles.image } src={ `/images/${props.image}`}></img></div>
             <div className={ styles.textContainer }>

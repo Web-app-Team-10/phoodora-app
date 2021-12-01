@@ -49,8 +49,6 @@ export default function RegisterForm() {
                 <input className={ styles.input } type="username" placeholder="Username"></input>
                 <span className={ styles.titles }>Password</span>
                 <input className={ styles.input } type="password" placeholder="Password"></input>
-                <span className={ styles.titles }>Email address</span>
-                <input className={ styles.input } type="email" placeholder="Email address"></input>
                 <span className={ styles.titles }>Street address</span>
                 <input className={ styles.input } type="address" placeholder="Street address"></input>
                 <div className={ styles.titleP }><span className={ styles.postal }>Postal code</span><span className={ styles.city }>City</span></div>
