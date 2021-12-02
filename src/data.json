@@ -1,9 +1,10 @@
 {  
       "manager": [
         {
+
             "restaurants": [
                 {
-                    "id":1,
+                    "id": 1111,
                     "name":"Ravintola Sarkka",
                     "address":"Hallituskatu 13",
                     "city": "Oulu",
@@ -14,7 +15,7 @@
                     "menu":[]
                 },
                 {
-                    "id":2,
+                    "id":2222,
                     "name":"Hanko Sushi Oulu",
                     "address":"Isokatu 25",
                     "city":"Oulu",
@@ -25,7 +26,7 @@
                     "menu":[]
                 },
                 {
-                    "id":3,
+                    "id":3333,
                     "name":"Da Mario Oulu",
                     "address":"Torikatu 24",
                     "city":"Oulu",
@@ -133,7 +134,7 @@
                     ]
                 },
                 {
-                    "id":4,
+                    "id":4444,
                     "name":"Oulun Verona",
                     "address":"Puusepänkatu 4b",
                     "city": "Oulu",
@@ -144,7 +145,7 @@
                     "menu":[]
                 },
                 {
-                    "id":5,
+                    "id":5555,
                     "name":"Korson pizza keskus",
                     "address":"Maakotkantie 22",
                     "city":"Vantaa",
@@ -155,7 +156,7 @@
                     "menu":[]
                 }
                 ,{
-                    "id":6,
+                    "id":6666,
                     "name":"Ravintola Willihanhi",
                     "address":"Mannerheimintie 12",
                     "city":"Helsinki",
@@ -166,7 +167,7 @@
                     "menu":[]
                 },
                 {
-                    "id":7,
+                    "id":7777,
                     "name":"Subway Dixi",
                     "address":"Ratatie 11",
                     "city":"Vantaa",
@@ -177,7 +178,7 @@
                     "menu":[]
                 },
                 {
-                    "id":8,
+                    "id":8888,
                     "name":"Hokkaido Sushi Flamingo",
                     "address":"Tasetie 8",
                     "city":"Vantaa",
@@ -188,7 +189,7 @@
                     "menu":[]
                 },
                 {
-                    "id": 9,
+                    "id": 9999,
                     "name":"Restaurant Savoy",
                     "address":"Eteläesplanadi 14",
                     "city":"Helsinki",
@@ -199,7 +200,7 @@
                     "menu":[]
                 },
                 {
-                    "id": 10,
+                    "id": 1000,
                     "name":"Ristorante Uno",
                     "address":"Oulunkyläntie 2",
                     "city":"Helsinki",
