@@ -1,0 +1,25 @@
+.footerContainer{
+    width: 100%;
+    
+    background-color: rgba(143,2,224,1);;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    margin-top: 10%;
+    padding-top: 3%;
+    padding-bottom: 5%;
+}
+.iconsContainer{
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+}
+.footerIcons{
+    margin: 10%;
+}
+.footerText{
+    font-weight: 700;
+}

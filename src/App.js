@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import data from './data.json';
 import { v4 as uuid_v4 } from 'uuid';
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   let [restaurants, setRestaurants] = useState([]);
@@ -93,6 +94,7 @@ export default function App() {
         <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
         { authRoutes }
       </Routes>
+      <Footer/>
     </>
   </BrowserRouter>
   );
