@@ -5,11 +5,13 @@ import RestaurantView from './components/Restaurant/RestaurantView';
 import Manager from './components/Manager/Manager';
 import EditMenu from './components/Manager/EditMenu';
 import CreateRestaurant from './components/Manager/Create';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
+import AccountPage from "./components/Customer/AccountPage";
 /*import data from './data.json';*/
 import { v4 as uuid_v4 } from 'uuid';
 import axios from 'axios';
+import { PROPERTY_TYPES } from "@babel/types";
 
 export default function App()
  {
@@ -29,8 +31,9 @@ export default function App()
         response => { if(response.status >= 400) {
                       throw new Error("Error");
         } return response.json()
-      }).then(something => {
-        setTesting(something);
+      }).then(response => {
+        response.map(restaurant => restaurant.menu = []);
+        setRestaurants(response);
         setIsLoading(false);
       }, err => { setError(err); setIsLoading(false); }
       ) };
@@ -40,9 +43,9 @@ export default function App()
     axios.get('https://phoodora-app.herokuapp.com/')
       .then((response) => {
         
-        setTesting(response.data);
-        response.data.map(restaurant => { restaurant.city = "kaupunni"; restaurant.menu = []})
-        response.data.map(restaurant => restaurants.push(restaurant))
+        response.data.map(restaurant => restaurant.menu = []);
+        setRestaurants(response.data);
+        /*response.data.map(restaurant => restaurants.push(restaurant))*/
         console.log(restaurants)
         setIsLoading(false);
       });
@@ -57,15 +60,15 @@ export default function App()
   
   
 
-  const addNewRestaurant = (name, address, city, hours, type, pricerange, image) => {
+  const addNewRestaurant = (name, address, city, operating_hours, type, price_level, image) => {
     let newRestaurant = {
     id: uuid_v4(),
     name: name,
     address: address,
     city: city,
-    hours: hours,
+    operating_hours: operating_hours,
     type: type,
-    pricerange: pricerange,
+    price_level: price_level,
     image: image,
     menu: [] }
     restaurants.push(newRestaurant);   
@@ -75,9 +78,11 @@ export default function App()
   };
 
   const deleteRestaurant = restaurantId => {
-    let index = restaurants.map(restaurant => { return restaurant.id; }).indexOf(restaurantId);
-    setRestaurants(restaurants.splice(index, 1));
-    console.log(restaurants);
+    /*let index = restaurants.map(restaurant => { return restaurant.id; }).indexOf(restaurantId);
+    setRestaurants(restaurants.splice(index, 1));*/
+
+    setRestaurants(restaurants.filter(restaurant => restaurant.id !== restaurantId));
+    console.log("Remaining", restaurants);
   }
   
   if (SearchTerm.length > 0){
@@ -96,34 +101,24 @@ export default function App()
     let randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
     let randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
     let manager;
+    let login;
+    let customer;
 
-  if(managerModeActive) {
-   manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/>;
-  } else {
-    manager = <><div>Unauthorized access</div>
-            <div><button onClick={ activateManagerMode }>Click to gain access</button></div></>;
+  if(isLoggedIn) {
+   customer = <AccountPage activateManagerMode={ activateManagerMode } />
   }
+  if(managerModeActive){
+    manager = <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/>;
+  }  
+  
+    login = <><div>Unauthorized access</div>
+            <div>
+              <Link to="/manager" ><button onClick={ activateManagerMode }>Manager page</button></Link>
+              <Link to="/customer"><button onClick={ setIsLoggedIn }>Account info page</button></Link>
+            </div></>;
+  
 
   let authRoutes;
-
-  if(isLoggedIn === true) {
-    authRoutes = <>
-      ;
-      </>
-  } else {
-    authRoutes = <></>;
-  }/*{ testing.map(restaurant => {<div> asdasd{restaurant.name}</div>}) }
-
-
-
-
-
-
-
-  */
-
-
-
 
 
 
@@ -138,10 +133,12 @@ export default function App()
         <Route path="/forms" element={ <Login /> }></Route>
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
+        <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
+        <Route path="/customer" element={ customer } setIsLoggedIn={ setIsLoggedIn }></Route>
         <Route path="/manager" element={ manager } setIsLoggedIn={ setIsLoggedIn }></Route>
         <Route path="/manager/create" element={ <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } /> }></Route>
         <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
-        { authRoutes }
+        
       </Routes>
     </>
   </BrowserRouter>

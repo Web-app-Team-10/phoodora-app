@@ -12,9 +12,9 @@ export default function Restaurant(props) {
                 <div className={ styles.title }>{ props.name }</div>
                 <div className={ styles.second }>
                     <div>{ props.city }</div>
-                    <div>{ props.pricerange }</div>
+                    <div>{ props.price_level }</div>
                 </div>    
-                <div>{ props.hours }</div>
+                <div>{ props.operating_hours }</div>
             </div>
         </div>
     </Link>

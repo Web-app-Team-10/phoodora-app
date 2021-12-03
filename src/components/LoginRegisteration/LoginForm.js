@@ -4,6 +4,7 @@ import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 const colorVariants = {
@@ -40,6 +41,23 @@ export default function LoginForm(props) {
         setTimeout(manager, 600);
     }
     const { register, manager } = useContext(FormContext);
+
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        console.log(event.target.username.value);
+        console.log(event.target.password.value);
+        try {
+            const result = await axios.post('https://phoodora-app.herokuapp.com/login',
+            {
+                username: event.target.username.value,
+                password: event.target.password.value
+            });
+            console.log(result);
+        } catch (error) { 
+            console.log(error);
+        }
+    }
     return (
 <>  
     <div className={ styles.container }>
@@ -51,15 +69,17 @@ export default function LoginForm(props) {
                     <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                     </motion.div> 
             </div>
-            <div className={ styles.inputContainer }>
-            <span className={ styles.labels }>Username</span><input className={ styles.input } type="username" placeholder="Enter your username"></input>
-            <span className={ styles.labels }>Password</span><input className={ styles.input } type="password" placeholder="Enter your password"></input>
+            
+                <form className={ styles.inputContainer } onSubmit={ handleLogin }>
+            <span className={ styles.labels }>Username</span><input className={ styles.input } name="username" placeholder="Enter your username"/>
+            <span className={ styles.labels }>Password</span><input className={ styles.input } name="password" type="password" placeholder="Enter your password"/>
                 <button className={ styles.button } type="submit">Log in</button>
+                </form>
                     <div className={ styles.linkBox }> 
                     <a className={ styles.links } href="#" onClick={ registeration }>Create an account</a>
                     <a className={ styles.links } href="#" onClick={ managerLogin }>Manager log in</a>
                 </div>
-            </div>
+            
         </div>
     </div>
 </>

@@ -8,9 +8,9 @@ export default function Welcome(props) {
             <div className={ styles.infoContainer }>
                 <div className={ styles.title }>Restaurant information:</div>
                 <div className={ styles.topic }>{props.restaurant.address}</div>
-                <div className={ styles.topic }>{props.restaurant.city}</div>
-                <div className={ styles.topic }>{props.restaurant.type} {props.restaurant.pricerange}</div>
-                <div className={ styles.topic }>Operating hours {props.restaurant.hours}</div>
+                <div className={ styles.topic }>{props.restaurant.city}, {props.restaurant.postal_code}</div>
+                <div className={ styles.topic }>{props.restaurant.type} {props.restaurant.price_level}</div>
+                <div className={ styles.topic }>Operating hours {props.restaurant.operating_hours}</div>
             </div>
         </div>
     )

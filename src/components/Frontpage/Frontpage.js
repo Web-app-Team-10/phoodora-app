@@ -48,7 +48,7 @@ export default function Frontpage(props) {
       });
 
     const handleChange = (event) => {
-
+        
         matchCity = currentCity;
         if(matchCity === "") {
             matchCity = "all";
@@ -64,7 +64,7 @@ export default function Frontpage(props) {
 }
     switch (currentView) {
 
-        /*case '1':
+        case '1':
             output = <>
             <div className={ styles.restaurantsContainer }>
                 <div className={ styles.first }><div className={ styles.title }>Restaurants in { props.randomCity_1 }</div>
@@ -130,7 +130,7 @@ export default function Frontpage(props) {
                 </div> 
             </div>
             </>
-        break;*/
+        break;
             
         default:
             output = <> 
