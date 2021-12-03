@@ -4,6 +4,7 @@ import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { RiCloseCircleLine } from 'react-icons/ri';
+import axios from 'axios';
 
 const colorVariants = {
     expanded: {
@@ -25,9 +26,12 @@ const transform = {
     stiffness: 30,
 };
 
+
+/*luukas 1234*/
 export default function RegisterForm() {
     const [isExpanded, setExpanded] = useState(true);
     const { login } = useContext(FormContext);
+    const [loginState, setLoginState] = useState("idle");
     
     const transformColor = () => {
         setExpanded(false);
@@ -36,6 +40,46 @@ export default function RegisterForm() {
         transformColor();
         setTimeout(login, 400);
     }
+
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        console.log(event.target.username.value);
+        console.log(event.target.password.value);
+        setLoginState('processing')
+        
+        try {
+            
+            const credentials = JSON.stringify({
+                username: event.target.username.value,
+                password: event.target.password.value
+                
+            });
+            const result = await axios.post('https://phoodora-app.herokuapp.com/register/manager', credentials);
+            console.log(result);
+            setLoginState("success");
+        } catch (error) { 
+            console.log(error);
+            setLoginState("error")
+            setTimeout(() => setLoginState("idle"), 1500);
+        }
+    }
+
+    let buttonState; 
+    switch(loginState) {
+        case "idle": buttonState = <button className={ styles.button } type="submit">Register</button>
+        break;
+        case "processing": buttonState = <span className={ styles.login }>Registering ...</span>
+        break;
+        case "success": buttonState = <span className={ styles.success }>Register success</span>
+        break;
+        case "error": buttonState = <span className={ styles.error }>Error ...</span>
+        break;
+    }
+
+/*<motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
+                </motion.div>*/
+
     return (
         <div className={ styles.container } >
             <div className={ styles.loginContainer } >
@@ -45,19 +89,25 @@ export default function RegisterForm() {
                 </div>
                 <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                 </motion.div>
+
+
+
+
+                <form className={ styles.form } onSubmit={ handleLogin }>
                 <span className={ styles.titles }>Username</span>
-                <input className={ styles.input } type="username" placeholder="Username"></input>
+                <input className={ styles.input } name="username" placeholder="Username"></input>
                 <span className={ styles.titles }>Password</span>
-                <input className={ styles.input } type="password" placeholder="Password"></input>
+                <input className={ styles.input } name="password" placeholder="Password"></input>
                 <span className={ styles.titles }>Street address</span>
-                <input className={ styles.input } type="address" placeholder="Street address"></input>
+                <input className={ styles.input } name="address" placeholder="Street address"></input>
                 <div className={ styles.titleP }><span className={ styles.postal }>Postal code</span><span className={ styles.city }>City</span></div>
-                <div className={ styles.postC }>  <input className={ styles.inputP } type="postalCode" placeholder="Postal code"></input>
-                    <input className={ styles.inputP } type="city" placeholder="City"></input>
+                <div className={ styles.postC }>  <input className={ styles.inputP } name="postalCode" placeholder="Postal code"></input>
+                    <input className={ styles.inputP } name="city" placeholder="City"></input>
                 </div>  
                 <span className={ styles.titles }>Phone number</span>
                 <input className={ styles.input } type="phoneNumber" placeholder="Phone number"></input>
-                <button className={ styles.button } type="submit">Register</button>
+                { buttonState }
+                </form>
             </div>
         </div>
     )

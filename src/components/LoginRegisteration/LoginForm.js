@@ -29,6 +29,7 @@ const transform = {
 
 export default function LoginForm(props) {
     const [isExpanded, setExpanded] = useState(false);
+    const [loginState, setLoginState] = useState("idle");
     const transformColor = () => {
         setExpanded(true);
     };
@@ -47,17 +48,34 @@ export default function LoginForm(props) {
         event.preventDefault();
         console.log(event.target.username.value);
         console.log(event.target.password.value);
+        setLoginState('processing')
+        
         try {
-            const result = await axios.post('https://phoodora-app.herokuapp.com/login',
-            {
-                username: event.target.username.value,
-                password: event.target.password.value
-            });
+
+            const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
+            const result = await axios.post('https://phoodora-app.herokuapp.com/login', credentials);
+            
             console.log(result);
+            setLoginState("success");
         } catch (error) { 
             console.log(error);
+            setLoginState("error")
+            setTimeout(() => setLoginState("idle"), 1500);
         }
     }
+
+    let buttonState; 
+    switch(loginState) {
+        case "idle": buttonState = <button className={ styles.button } type="submit">Log in</button>
+        break;
+        case "processing": buttonState = <span className={ styles.login }>Logging in ...</span>
+        break;
+        case "success": buttonState = <span className={ styles.success }>Login success</span>
+        break;
+        case "error": buttonState = <span className={ styles.error }>Error ...</span>
+        break;
+    }
+
     return (
 <>  
     <div className={ styles.container }>
@@ -73,7 +91,7 @@ export default function LoginForm(props) {
                 <form className={ styles.inputContainer } onSubmit={ handleLogin }>
             <span className={ styles.labels }>Username</span><input className={ styles.input } name="username" placeholder="Enter your username"/>
             <span className={ styles.labels }>Password</span><input className={ styles.input } name="password" type="password" placeholder="Enter your password"/>
-                <button className={ styles.button } type="submit">Log in</button>
+                { buttonState }
                 </form>
                     <div className={ styles.linkBox }> 
                     <a className={ styles.links } href="#" onClick={ registeration }>Create an account</a>
