@@ -39,7 +39,7 @@ export default function LoginForm(props) {
         transformColor();
         setTimeout(register, 600);
     }
-    const managerLogin = () => {
+    const managerRegister = () => {
         transformColor();
         setTimeout(manager, 600);
     }
@@ -96,8 +96,8 @@ export default function LoginForm(props) {
                 { buttonState }
                 </form>
                     <div className={ styles.linkBox }> 
-                    <a className={ styles.links } href="#" onClick={ registeration }>Create an account</a>
-                    <a className={ styles.links } href="#" onClick={ managerLogin }>Manager log in</a>
+                    <a className={ styles.links } href="#" onClick={ registeration }>Register as customer</a>
+                    <a className={ styles.links } href="#" onClick={ managerRegister }>Register as restaurant manager</a>
                 </div>
             
         </div>

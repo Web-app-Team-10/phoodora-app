@@ -39,11 +39,11 @@ export default function App()
   let restaurants_2 = restaurants.filter((restaurants) => restaurants.city.includes(randomCity_2));
   let randomRestaurants_1 = restaurants_1.sort(() => Math.random() - Math.random()).slice(0, 3);
   let randomRestaurants_2 = restaurants_2.sort(() => Math.random() - Math.random()).slice(0, 3);
-
-  
   
   const decodedToken = jwt.decode(userJwt);
-  console.log(decodedToken, "token");
+  /*const decodedRole = jwt.decode(decodedToken.role);*/
+  console.log(decodedToken, "decoded token");
+  /*console.log(decodedRole, "decoded role attempt");*/
   
   useEffect(() => {
     axios.get('https://phoodora-app.herokuapp.com/')
@@ -56,7 +56,6 @@ export default function App()
       });
   }, []);
   
-
 {console.log(restaurants, "Restaurants")}
 
   const addNewRestaurant = (name, address, city, operating_hours, type, price_level, image) => {
@@ -89,7 +88,6 @@ export default function App()
   }
   
     let login;
-
     let authRoutes = <>
     <Route path="/forms" element={ <Login newJwt={ newJwt => { setUserJwt(newJwt); window.localStorage.setItem('storedJwt', newJwt); } } /> }></Route>
     <Route path="/account" element={ <NotLoggedIn />}></Route>
@@ -110,21 +108,6 @@ export default function App()
     </>
     }
 }
-
-    /*if(managerModeActive !== true) {
-    authRoutes = <>
-      <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } setIsLoggedIn={ setIsLoggedIn } /> } ></Route>
-    </>
-    }
-    if(managerModeActive === true && userJwt !== null){
-      authRoutes = <>
-        <Route path="/manager" element={ <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/> } setIsLoggedIn={ setIsLoggedIn }></Route>
-        <Route path="/manager/create" element={ <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } /> }></Route>
-        <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
-        <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } userJwt={ userJwt } setIsLoggedIn={ setIsLoggedIn }/> } ></Route>
-      </>;
-    }*/
-
 
   return ( 
   <BrowserRouter>
