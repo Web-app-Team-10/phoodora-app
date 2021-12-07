@@ -41,7 +41,9 @@ export default function ManagerLogin() {
         setTimeout(login, 400);
     }
     const { register, login } = useContext(FormContext);
-/*<div className={ styles.container } >
+/*
+<---  Features not implemented --->
+<div className={ styles.container } >
         <div className={ styles.loginContainer } >
             <Link to="/" style={{ zIndex:10, color: "rgba(143,2,224,1)", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
             <div className={ styles.formContainer } >

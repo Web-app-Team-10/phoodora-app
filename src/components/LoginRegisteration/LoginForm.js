@@ -89,7 +89,6 @@ export default function LoginForm(props) {
                     <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                     </motion.div> 
             </div>
-            
                 <form className={ styles.inputContainer } onSubmit={ handleLogin }>
             <span className={ styles.labels }>Username</span><input className={ styles.input } name="username" placeholder="Enter your username"/>
             <span className={ styles.labels }>Password</span><input className={ styles.input } name="password" type="password" placeholder="Enter your password"/>
