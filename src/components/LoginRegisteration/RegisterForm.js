@@ -77,9 +77,6 @@ export default function RegisterForm() {
         break;
     }
 
-/*<motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
-                </motion.div>*/
-
     return (
         <div className={ styles.container } >
             <div className={ styles.loginContainer } >
@@ -89,9 +86,6 @@ export default function RegisterForm() {
                 </div>
                 <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                 </motion.div>
-
-
-
 
                 <form className={ styles.form } onSubmit={ handleLogin }>
                 <span className={ styles.titles }>Username</span>

@@ -3,7 +3,7 @@ import styles from './LoginForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
 import { RiCloseCircleLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -30,6 +30,8 @@ const transform = {
 export default function LoginForm(props) {
     const [isExpanded, setExpanded] = useState(false);
     const [loginState, setLoginState] = useState("idle");
+
+    const navigate = useNavigate();
     const transformColor = () => {
         setExpanded(true);
     };
@@ -42,8 +44,7 @@ export default function LoginForm(props) {
         setTimeout(manager, 600);
     }
     const { register, manager } = useContext(FormContext);
-
-
+    
     const handleLogin = async (event) => {
         event.preventDefault();
         console.log(event.target.username.value);
@@ -51,12 +52,13 @@ export default function LoginForm(props) {
         setLoginState('processing')
         
         try {
-
             const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
             const result = await axios.post('https://phoodora-app.herokuapp.com/login', credentials);
             
             console.log(result);
+            const JWT = result.data.access_token;
             setLoginState("success");
+            setTimeout(() => navigate('/account', { replace: true }, props.userLogin(JWT)), 1500);
         } catch (error) { 
             console.log(error);
             setLoginState("error")

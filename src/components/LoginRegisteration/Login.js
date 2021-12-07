@@ -6,7 +6,7 @@ import { FormContext } from './FormContext';
 import ManagerLogin from './ManagerLogin';
 
 
-export default function Login() {
+export default function Login(props) {
     const [active, setActive] = useState('login');
 
     const register = () => {
@@ -22,9 +22,9 @@ export default function Login() {
     
     return (
         <FormContext.Provider value={ form }>
-                {active === 'login' && <LoginForm /> }
-                {active === 'register' && <RegisterForm /> }
-                {active === 'manager' && <ManagerLogin /> }
+                {active === 'login' && <LoginForm userLogin={ props.userLogin } userLogin={ props.newJwt }/> }
+                {active === 'register' && <RegisterForm userLogin={ props.userLogin }/> }
+                {active === 'manager' && <ManagerLogin userLogin={ props.userLogin } /> }
         </FormContext.Provider>
     )
 };

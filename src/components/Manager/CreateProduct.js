@@ -23,7 +23,7 @@ export default function CreateProduct(props) {
     switch(processing) {
         case "idle": output = <>
         <div className={ styles.container}>
-            <div className={ styles.title }>Create a new product to your restaurants menu</div>
+            <div className={ styles.title }>Create a new product for your restaurants menu</div>
             <button className={ styles.button } onClick={ () => props.setProduct() }>Go back</button>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Product name:</div>

@@ -7,21 +7,24 @@ import { v4 as uuid_v4 } from 'uuid';
 
 export default function EditMenu(props) {
     const [product, setProduct] = useState(false);
+
     const { id } = useParams();
-
-    const deleteFromMenu = productId => {
-        let index = restaurant.menu.map(product => { return product.id; }).indexOf(productId);
-        console.log(index);
-        props.setRestaurants(restaurant.menu.splice(index, 1));
-        console.log(restaurant.menu);
-      }
-
+     
     let restaurant;
     let output;
     let createProduct;
 
     props.restaurants.map(find => { if (find.id == id){ restaurant = find } });
 
+    const deleteFromMenu = productId => {
+        let menu = restaurant.menu.filter(product => product.id !== productId);
+        restaurant.menu = menu;
+ /* let index = restaurant.menu.map(product => { return product.id; }).indexOf(productId);   props.setRestaurants(restaurant.menu.splice(index, 1));
+       */
+        props.setRestaurants(restaurant.menu)
+        console.log(restaurant.menu);
+      }
+    
     const addNewProduct = (name, description, price, category, image) => {
         let newProduct = {
         id: uuid_v4(),

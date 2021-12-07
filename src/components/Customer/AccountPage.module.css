@@ -1,6 +1,60 @@
 .container {
-    background-color: aqua;
     width: 50%;
     height: 500px;
     margin-left: 25%;
+    margin-top: 125px;
+    color: rgba(143,2,224,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header {
+    font-size: 38px;
+    font-weight: 500;
+}
+.header2 {
+    font-size: 30px;
+    margin-top: 14px;
+    margin-bottom: 20px;
+}
+.name {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.title {
+    font-size: 24px;
+    margin-top: 60px;
+    margin-right: 20px;
+}
+.title2 {
+    font-size: 24px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+}
+.city { 
+    font-size: 24px;
+    margin-top: 40px;
+    margin-right: 78px;
+}
+.button {
+    cursor: pointer;
+    margin-top: 70px;
+    height: 60px;
+    width: 220px;
+    border-radius: 40px;
+    border: 3px solid rgba(143,2,224,1);
+    background-color: white;
+    color: rgba(143,2,224,1);
+    font-size: 20px;
+    font-weight: 600;
+}
+.button:hover {
+    color: white;
+    background-color: rgba(143,2,224,1);
+    transition: ease-in-out 240ms;
+    filter: brightness(1.25);
 }
