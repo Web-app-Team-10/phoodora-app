@@ -42,19 +42,14 @@ export default function RegisterForm() {
     }
 
 
-    const handleLogin = async (event) => {
+    const handleRegister = async (event) => {
         event.preventDefault();
         console.log(event.target.username.value);
         console.log(event.target.password.value);
         setLoginState('processing')
         
         try {
-            
-            const credentials = JSON.stringify({
-                username: event.target.username.value,
-                password: event.target.password.value
-                
-            });
+            const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
             const result = await axios.post('https://phoodora-app.herokuapp.com/register/manager', credentials);
             console.log(result);
             setLoginState("success");
@@ -77,6 +72,15 @@ export default function RegisterForm() {
         break;
     }
 
+
+    /*<span className={ styles.titles }>Street address</span>
+                <input className={ styles.input } name="address" placeholder="Street address"></input>
+                <div className={ styles.titleP }><span className={ styles.postal }>Postal code</span><span className={ styles.city }>City</span></div>
+                <div className={ styles.postC }>  <input className={ styles.inputP } name="postalCode" placeholder="Postal code"></input>
+                    <input className={ styles.inputP } name="city" placeholder="City"></input>
+                </div>  
+                <span className={ styles.titles }>Phone number</span>
+                <input className={ styles.input } type="phoneNumber" placeholder="Phone number"></input>*/
     return (
         <div className={ styles.container } >
             <div className={ styles.loginContainer } >
@@ -87,19 +91,15 @@ export default function RegisterForm() {
                 <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                 </motion.div>
 
-                <form className={ styles.form } onSubmit={ handleLogin }>
+                <form className={ styles.form } onSubmit={ handleRegister }>
                 <span className={ styles.titles }>Username</span>
                 <input className={ styles.input } name="username" placeholder="Username"></input>
                 <span className={ styles.titles }>Password</span>
                 <input className={ styles.input } name="password" placeholder="Password"></input>
-                <span className={ styles.titles }>Street address</span>
-                <input className={ styles.input } name="address" placeholder="Street address"></input>
-                <div className={ styles.titleP }><span className={ styles.postal }>Postal code</span><span className={ styles.city }>City</span></div>
-                <div className={ styles.postC }>  <input className={ styles.inputP } name="postalCode" placeholder="Postal code"></input>
-                    <input className={ styles.inputP } name="city" placeholder="City"></input>
-                </div>  
-                <span className={ styles.titles }>Phone number</span>
-                <input className={ styles.input } type="phoneNumber" placeholder="Phone number"></input>
+
+
+
+                
                 { buttonState }
                 </form>
             </div>
