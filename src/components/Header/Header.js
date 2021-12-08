@@ -1,11 +1,12 @@
 import React  from "react";
 import styles from './Header.module.css';
-import  { HiOutlineShoppingCart } from 'react-icons/hi';
+import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ImSearch } from 'react-icons/im';
 
 export default function Header(props) {
+    const navigate = useNavigate();
 
     const InputChange = event => {
         const searchWord = event.target.value;
@@ -17,6 +18,17 @@ export default function Header(props) {
   if(props.userJwt !== null) {
       login = <button className={ styles.logout } onClick={ () => { props.setUserJwt(null); localStorage.removeItem('storedJwt'); } }>Log out <span></span></button>
   }
+  const toAccount = () => {
+        if(props.decodedToken !== null){
+            if(props.decodedToken.role === 'ROLE_MANAGER'){
+                navigate('/manager');
+            } else {
+                navigate('/account');
+            }
+        } else {
+            navigate('/account');
+        }
+    }
 
     return (
         <div className={ styles.container }>
@@ -30,7 +42,7 @@ export default function Header(props) {
                 </div>
                 <div className={ styles.buttonContainer }>
                     <HiOutlineShoppingCart size={ 28 } style={{ color: "white", cursor: "pointer" }} />
-                    <Link to="account"><FaUser size={ 25 } style={{ color: "white", cursor: "pointer", marginLeft: "22px" }}  /></Link>
+                    <FaUser size={ 25 } onClick={ toAccount } style={{ color: "white", cursor: "pointer", marginLeft: "22px" }}  />
                     { login }
                 </div>
             </div>

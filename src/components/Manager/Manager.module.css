@@ -9,6 +9,8 @@
     align-self: center;
     font-size: 30px;
     font-weight: 600;
+    color: rgba(143,2,224,1);
+    margin-top: 10px;
 }
 .button {
     width: 135px;
@@ -32,4 +34,20 @@
     border: 2px solid white;
     transition: ease-in-out 160ms;
     filter: brightness(1.2);
+}
+.creationContainer {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-top: 250px;
+    width: 50%;
+    margin-left: 35%;
+}
+.creating {
+    margin-left: 20px;
+    margin-bottom: 6px;
+    font-size: 35px;
+    color: red;
+    font-weight: 600;
+    align-self: center;
 }

@@ -22,7 +22,7 @@ export default function Login(props) {
     
     return (
         <FormContext.Provider value={ form }>
-                {active === 'login' && <LoginForm userLogin={ props.userLogin } userLogin={ props.newJwt }/> }
+                {active === 'login' && <LoginForm getManagerRestaurant={ props.getManagerRestaurant } userLogin={ props.userLogin } userLogin={ props.newJwt }/> }
                 {active === 'register' && <RegisterForm userLogin={ props.userLogin }/> }
                 {active === 'manager' && <ManagerLogin userLogin={ props.userLogin } /> }
         </FormContext.Provider>

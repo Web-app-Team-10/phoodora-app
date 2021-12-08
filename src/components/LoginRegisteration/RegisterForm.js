@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styles from './RegisterForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import axios from 'axios';
 
@@ -25,10 +25,15 @@ const transform = {
     duration: 3,
     stiffness: 30,
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> Axios
 export default function RegisterForm() {
     const [isExpanded, setExpanded] = useState(true);
     const { login } = useContext(FormContext);
     const [loginState, setLoginState] = useState("idle");
+    const navigate = useNavigate();
     
     const transformColor = () => {
         setExpanded(false);
@@ -37,6 +42,10 @@ export default function RegisterForm() {
         transformColor();
         setTimeout(login, 400);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> Axios
     const handleRegister = async (event) => {
         event.preventDefault();
         console.log(event.target.username.value);
@@ -48,9 +57,17 @@ export default function RegisterForm() {
                 username: event.target.username.value,
                 password: event.target.password.value
             });
+<<<<<<< HEAD
             const result = await axios.post('https://phoodora-app.herokuapp.com/register/customer', credentials);
+=======
+            const headers = {
+                'Content-Type': 'application/json'
+            }
+            const result = await axios.post('https://phoodora-app.herokuapp.com/register/customer', credentials, { headers: headers });
+>>>>>>> Axios
             console.log(result);
             setLoginState("success");
+            setTimeout(() => window.location.reload(), 1500);
         } catch (error) { 
             console.log(error);
             setLoginState("error")
@@ -94,7 +111,11 @@ export default function RegisterForm() {
                 <span className={ styles.titles }>Username</span>
                 <input className={ styles.input } name="username" placeholder="Username"></input>
                 <span className={ styles.titles }>Password</span>
+<<<<<<< HEAD
                 <input className={ styles.input } name="password" placeholder="Password"></input>
+=======
+                <input className={ styles.input } name="password" placeholder="Password" type="password"></input>
+>>>>>>> Axios
                 <div className={ styles.setButton }>{ buttonState }</div>
                 </form>
             </div>
