@@ -49,6 +49,9 @@ export default function RegisterForm() {
                 username: event.target.username.value,
                 password: event.target.password.value
             });
+            const headers = {
+                'Content-Type': 'application/json'
+            }
             const result = await axios.post('https://phoodora-app.herokuapp.com/register/customer', credentials, { headers: headers });
             console.log(result);
             setLoginState("success");
