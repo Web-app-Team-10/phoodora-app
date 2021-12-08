@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styles from './RegisterForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import axios from 'axios';
 
@@ -29,6 +29,7 @@ const transform = {
 export default function ManagerLogin() {
     const [isExpanded, setExpanded] = useState(true);
     const [loginState, setLoginState] = useState("idle");
+    const navigate = useNavigate();
     const transformColor = () => {
         setExpanded(false);
     };
@@ -68,14 +69,17 @@ export default function ManagerLogin() {
         setLoginState('processing')
         
         try {
-            const credentials = JSON.stringify({
+            const credentials =  JSON.stringify({
                 username: event.target.username.value,
                 password: event.target.password.value
-                
             });
-            const result = await axios.post('https://phoodora-app.herokuapp.com/register/manager', credentials);
+            const headers = {
+                'Content-Type': 'application/json'
+            }
+            const result = await axios.post('https://phoodora-app.herokuapp.com/register/manager', credentials, { headers: headers });
             console.log(result);
             setLoginState("success");
+            setTimeout(() => window.location.reload(), 1500);
         } catch (error) { 
             console.log(error);
             setLoginState("error")
@@ -96,7 +100,7 @@ export default function ManagerLogin() {
     }
 
     return ( 
-<div className={ styles.container } >
+        <div className={ styles.container } >
             <div className={ styles.loginContainer } >
                 <Link to="/" style={{ zIndex:10, color: "rgba(143,2,224,1)", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
                 <div className= { styles.textContainerR } >Register an account
@@ -108,9 +112,9 @@ export default function ManagerLogin() {
                 <form className={ styles.form } onSubmit={ handleRegister }>
                 <span className={ styles.titles2 }>Register as a restaurant Manager</span>
                 <span className={ styles.titles }>Username</span>
-                <input className={ styles.input } name="username" placeholder="Username"></input>
+                <input className={ styles.input } name="username" placeholder="Username"/>
                 <span className={ styles.titles }>Password</span>
-                <input className={ styles.input } name="password" placeholder="Password"></input>
+                <input className={ styles.input } name="password" placeholder="Password" type="password"/>
                 <div className={ styles.setButton }>{ buttonState }</div>
                 </form>
             </div>

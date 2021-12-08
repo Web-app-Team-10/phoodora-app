@@ -118,3 +118,19 @@
     font-weight: 700;
     cursor: pointer;
 }
+.login { 
+    color: white;
+    font-size: 25px;
+    font-weight: 500;
+}
+.success {
+    color: green;
+    filter: brightness(1.2);
+    font-size: 25px;
+    font-weight: 500;
+}
+.error { 
+    color: red;
+    font-size: 25px;
+    font-weight: 500;
+}

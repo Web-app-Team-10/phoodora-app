@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styles from './RegisterForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import axios from 'axios';
 
@@ -26,12 +26,11 @@ const transform = {
     stiffness: 30,
 };
 
-
-
 export default function RegisterForm() {
     const [isExpanded, setExpanded] = useState(true);
     const { login } = useContext(FormContext);
     const [loginState, setLoginState] = useState("idle");
+    const navigate = useNavigate();
     
     const transformColor = () => {
         setExpanded(false);
@@ -41,7 +40,6 @@ export default function RegisterForm() {
         setTimeout(login, 400);
     }
 
-
     const handleRegister = async (event) => {
         event.preventDefault();
         console.log(event.target.username.value);
@@ -49,20 +47,17 @@ export default function RegisterForm() {
         setLoginState('processing')
         
         try {
-<<<<<<< HEAD
-            
             const credentials = JSON.stringify({
                 username: event.target.username.value,
                 password: event.target.password.value
-                
             });
-            const result = await axios.post('https://phoodora-app.herokuapp.com/register/customer', credentials);
-=======
-            const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
-            const result = await axios.post('https://phoodora-app.herokuapp.com/register/manager', credentials);
->>>>>>> e964569ec4412638afa870b95a474fc3d609434b
+            const headers = {
+                'Content-Type': 'application/json'
+            }
+            const result = await axios.post('https://phoodora-app.herokuapp.com/register/customer', credentials, { headers: headers });
             console.log(result);
             setLoginState("success");
+            setTimeout(() => window.location.reload(), 1500);
         } catch (error) { 
             console.log(error);
             setLoginState("error")
@@ -81,14 +76,8 @@ export default function RegisterForm() {
         case "error": buttonState = <span className={ styles.error }>Error ...</span>
         break;
     }
-<<<<<<< HEAD
     /*
 <span className={ styles.titles }>Street address</span>
-=======
-
-
-    /*<span className={ styles.titles }>Street address</span>
->>>>>>> e964569ec4412638afa870b95a474fc3d609434b
                 <input className={ styles.input } name="address" placeholder="Street address"></input>
                 <div className={ styles.titleP }><span className={ styles.postal }>Postal code</span><span className={ styles.city }>City</span></div>
                 <div className={ styles.postC }>  <input className={ styles.inputP } name="postalCode" placeholder="Postal code"></input>
@@ -107,23 +96,12 @@ export default function RegisterForm() {
                 </motion.div>
 
                 <form className={ styles.form } onSubmit={ handleRegister }>
-<<<<<<< HEAD
                 <span className={ styles.titles2 }>Register as a customer</span>
-=======
->>>>>>> e964569ec4412638afa870b95a474fc3d609434b
                 <span className={ styles.titles }>Username</span>
                 <input className={ styles.input } name="username" placeholder="Username"></input>
                 <span className={ styles.titles }>Password</span>
-                <input className={ styles.input } name="password" placeholder="Password"></input>
-<<<<<<< HEAD
+                <input className={ styles.input } name="password" placeholder="Password" type="password"></input>
                 <div className={ styles.setButton }>{ buttonState }</div>
-=======
-
-
-
-                
-                { buttonState }
->>>>>>> e964569ec4412638afa870b95a474fc3d609434b
                 </form>
             </div>
         </div>

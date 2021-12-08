@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 
 
 const colorVariants = {
@@ -45,6 +46,7 @@ export default function LoginForm(props) {
     }
     const { register, manager } = useContext(FormContext);
     
+    
     const handleLogin = async (event) => {
         event.preventDefault();
         console.log(event.target.username.value);
@@ -54,11 +56,12 @@ export default function LoginForm(props) {
         try {
             const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
             const result = await axios.post('https://phoodora-app.herokuapp.com/login', credentials);
-            
             console.log(result);
             const JWT = result.data.access_token;
+            const decodedToken = jwt.decode(JWT);
             setLoginState("success");
-            setTimeout(() => navigate('/account', { replace: true }, props.userLogin(JWT)), 1500);
+            setTimeout(() => { if(decodedToken.role === 'ROLE_MANAGER'){ navigate('/manager', { replace: true }, props.userLogin(JWT)) }
+                                else{ navigate('/account', { replace: true }, props.userLogin(JWT)) }}, 1500);
         } catch (error) { 
             console.log(error);
             setLoginState("error")
