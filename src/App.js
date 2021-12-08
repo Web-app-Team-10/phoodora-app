@@ -43,8 +43,14 @@ export default function App()
   const decodedToken = jwt.decode(userJwt);
   /*const decodedRole = jwt.decode(decodedToken.role);*/
   console.log(decodedToken, "decoded token");
-  /*console.log(decodedRole, "decoded role attempt");*/
   
+
+/*  Get logged in managers restaurants
+  const managersRestaurants = axios.get('https://phoodora-app.herokuapp.com/manager/restaurants');
+  console.log(managersRestaurants.data);
+*/
+
+
   useEffect(() => {
     axios.get('https://phoodora-app.herokuapp.com/')
       .then((response) => {
@@ -58,6 +64,24 @@ export default function App()
   
 {console.log(restaurants, "Restaurants")}
 
+/*{
+        headers: {
+          'Authorization': 'Bearer ' + userJwt
+        }
+      }*/
+
+  const getManagerRestaurants = async () => {
+    try {
+      const credentials = { 'username': 'niko', 'password': '1234' };
+      const result = await axios.get('https://phoodora-app.herokuapp.com/manager/restaurants', credentials
+     
+      );
+      console.log(result);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   const addNewRestaurant = (name, address, city, operating_hours, type, price_level, image) => {
     let newRestaurant = {
     id: uuid_v4(),
@@ -69,6 +93,15 @@ export default function App()
     price_level: price_level,
     image: image,
     menu: [] }
+
+/*Adding a restaurant Axios  async   
+    let addRestaurant = JSON.stringify(newRestaurant);
+    console.log(addRestaurant)
+    await axios.post('https://phoodora-app.herokuapp.com/manager/restaurant', addRestaurant);
+    const newRestaurants = await axios.get('https://phoodora-app.herokuapp.com/');
+    console.log(newRestaurants.data);
+    newRestaurants.data.map(restaurant => { if(restaurant.menu === null) { restaurant.menu = [] } } );
+    setRestaurants(newRestaurants.data);*/
     restaurants.push(newRestaurant);   
     restaurants.map( unique => { 
         if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
@@ -79,8 +112,10 @@ export default function App()
     /*let index = restaurants.map(restaurant => { return restaurant.id; }).indexOf(restaurantId);
     setRestaurants(restaurants.splice(index, 1));*/
 
+    /*Delete restaurant Axios    async  
+    const result = await axios.delete('https://phoodora-app.herokuapp.com/manager/restaurant/' + restaurantId)*/
     setRestaurants(restaurants.filter(restaurant => restaurant.id !== restaurantId));
-    console.log("Remaining", restaurants);
+    console.log("delete request result");
   }
   
   if (SearchTerm.length > 0){
@@ -93,11 +128,11 @@ export default function App()
     <Route path="/account" element={ <NotLoggedIn />}></Route>
     <Route path="/manager" element={ <NotLoggedIn />}></Route>
     </>;
-
+/*decodedToken.role === 'ROLE_MANAGER'*/
   if(userJwt !== null){
-    if(decodedToken.role === 'ROLE_MANAGER'){
+    if(decodedToken.role !== null){
       authRoutes = <> { console.log("manager")}
-        <Route path="/manager" element={ <Manager activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/> } setIsLoggedIn={ setIsLoggedIn }></Route>
+        <Route path="/manager" element={ <Manager getManagerRestaurants={ getManagerRestaurants } activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/> } setIsLoggedIn={ setIsLoggedIn }></Route>
         <Route path="/manager/create" element={ <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } /> }></Route>
         <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
         <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } userJwt={ userJwt } setIsLoggedIn={ setIsLoggedIn }/> } ></Route>
