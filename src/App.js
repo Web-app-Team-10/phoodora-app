@@ -9,6 +9,7 @@ import CreateRestaurant from './components/Manager/Create';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import AccountPage from "./components/Customer/AccountPage";
+import Footer from "./components/Footer/Footer";
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
@@ -127,6 +128,7 @@ export default function App()
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
       </Routes>
+      <Footer />
     </>
   </BrowserRouter>
   );
