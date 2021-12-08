@@ -1,0 +1,45 @@
+.ShoppingCartContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 13%;
+    margin-right: 13%;
+
+}
+.deliveryInput{
+    width: 40%
+}
+.totalPrice{
+    font-weight: 600;
+    align-self:flex-end;
+
+}
+.deliveryAddress{
+    align-self:flex-start;
+    margin-left: 30%;
+}
+.paymentBtn{
+    background-color: rgba(143,2,224,1); 
+    width: 15%;
+    padding: 11px;
+    color: white;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    align-self:flex-end;
+}
+.goBackBtn{
+    background-color: #ffffff;
+    border: solid  2px rgba(143,2,224,1);
+    color: rgba(143,2,224,1);
+    font-weight: 700;
+    border-radius:100px;
+    cursor: pointer;
+    margin-top: 3%;
+    
+}
+.linkBtn{
+    align-self: flex-start;
+}

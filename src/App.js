@@ -6,6 +6,7 @@ import RestaurantView from './components/Restaurant/RestaurantView';
 import Manager from './components/Manager/Manager';
 import EditMenu from './components/Manager/EditMenu';
 import CreateRestaurant from './components/Manager/Create';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import AccountPage from "./components/Customer/AccountPage";
@@ -28,6 +29,36 @@ export default function App()
   restaurants.map( unique => { 
       if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
   });
+
+  const [shoppingCart, setShoppingCart] = useState([]);
+
+  const addToCart = (id, name, price, description, image) => {
+    let product = {
+        quantity: 1,
+        id: id,
+        name: name,
+        price: price,
+        description: description,
+        image: image
+    };
+
+    let match = false;
+    if(shoppingCart.length > 0) {
+        for(let i = 0; i < shoppingCart.length; i++) {
+            if(shoppingCart[i].id === product.id) {
+                shoppingCart[i].quantity++;
+                match = true;
+                break;
+            } else {
+                match = false;
+            }
+        }
+    }  
+    if (match === false) {
+        shoppingCart.push(product);
+    } 
+    console.log(shoppingCart);
+}
  
   let randomCities = uniqCity.sort(() => Math.random() - Math.random()).slice(0, 2);
   let randomCity_1 = randomCities.slice(0, 1);
@@ -124,6 +155,7 @@ export default function App()
         <Route path="*" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         { authRoutes }
+        <Route path="/shopping_cart" element={<ShoppingCart shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } />} ></Route>
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
