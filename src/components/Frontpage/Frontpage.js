@@ -48,7 +48,7 @@ export default function Frontpage(props) {
       });
 
     const handleChange = (event) => {
-
+        
         matchCity = currentCity;
         if(matchCity === "") {
             matchCity = "all";

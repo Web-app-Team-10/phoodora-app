@@ -117,3 +117,19 @@
     margin-top: 40px;
     z-index: 10;
 }
+.login { 
+    color:rgba(143,2,224,1);
+    font-size: 25px;
+    font-weight: 500;
+}
+.success {
+    color: green;
+    filter: brightness(1.2);
+    font-size: 25px;
+    font-weight: 500;
+}
+.error { 
+    color: red;
+    font-size: 25px;
+    font-weight: 500;
+}

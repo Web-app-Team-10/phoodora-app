@@ -22,7 +22,7 @@ export default function Restaurant(props) {
         if ( uniqCategory.indexOf(unique.category) === -1) { uniqCategory.push(unique.category) } 
     });
 
-    if(category != null) {
+    if(category !== null) {
         sortedMenu = restaurant.menu.filter((menu) => menu.category.toLowerCase().includes(category.toLowerCase()))
         menu = <>{ sortedMenu.map( menu => <Menu key={ menu.id } menu={ menu } shoppingCart={ shoppingCart }/>)}</>
     } else {

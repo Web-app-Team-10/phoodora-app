@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import styles from './ManagerLogin.module.css';
+import styles from './RegisterForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { RiCloseCircleLine } from 'react-icons/ri';
+import axios from 'axios';
 
 const colorVariants = {
     expanded: {
@@ -27,6 +28,7 @@ const transform = {
 
 export default function ManagerLogin() {
     const [isExpanded, setExpanded] = useState(true);
+    const [loginState, setLoginState] = useState("idle");
     const transformColor = () => {
         setExpanded(false);
     };
@@ -39,10 +41,9 @@ export default function ManagerLogin() {
         setTimeout(login, 400);
     }
     const { register, login } = useContext(FormContext);
-
-    return (
-<>  
-    <div className={ styles.container } >
+/*
+<---  Features not implemented --->
+<div className={ styles.container } >
         <div className={ styles.loginContainer } >
             <Link to="/" style={{ zIndex:10, color: "rgba(143,2,224,1)", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
             <div className={ styles.formContainer } >
@@ -59,7 +60,60 @@ export default function ManagerLogin() {
                 <button className={ styles.button } type="submit">Log in</button>
             
         </div>
-    </div>
-</>
+    </div>*/
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        console.log(event.target.username.value);
+        console.log(event.target.password.value);
+        setLoginState('processing')
+        
+        try {
+            const credentials = JSON.stringify({
+                username: event.target.username.value,
+                password: event.target.password.value
+                
+            });
+            const result = await axios.post('https://phoodora-app.herokuapp.com/register/manager', credentials);
+            console.log(result);
+            setLoginState("success");
+        } catch (error) { 
+            console.log(error);
+            setLoginState("error")
+            setTimeout(() => setLoginState("idle"), 1500);
+        }
+    }
+
+    let buttonState; 
+    switch(loginState) {
+        case "idle": buttonState = <button className={ styles.button } type="submit">Register</button>
+        break;
+        case "processing": buttonState = <span className={ styles.login }>Registering ...</span>
+        break;
+        case "success": buttonState = <span className={ styles.success }>Register success</span>
+        break;
+        case "error": buttonState = <span className={ styles.error }>Error ...</span>
+        break;
+    }
+
+    return ( 
+<div className={ styles.container } >
+            <div className={ styles.loginContainer } >
+                <Link to="/" style={{ zIndex:10, color: "rgba(143,2,224,1)", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
+                <div className= { styles.textContainerR } >Register an account
+                    <span className={ styles.paragraphR } >Already a user? <span className={ styles.boldLink } onClick={ loginAnimation }>Log in</span></span>
+                </div>
+                <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
+                </motion.div>
+
+                <form className={ styles.form } onSubmit={ handleRegister }>
+                <span className={ styles.titles2 }>Register as a restaurant Manager</span>
+                <span className={ styles.titles }>Username</span>
+                <input className={ styles.input } name="username" placeholder="Username"></input>
+                <span className={ styles.titles }>Password</span>
+                <input className={ styles.input } name="password" placeholder="Password"></input>
+                <div className={ styles.setButton }>{ buttonState }</div>
+                </form>
+            </div>
+        </div>
     )
 }

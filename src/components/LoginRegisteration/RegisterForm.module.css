@@ -29,6 +29,7 @@
     padding: 0 1.8em;
 }
 .containerColor {
+    z-index: 1;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(100,5,175,1) 0%, rgba(120,4,185,1) 35%, rgba(175,0,255,1) 100%);    
     width: 200%;
@@ -66,7 +67,7 @@
 .input {
     z-index: 10;
     outline: none;
-    width: 60%;
+    width: 220px;
     height: 30px;
     padding: 0px 10px;
     border: 1px solid white;
@@ -99,7 +100,7 @@
 }
 .button {
     z-index: 10;
-    width: 50%;
+    width: 190px;
     padding: 11px;
     color: rgba(143,2,224,1);
     border: 1px solid rgba(143,2,224,1);
@@ -136,4 +137,20 @@
 }
 .city {
     margin-left: 80px;
+}
+.form { 
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titles2 {
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 40px;
+}
+.setButton {
+    margin-top: 40px;
+    width: 100%;
 }

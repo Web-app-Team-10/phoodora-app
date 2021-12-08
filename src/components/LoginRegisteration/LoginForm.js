@@ -3,7 +3,8 @@ import styles from './LoginForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
 import { RiCloseCircleLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const colorVariants = {
@@ -28,6 +29,9 @@ const transform = {
 
 export default function LoginForm(props) {
     const [isExpanded, setExpanded] = useState(false);
+    const [loginState, setLoginState] = useState("idle");
+
+    const navigate = useNavigate();
     const transformColor = () => {
         setExpanded(true);
     };
@@ -35,11 +39,45 @@ export default function LoginForm(props) {
         transformColor();
         setTimeout(register, 600);
     }
-    const managerLogin = () => {
+    const managerRegister = () => {
         transformColor();
         setTimeout(manager, 600);
     }
     const { register, manager } = useContext(FormContext);
+    
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        console.log(event.target.username.value);
+        console.log(event.target.password.value);
+        setLoginState('processing')
+        
+        try {
+            const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
+            const result = await axios.post('https://phoodora-app.herokuapp.com/login', credentials);
+            
+            console.log(result);
+            const JWT = result.data.access_token;
+            setLoginState("success");
+            setTimeout(() => navigate('/account', { replace: true }, props.userLogin(JWT)), 1500);
+        } catch (error) { 
+            console.log(error);
+            setLoginState("error")
+            setTimeout(() => setLoginState("idle"), 1500);
+        }
+    }
+
+    let buttonState; 
+    switch(loginState) {
+        case "idle": buttonState = <button className={ styles.button } type="submit">Log in</button>
+        break;
+        case "processing": buttonState = <span className={ styles.login }>Logging in ...</span>
+        break;
+        case "success": buttonState = <span className={ styles.success }>Login success</span>
+        break;
+        case "error": buttonState = <span className={ styles.error }>Error ...</span>
+        break;
+    }
+
     return (
 <>  
     <div className={ styles.container }>
@@ -51,15 +89,16 @@ export default function LoginForm(props) {
                     <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                     </motion.div> 
             </div>
-            <div className={ styles.inputContainer }>
-            <span className={ styles.labels }>Username</span><input className={ styles.input } type="username" placeholder="Enter your username"></input>
-            <span className={ styles.labels }>Password</span><input className={ styles.input } type="password" placeholder="Enter your password"></input>
-                <button className={ styles.button } type="submit">Log in</button>
+                <form className={ styles.inputContainer } onSubmit={ handleLogin }>
+            <span className={ styles.labels }>Username</span><input className={ styles.input } name="username" placeholder="Enter your username"/>
+            <span className={ styles.labels }>Password</span><input className={ styles.input } name="password" type="password" placeholder="Enter your password"/>
+                { buttonState }
+                </form>
                     <div className={ styles.linkBox }> 
-                    <a className={ styles.links } href="#" onClick={ registeration }>Create an account</a>
-                    <a className={ styles.links } href="#" onClick={ managerLogin }>Manager log in</a>
+                    <a className={ styles.links } href="#" onClick={ registeration }>Register as customer</a>
+                    <a className={ styles.links } href="#" onClick={ managerRegister }>Register as restaurant manager</a>
                 </div>
-            </div>
+            
         </div>
     </div>
 </>

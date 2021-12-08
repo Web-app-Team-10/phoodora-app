@@ -12,10 +12,11 @@ export default function ManagerRestaurant(props) {
             <img src={ `/images/${props.image}`} className={ styles.image }></img>
             <div>
                 <div className={ styles.title }>Name of the restaurant:<span className={ styles.description }>{ props.name }</span> </div>
-                <div className={ styles.title }>Address of the restaurant: <span className={ styles.description }>{ props.address }, { props.city }</span></div>
+                <div className={ styles.title }>Address of your restaurant:<span className={ styles.description }>{ props.address }</span></div>
+                <div className={ styles.title }>City & postal code:<span className={ styles.description }>{ props.city }, { props.postal_code }</span></div>
                 <div className={ styles.title }>Restaurant type: <span className={ styles.description }>{ props.type }</span></div>
-                <div className={ styles.title }>Restaurant pricerange: <span className={ styles.description }>{ props.pricerange }</span></div>
-                <div className={ styles.title }>Opening hours: <span className={ styles.description }>{ props.hours }</span></div>
+                <div className={ styles.title }>Restaurant pricerange: <span className={ styles.description }>{ props.price_level }</span></div>
+                <div className={ styles.title }>Opening hours: <span className={ styles.description }>{ props.operating_hours }</span></div>
             </div>
             <div className={ styles.edit }>
                 <button className={ styles.button }>Edit details</button>

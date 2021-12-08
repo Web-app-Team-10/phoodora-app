@@ -1,37 +1,38 @@
 {  
       "manager": [
         {
+
             "restaurants": [
                 {
-                    "id":1,
+                    "id": 1111,
                     "name":"Ravintola Sarkka",
                     "address":"Hallituskatu 13",
                     "city": "Oulu",
                     "type": "Casual dining",
-                    "pricerange": "€",
-                    "hours": "09:00-22:00",
+                    "price_level": "€",
+                    "operating_hours": "09:00-22:00",
                     "image": "sarkka.png",
                     "menu":[]
                 },
                 {
-                    "id":2,
+                    "id":2222,
                     "name":"Hanko Sushi Oulu",
                     "address":"Isokatu 25",
                     "city":"Oulu",
                     "type": "Casual dining",
-                    "pricerange": "€€",
-                    "hours": "10:30-19:30",
+                    "price_level": "€€",
+                    "operating_hours": "10:30-19:30",
                     "image": "hankosushi.png",
                     "menu":[]
                 },
                 {
-                    "id":3,
+                    "id":3333,
                     "name":"Da Mario Oulu",
                     "address":"Torikatu 24",
                     "city":"Oulu",
                     "type": "Fast casual",
-                    "pricerange": "€€",
-                    "hours": "10:30-21:30",
+                    "price_level": "€€",
+                    "operating_hours": "10:30-21:30",
                     "image": "damario.png",
                     "menu":[
                         {
@@ -133,79 +134,79 @@
                     ]
                 },
                 {
-                    "id":4,
+                    "id":4444,
                     "name":"Oulun Verona",
                     "address":"Puusepänkatu 4b",
                     "city": "Oulu",
                     "type": "Fast casual",
-                    "pricerange": "€€",
-                    "hours": "10:30-21:30",
+                    "price_level": "€€",
+                    "operating_hours": "10:30-21:30",
                     "image": "verona.png",
                     "menu":[]
                 },
                 {
-                    "id":5,
+                    "id":5555,
                     "name":"Korson pizza keskus",
                     "address":"Maakotkantie 22",
                     "city":"Vantaa",
                     "type": "Fast casual",
-                    "pricerange": "€",
-                    "hours": "10:00-22:00",
+                    "price_level": "€",
+                    "operating_hours": "10:00-22:00",
                     "image": "korso.png",
                     "menu":[]
                 }
                 ,{
-                    "id":6,
+                    "id":6666,
                     "name":"Ravintola Willihanhi",
                     "address":"Mannerheimintie 12",
                     "city":"Helsinki",
                     "type": "Casual dining",
-                    "pricerange": "€€",
-                    "hours": "12:30-18:30",
+                    "price_level": "€€",
+                    "operating_hours": "12:30-18:30",
                     "image": "willi.jpg",
                     "menu":[]
                 },
                 {
-                    "id":7,
+                    "id":7777,
                     "name":"Subway Dixi",
                     "address":"Ratatie 11",
                     "city":"Vantaa",
                     "type": "Fast food",
-                    "pricerange": "€",
-                    "hours": "10:30-17:30",
+                    "price_level": "€",
+                    "operating_hours": "10:30-17:30",
                     "image": "subway.jpg",
                     "menu":[]
                 },
                 {
-                    "id":8,
+                    "id":8888,
                     "name":"Hokkaido Sushi Flamingo",
                     "address":"Tasetie 8",
                     "city":"Vantaa",
                     "type": "Casual dining",
-                    "pricerange": "€€",
-                    "hours": "11:00-21:00",
+                    "price_level": "€€",
+                    "operating_hours": "11:00-21:00",
                     "image": "hokkaido.jpg",
                     "menu":[]
                 },
                 {
-                    "id": 9,
+                    "id": 9999,
                     "name":"Restaurant Savoy",
                     "address":"Eteläesplanadi 14",
                     "city":"Helsinki",
                     "type": "Fine dining",
-                    "pricerange": "€€€€",
-                    "hours": "11:30-14:30 & 18:00-24:00",
+                    "price_level": "€€€€",
+                    "operating_hours": "11:30-14:30 & 18:00-24:00",
                     "image": "savoy.jpg",
                     "menu":[]
                 },
                 {
-                    "id": 10,
+                    "id": 1000,
                     "name":"Ristorante Uno",
                     "address":"Oulunkyläntie 2",
                     "city":"Helsinki",
                     "type": "Fast casual",
-                    "pricerange": "€€",
-                    "hours": "10:30-21:30",
+                    "price_level": "€€",
+                    "operating_hours": "10:30-21:30",
                     "image": "ristorante.jpg",
                     "menu":[]
                 }
