@@ -156,8 +156,8 @@ export default function App()
         <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         { authRoutes }
         <Route path="/shopping_cart" element={<ShoppingCart shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } />} ></Route>
-        <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
-        <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } /> }></Route>
+        <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } /*shoppingCart={ shoppingCart }*/ setShoppingCart={ setShoppingCart } addToCart={ addToCart }/> }></Route>
+        <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } /*shoppingCart={ shoppingCart }*/ setShoppingCart={ setShoppingCart } addToCart={ addToCart } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
       </Routes>
       <Footer />
