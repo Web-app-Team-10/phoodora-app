@@ -20,7 +20,7 @@ export default function CreateProduct(props) {
         props.addNewProduct(newName, newDescription, newPrice, newCategory, newImage, restaurantId);
         setProcessing("processing");
         setTimeout(() => {
-            props.setProduct(false)
+            window.location.reload();
         }, 1500)
     }
     let output;
