@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ManageRestaurant.module.css';
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 
 export default function ManagerRestaurant(props) {
 
@@ -11,10 +12,11 @@ export default function ManagerRestaurant(props) {
             window.location.reload();
         }, 2000)
     }
-
+//<img src={ `/images/${props.image}`} className={ styles.image }></img>
     return ( 
         <div className={ styles.container }>
-        <img src={ `/images/${props.image}`} className={ styles.image }></img>
+        <Image className={ styles.image} cloudName="dfllxr92w" publicId={ `${props.image}` } />
+        {console.log(props.image, "image address")}
         <div>
             <div className={ styles.title }>Name of the restaurant:<span className={ styles.description }>{ props.name }</span> </div>
             <div className={ styles.title }>Address of your restaurant:<span className={ styles.description }>{ props.address }</span></div>

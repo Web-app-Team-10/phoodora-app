@@ -2,17 +2,22 @@ import React, { useState } from 'react';
 import styles from './CreateProduct.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SpinnerRoundOutlined } from 'spinners-react';
+import axios from 'axios';
 
 export default function CreateProduct(props) {
+    const { id } = useParams();
     const [ newName, setNewName ] = useState("");
     const [ newDescription, setNewDescription ] = useState("");
     const [ newPrice, setNewPrice ] = useState("");
     const [ newCategory, setNewCategory ] = useState("");
     const [ newImage, setNewImage ] = useState("");
+    const [ restaurantId, setRestaurantId] = useState(id);
     const [ processing, setProcessing ] = useState("idle");
 
+    
+
     const addNewProduct = () => {
-        props.addNewProduct(newName, newDescription, newPrice, newCategory, newImage);
+        props.addNewProduct(newName, newDescription, newPrice, newCategory, newImage, restaurantId);
         setProcessing("processing");
         setTimeout(() => {
             props.setProduct(false)

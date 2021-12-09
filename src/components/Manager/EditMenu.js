@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Product from './Product';
 import CreateProduct from './CreateProduct';
 import { v4 as uuid_v4 } from 'uuid';
+import axios from 'axios';
 
 export default function EditMenu(props) {
     const [product, setProduct] = useState(false);
@@ -25,17 +26,25 @@ export default function EditMenu(props) {
         console.log(restaurant.menu);
       }
     
-    const addNewProduct = (name, description, price, category, image) => {
-        let newProduct = {
-        id: uuid_v4(),
+    const addNewProduct = async (name, description, price, category, image, restaurant_id) => {
+        let newProduct = JSON.stringify({
         name: name,
         description: description,
         price: price,
         category: category,
         image: image,
-        }
-        restaurant.menu.push(newProduct); 
+        restaurant_id: restaurant_id
+        });
+        //restaurant.menu.push(newProduct); 
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${props.userJwt}`
+          }
+          console.log(newProduct)
+          const result = await axios.post('https://phoodora-app.herokuapp.com/admin/product', newProduct, { headers:headers })
+          console.log(result);
     };
+    
 
     if(product === true) {
         output = <></>;

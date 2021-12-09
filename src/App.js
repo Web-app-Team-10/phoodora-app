@@ -81,7 +81,8 @@ export default function App()
       });
   }, []);
   
-  const addNewRestaurant = async (name, address, city, operating_hours, type, price_level, image) => {
+  // Postal code not supported right now --- , --- ,
+  const addNewRestaurant = async (name, address, city, operating_hours,  type, price_level, image, postal_code) => {
     let newRestaurant = JSON.stringify({
     name: name,
     address: address,
@@ -89,7 +90,9 @@ export default function App()
     operating_hours: operating_hours,
     type: type,
     price_level: price_level,
-    image: image });
+    image: image,
+    postal_code: postal_code
+  });
     
     const headers = {
       'Content-Type': 'application/json',
@@ -137,7 +140,7 @@ export default function App()
       authRoutes = <> { console.log("manager")}
         <Route path="/manager" element={ <Manager userJwt={ userJwt } decodedToken={ decodedToken } getManagerRestaurant={ getManagerRestaurant } activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/> } setIsLoggedIn={ setIsLoggedIn }></Route>
         <Route path="/manager/create" element={ <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } /> }></Route>
-        <Route path="/manager/:id/menu" element={ <EditMenu restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
+        <Route path="/manager/:id/menu" element={ <EditMenu userJwt={ userJwt } restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
         <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } userJwt={ userJwt } setIsLoggedIn={ setIsLoggedIn }/> } ></Route>
       </>;
     } else {
