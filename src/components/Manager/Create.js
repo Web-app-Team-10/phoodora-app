@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Create.module.css';
 import { SpinnerRoundOutlined } from 'spinners-react';
-import { useNavigate, useParams } from "react-router-dom";
-import {AdvancedImage} from '@cloudinary/react';
-import { Cloudinary } from "@cloudinary/url-gen";
-import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget';
-import { Image } from 'cloudinary-react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export default function Create(props) {
@@ -16,7 +12,7 @@ export default function Create(props) {
     const [ newHours, setNewHours ] = useState("");
     const [ newType, setNewType ] = useState("");
     const [ newPricerange, setNewPricerange ] = useState("");
-    let [ newImage, setNewImage ] = useState("");
+    let [ newImage ] = useState("");
     const [ newPostalCode, setNewPostalCode ] = useState("");
     const [ imageSelected, setImageSelected ] = useState("");
 

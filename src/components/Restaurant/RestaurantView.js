@@ -26,18 +26,16 @@ export default function Restaurant(props) {
     let menu;
     let restaurant;
     props.restaurants.map(find => { if (find.id == id){ restaurant = find } });
-    {console.log(findMenu, "menu")}
 
     findMenu.map( unique => { 
         if ( uniqCategory.indexOf(unique.category) === -1) { uniqCategory.push(unique.category) } 
     });
 
-    console.log(category)
     if(category !== undefined) {
         sortedMenu = findMenu.filter((menu) => menu.category.toLowerCase().includes(category.toLowerCase()))
-        menu = <>{ sortedMenu.map( menu => <Menu key={ menu.id } menu={ menu } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart }/>)}</>
+        menu = <>{ sortedMenu.map( menu => <Menu key={ menu.id } menu={ menu } restaurant={ restaurant } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart }/>)}</>
     } else {
-        menu = <>{ findMenu.map( menu => <Menu key={ menu.id } menu={ menu } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart } />)}</>
+        menu = <>{ findMenu.map( menu => <Menu key={ menu.id } menu={ menu } restaurant={ restaurant } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart } />)}</>
     }
 
     return (

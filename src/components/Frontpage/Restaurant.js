@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 
 export default function Restaurant(props) {
-//<img className={ styles.image } src={ `/images/${props.image}`}></img>
     return (
     <Link to={ `/restaurants/${ props.id }` } className={ styles.link }>
         <div className={ styles.container }>

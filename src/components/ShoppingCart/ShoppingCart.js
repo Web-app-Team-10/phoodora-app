@@ -18,8 +18,10 @@ export default function ShoppingCart(props) {
             let price = props.shoppingCart[i].price;
             if(props.shoppingCart[i].quantity > 1) {
                 total = total + (price * props.shoppingCart[i].quantity);
+                props.setTotalPrice(total);
             } else {
                 total += props.shoppingCart[i].price;
+                props.setTotalPrice(total);
             }
         }
     }

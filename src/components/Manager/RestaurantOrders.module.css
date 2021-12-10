@@ -1,0 +1,23 @@
+.container {
+    width: 50%;
+    margin-left: 25%;
+}
+.outputContainer {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+    color: rgba(143,2,224,1);
+    margin-top: 75px;
+}
+.title2 {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    color: rgba(143,2,224,1);
+}
