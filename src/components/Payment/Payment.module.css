@@ -1,0 +1,32 @@
+.flexContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.PaymentForm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10%;
+}
+.paymentInput{
+    margin-bottom: 5%;
+    margin-left: 1%;
+    width: 50%;
+}
+.inputsInRow{
+    display: flex;
+}
+.confirmBtn{
+    background-color: rgba(143,2,224,1); 
+    width: 10%;
+    padding: 8px;
+    color: white;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    margin-top: 3%;
+
+}
