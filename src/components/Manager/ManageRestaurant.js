@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './ManageRestaurant.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 
 export default function ManagerRestaurant(props) {
+    const navigate = useNavigate();
 
     const deleteRestaurantClick = (restaurantId) => {
         props.deleteRestaurant(restaurantId);
@@ -12,11 +13,17 @@ export default function ManagerRestaurant(props) {
             window.location.reload();
         }, 2000)
     }
-//<img src={ `/images/${props.image}`} className={ styles.image }></img>
+    const viewOrdersClick = (restaurantId) => {
+        props.fetchOrderAdmin(restaurantId);
+
+        /*setTimeout(() => {
+            window.location.reload();
+        }, 2000)*/
+    }
+
     return ( 
         <div className={ styles.container }>
         <Image className={ styles.image} cloudName="dfllxr92w" publicId={ `${props.image}` } />
-        {console.log(props.image, "image address")}
         <div>
             <div className={ styles.title }>Name of the restaurant:<span className={ styles.description }>{ props.name }</span> </div>
             <div className={ styles.title }>Address of your restaurant:<span className={ styles.description }>{ props.address }</span></div>
@@ -28,7 +35,7 @@ export default function ManagerRestaurant(props) {
         <div className={ styles.edit }>
             <button className={ styles.button }>Edit details</button>
             <Link to={`/manager/${props.id}/menu`}><button className={ styles.button }>Edit menu</button> </Link>
-            <div className={ styles.lowerB }><button className={ styles.button3 }>View order history</button><button className={ styles.button2 } onClick={ () => deleteRestaurantClick(props.id) }>Delete restaurant</button></div>
+            <div className={ styles.lowerB }><button className={ styles.button3 } onClick={ () => { viewOrdersClick(props.id); navigate('/manager/' + props.id + '/orders') } }>View order history</button><button className={ styles.button2 } onClick={ () => deleteRestaurantClick(props.id) }>Delete restaurant</button></div>
         </div>
     </div>
     )

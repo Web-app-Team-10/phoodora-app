@@ -32,7 +32,7 @@ export default function Manager(props) {
                 <div className={ styles.title }>Hello manager { props.decodedToken.sub }</div>
                 <div className={ styles.title }>Manage your restaurants below</div>
                 <Link className={ styles.link } to="/manager/create"><button className={ styles.button }>Create a new restaurant</button></Link>
-                { managerRestaurants.map(restaurant => <ManageRestaurant key={ restaurant.id } {...restaurant} setProcessing={ setProcessing } deleteRestaurant={ props.deleteRestaurant }/>)}
+                { managerRestaurants.map(restaurant => <ManageRestaurant key={ restaurant.id } {...restaurant} fetchOrderAdmin={ props.fetchOrderAdmin } setProcessing={ setProcessing } deleteRestaurant={ props.deleteRestaurant }/>)}
             </div>  
             break;
       

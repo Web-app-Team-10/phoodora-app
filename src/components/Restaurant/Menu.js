@@ -13,7 +13,7 @@ export default function Menu(props) {
                 <div className={ styles.details }>{ props.menu.description }</div>
                 <div className={ styles.price }>
                     <div>{ props.menu.price } €</div>
-                    <div className={ styles.icon }><BsFillCartPlusFill size={ 25 } onClick={ () => props.addToCart( props.menu.id, props.menu.name, props.menu.price, props.menu.description, props.menu.image ) }/></div>
+                    <div className={ styles.icon }><BsFillCartPlusFill size={ 25 } onClick={ () => props.addToCart( props.restaurant.name, props.menu.id, props.menu.name, props.menu.price, props.menu.description, props.menu.image ) }/></div>
                 </div>
             </div>
         </div>

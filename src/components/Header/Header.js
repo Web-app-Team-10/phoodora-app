@@ -16,7 +16,7 @@ export default function Header(props) {
   let login = <Link to="forms"><button className={ styles.login }>Log in</button></Link>;
 
   if(props.userJwt !== null) {
-      login = <button className={ styles.logout } onClick={ () => { props.setUserJwt(null); localStorage.removeItem('storedJwt'); } }>Log out <span></span></button>
+      login = <button className={ styles.logout } onClick={ () => { props.setUserJwt(null); localStorage.removeItem('storedJwt'); window.localStorage.removeItem('storedCart') } }>Log out <span></span></button>
   }
   const toAccount = () => {
         if(props.decodedToken !== null){

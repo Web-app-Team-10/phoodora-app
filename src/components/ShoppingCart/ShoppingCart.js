@@ -18,8 +18,10 @@ export default function ShoppingCart(props) {
             let price = props.shoppingCart[i].price;
             if(props.shoppingCart[i].quantity > 1) {
                 total = total + (price * props.shoppingCart[i].quantity);
+                props.setTotalPrice(total);
             } else {
                 total += props.shoppingCart[i].price;
+                props.setTotalPrice(total);
             }
         }
     }
@@ -53,7 +55,8 @@ export default function ShoppingCart(props) {
         <h2 className={styles.deliveryAddress}>Delivery address:</h2>
         <input className = { styles.deliveryInput} type="text" placeholder = "Type here"></input> 
         <h3 className={styles.totalPrice} onClick={updateTotal()}> {total} &#8364;</h3>
-        <button className={styles.paymentBtn} >Proceed to payment</button>
+        <button className={styles.paymentBtn} onClick={ props.orderState } >Move order State</button>
+        <button className={styles.paymentBtn} >Proceed to payment</button><button className={styles.paymentBtn} onClick={ props.order } >Order Test</button><button className={styles.paymentBtn} onClick={ props.fetchOrder } >Fetch Order</button>
         </div>
     )
 }
