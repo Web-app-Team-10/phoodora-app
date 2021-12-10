@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
+import PopUp from '../PopUp/PopUp';
 import styles from './Payment.module.css';
 
+
+
 export default function Payment(props) {
+    
+    const [PopUpBtn, setPopUpBtn]= useState(false);
+
     return (
         <div className={styles.flexContainer}>
             <h2>Payment details:</h2>
@@ -14,7 +20,8 @@ export default function Payment(props) {
             </span>
             
         </div>
-        <button className={styles.confirmBtn}>Confirm</button>
+        <button className={styles.confirmBtn} onClick={() => setPopUpBtn(true)}>Confirm</button>
+        <PopUp trigger={PopUpBtn}/>
         </div>
         
     )
