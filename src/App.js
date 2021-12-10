@@ -15,6 +15,8 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 const jwtFromStorage = window.localStorage.getItem('storedJwt');
+const storedShopppingCart = JSON.parse(window.localStorage.getItem('storedCart') || "[]" );
+//window.localStorage.removeItem('storedCart')
 
 export default function App()
  {
@@ -24,13 +26,18 @@ export default function App()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userJwt, setUserJwt] = useState(jwtFromStorage);
+  const [shoppingCart, setShoppingCart] = useState(storedShopppingCart);
   let uniqCity = [];
+
+  console.log(shoppingCart)
+  //{ setShoppingCart(storedShopppingCart); }
+  
 
   restaurants.map( unique => { 
       if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
   });
 
-  const [shoppingCart, setShoppingCart] = useState([]);
+  
 
   const addToCart = (id, name, price, description, image) => {
     let product = {
@@ -57,6 +64,7 @@ export default function App()
     if (match === false) {
         shoppingCart.push(product);
     } 
+    localStorage.setItem("storedCart", JSON.stringify(shoppingCart));
     console.log(shoppingCart);
 }
  
@@ -80,6 +88,8 @@ export default function App()
         setIsLoading(false);
       });
   }, []);
+
+  
   
   // Postal code not supported right now --- , --- ,
   const addNewRestaurant = async (name, address, city, operating_hours,  type, price_level, image, postal_code) => {

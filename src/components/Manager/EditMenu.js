@@ -61,11 +61,9 @@ export default function EditMenu(props) {
         console.log(result);
     };
     
-
     if(isLoading === false){
         
     if(product === true) {
-
         output = <></>;
         createProduct = <CreateProduct setProduct={ setProduct } addNewProduct={ addNewProduct }/>;
     } else {
