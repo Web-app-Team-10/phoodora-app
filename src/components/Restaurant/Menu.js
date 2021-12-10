@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styles from './Menu.module.css';
 import { BsFillCartPlusFill } from 'react-icons/bs';
+import { Image } from 'cloudinary-react';
 
 export default function Menu(props) {
 
     return (
         <div className={ styles.container }>
-            <img className={ styles.image } src={ `/images/${props.menu.image}`}/>
+            <Image className={ styles.image} cloudName="dfllxr92w" publicId={ `${props.menu.image}` } />
             <div className={ styles.info }>
                 <div className={ styles.title }>{ props.menu.name }</div>
                 <div className={ styles.details }>{ props.menu.description }</div>

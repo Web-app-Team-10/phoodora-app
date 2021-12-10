@@ -3,6 +3,7 @@ import styles from './ShoppingCartItem.module.css';
 import {GrClose}  from 'react-icons/gr';
 import {AiOutlinePlus} from 'react-icons/ai';
 import {AiOutlineMinus} from 'react-icons/ai';
+import { Image } from 'cloudinary-react';
 
 
 export default function ShoppingCartItem(props) {
@@ -29,7 +30,7 @@ export default function ShoppingCartItem(props) {
         
 
         <div className= {styles.item}>
-        <img className ={styles.image} src={ `/images/${props.image}`} />
+        <Image className={ styles.image} cloudName="dfllxr92w" publicId={ `${props.image}` } />
         <div>{props.name}</div>
         
         <span>

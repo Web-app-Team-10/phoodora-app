@@ -10,11 +10,25 @@ export default function CreateProduct(props) {
     const [ newDescription, setNewDescription ] = useState("");
     const [ newPrice, setNewPrice ] = useState("");
     const [ newCategory, setNewCategory ] = useState("");
-    const [ newImage, setNewImage ] = useState("");
+    let [ newImage, setNewImage ] = useState("");
+    const [ imageSelected, setImageSelected ] = useState("");
     const [ restaurantId, setRestaurantId] = useState(id);
     const [ processing, setProcessing ] = useState("idle");
 
-    
+    const uploadImage = async () => {
+        const formData = new FormData()
+        formData.append("file", imageSelected);
+        formData.append("upload_preset", "i8hy3ryy");
+
+        let result;
+        await axios.post("https://api.cloudinary.com/v1_1/dfllxr92w/image/upload/", formData).then((response) => {
+            result = response.data.secure_url;
+        });
+        console.log(result);
+        newImage = result
+        console.log(newImage, "product image");
+        addNewProduct();
+    }
 
     const addNewProduct = () => {
         props.addNewProduct(newName, newDescription, newPrice, newCategory, newImage, restaurantId);
@@ -48,9 +62,9 @@ export default function CreateProduct(props) {
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Address of image:</div>
-                <div><input className={ styles.input } onChange={ (event) => setNewImage(event.target.value) } type="text" placeholder="Image address"></input></div>
+                <div><input type="file" onChange={(event) => { setImageSelected(event.target.files[0]);}}/></div>
             </div>
-            <button className={ styles.button2 } onClick={ addNewProduct }>Create Product</button>
+            <button className={ styles.button2 } onClick={ uploadImage }>Create Product</button>
         </div>
         </>;
         break;

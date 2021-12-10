@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Product.module.css';
+import { Image } from 'cloudinary-react';
 
 export default function Product(props) {
 
@@ -9,7 +10,7 @@ export default function Product(props) {
    
     return (
         <div className={ styles.container }>
-            <img className={ styles.image } src={ `/images/${props.image}`}/>
+            <Image className={ styles.image} cloudName="dfllxr92w" publicId={ `${props.image}` } />
             <div className={ styles.info }>   
                 <div className={ styles.title }>{ props.name }</div>
                 <div className={ styles.details }>{ props.description }</div>
