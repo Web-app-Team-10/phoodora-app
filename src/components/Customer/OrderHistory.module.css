@@ -1,0 +1,15 @@
+.container {
+    margin-top: 100px;
+    width: 50%;
+    margin-left: 25%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.title {
+    text-align: center;
+    width: 100%;
+    font-size: 34px;
+    font-weight: 600;
+    color: rgba(143,2,224,1);
+    margin-bottom: 25px;
+}

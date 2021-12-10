@@ -56,7 +56,7 @@ export default function ShoppingCart(props) {
         <input className = { styles.deliveryInput} type="text" placeholder = "Type here"></input> 
         <h3 className={styles.totalPrice} onClick={updateTotal()}> {total} &#8364;</h3>
         <button className={styles.paymentBtn} onClick={ props.orderState } >Move order State</button>
-        <button className={styles.paymentBtn} >Proceed to payment</button><button className={styles.paymentBtn} onClick={ props.order } >Order Test</button><button className={styles.paymentBtn} onClick={ props.fetchOrder } >Fetch Order</button>
+        <button className={styles.paymentBtn} >Proceed to payment</button><button className={styles.paymentBtn} onClick={ props.order } >Order Test</button>
         </div>
     )
 }

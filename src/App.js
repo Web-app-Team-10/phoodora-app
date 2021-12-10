@@ -12,6 +12,7 @@ import Frontpage from './components/Frontpage/Frontpage';
 import AccountPage from "./components/Customer/AccountPage";
 import Footer from "./components/Footer/Footer";
 import RestaurantOrders from './components/Manager/RestaurantOrders';
+import OrderHistory from "./components/Customer/OrderHistory";
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
@@ -89,11 +90,7 @@ export default function App()
   }, []);
 
   const order = async () => {
-    /*var today = new Date()
-    time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-    let date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;*/
     let orderContents = shoppingCart;
-
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${userJwt}`
@@ -113,16 +110,6 @@ export default function App()
       "state": "delivering"
     }
     const result = await axios.put('https://phoodora-app.herokuapp.com/admin/restaurant/order',moveOrder, {headers:headers})
-    console.log(result);
-  }
-
-  // Customer function to fetch his order history
-  const fetchOrder = async () => {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${userJwt}`
-    }
-    const result = await axios.get('https://phoodora-app.herokuapp.com/customer/orders', { headers:headers })
     console.log(result);
   }
 
@@ -204,6 +191,7 @@ export default function App()
     } else {
       authRoutes = <> { console.log("customer")}
       <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } setIsLoggedIn={ setIsLoggedIn } /> } ></Route>
+      <Route path="/account/orders" element={ <OrderHistory decodedToken={ decodedToken } userJwt={ userJwt } /> }></Route>
     </>
     }
 }
@@ -216,7 +204,7 @@ export default function App()
         <Route path="*" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         { authRoutes }
-        <Route path="/shopping_cart" element={<ShoppingCart orderState={ orderState } fetchOrderAdmin={ fetchOrderAdmin } setTotalPrice={ setTotalPrice } fetchOrder={ fetchOrder } order={ order } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } />} ></Route>
+        <Route path="/shopping_cart" element={<ShoppingCart orderState={ orderState } setTotalPrice={ setTotalPrice } order={ order } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } />} ></Route>
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart }/> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
