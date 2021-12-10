@@ -7,6 +7,7 @@ import Manager from './components/Manager/Manager';
 import EditMenu from './components/Manager/EditMenu';
 import CreateRestaurant from './components/Manager/Create';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
+import Payment from './components/Payment/Payment';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import AccountPage from "./components/Customer/AccountPage";
@@ -172,6 +173,8 @@ export default function App()
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } /*shoppingCart={ shoppingCart }*/ setShoppingCart={ setShoppingCart } addToCart={ addToCart }/> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } /*shoppingCart={ shoppingCart }*/ setShoppingCart={ setShoppingCart } addToCart={ addToCart } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
+        <Route path="/shopping_cart/payment" element ={<Payment shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart }/>}></Route>
+
       </Routes>
       <Footer />
     </>

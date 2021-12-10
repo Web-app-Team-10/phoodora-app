@@ -53,7 +53,7 @@ export default function ShoppingCart(props) {
         <h2 className={styles.deliveryAddress}>Delivery address:</h2>
         <input className = { styles.deliveryInput} type="text" placeholder = "Type here"></input> 
         <h3 className={styles.totalPrice} onClick={updateTotal()}> {total} &#8364;</h3>
-        <button className={styles.paymentBtn} >Proceed to payment</button>
+        <Link className={styles.paymentBtnLink} to="/shopping_cart/payment" ><button className={styles.paymentBtn}>Proceed to payment</button></Link>
         </div>
     )
 }
