@@ -18,10 +18,10 @@ export default function ShoppingCart(props) {
             let price = props.shoppingCart[i].price;
             if(props.shoppingCart[i].quantity > 1) {
                 total = total + (price * props.shoppingCart[i].quantity);
-                props.setTotalPrice(total);
+                //props.setTotalPrice(total);
             } else {
                 total += props.shoppingCart[i].price;
-                props.setTotalPrice(total);
+               // props.setTotalPrice(total);
             }
         }
     }
@@ -44,18 +44,31 @@ export default function ShoppingCart(props) {
             updateTotal();
             localStorage.setItem("storedCart", JSON.stringify(props.shoppingCart));
         }
+        let output;
+
+       
+        if(props.shoppingCart.length < 1){
+            output = <>
+                <div className={ styles.empty }>You have no products in shopping cart</div>
+            </>
+        } else {
+            output = <>
+                <Link to= '/' className={styles.linkBtn}> <button className={styles.goBackBtn}><BsFillArrowLeftCircleFill size={20}/> Go back</button></Link>
+                <div className = {styles.addedItems}>
+                { props.shoppingCart.map( shoppingCart =>  <ShoppingCartItem key={ shoppingCart.id } deleteItem={deleteItem} increaseQuantity={ increaseQuantity } decreaseQuantity={ decreaseQuantity } {...shoppingCart} setShoppingCart={ props.setShoppingCart } shoppingCart={ props.shoppingCart }/>)}
+                </div>
+                <h2 className={styles.deliveryAddress}>Delivery address:</h2>
+                <input className = { styles.deliveryInput} type="text" placeholder = "Type here"></input> 
+                <h3 className={styles.totalPrice} onClick={updateTotal()}> {total} &#8364;</h3>
+                <Link className={styles.paymentBtnLink} to="/shopping_cart/payment" ><button className={styles.paymentBtn}>Proceed to payment</button></Link>
+            </>
+        }
+        
 
     return (
 
         <div className={styles.ShoppingCartContainer}>
-        <Link to= '/' className={styles.linkBtn}> <button className={styles.goBackBtn}><BsFillArrowLeftCircleFill size={20}/> Go back</button></Link>
-        <div className = {styles.addedItems}>
-        { props.shoppingCart.map( shoppingCart =>  <ShoppingCartItem key={ shoppingCart.id } deleteItem={deleteItem} increaseQuantity={ increaseQuantity } decreaseQuantity={ decreaseQuantity } {...shoppingCart} setShoppingCart={ props.setShoppingCart } shoppingCart={ props.shoppingCart }/>)}
-        </div>
-        <h2 className={styles.deliveryAddress}>Delivery address:</h2>
-        <input className = { styles.deliveryInput} type="text" placeholder = "Type here"></input> 
-        <h3 className={styles.totalPrice} onClick={updateTotal()}> {total} &#8364;</h3>
-        <Link className={styles.paymentBtnLink} to="/shopping_cart/payment" ><button className={styles.paymentBtn}>Proceed to payment</button></Link>
+            { output }
         </div>
     )
 }

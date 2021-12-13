@@ -134,3 +134,8 @@
     font-size: 25px;
     font-weight: 500;
 }
+.errorMsg{
+    color: red;
+    display: flex;
+    flex-direction: row;
+}

@@ -169,13 +169,17 @@ export default function App()
       console.log(error);
     }
   }
+
+  const validateForms = () => {
+    console.log("hello validate")
+  }
   
   if (SearchTerm.length > 0){
     restaurants = restaurants.filter((restaurants) => restaurants.name.toLowerCase().includes(SearchTerm.toLowerCase()))
   }
   let login;
   let authRoutes = <>
-  <Route path="/forms" element={ <Login getManagerRestaurant={ getManagerRestaurant } newJwt={ newJwt => { setUserJwt(newJwt); window.localStorage.setItem('storedJwt', newJwt); } } /> }></Route>
+  <Route path="/forms" element={ <Login validateForms={ validateForms } getManagerRestaurant={ getManagerRestaurant } newJwt={ newJwt => { setUserJwt(newJwt); window.localStorage.setItem('storedJwt', newJwt); } } /> }></Route>
   <Route path="/account" element={ <NotLoggedIn />}></Route>
   <Route path="/manager" element={ <NotLoggedIn />}></Route>
   </>;
@@ -193,6 +197,7 @@ export default function App()
       authRoutes = <> { console.log("customer")}
       <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } setIsLoggedIn={ setIsLoggedIn } /> } ></Route>
       <Route path="/account/orders" element={ <OrderHistory decodedToken={ decodedToken } userJwt={ userJwt } /> }></Route>
+      <Route path="/shopping_cart/payment" element ={<Payment order={ order } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart }/>}></Route>
     </>
     }
 }
@@ -209,7 +214,7 @@ export default function App()
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart }/> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
-        <Route path="/shopping_cart/payment" element ={<Payment shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart }/>}></Route>
+        
 
       </Routes>
       <Footer />

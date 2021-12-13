@@ -16,12 +16,16 @@ export default function ShoppingCartItem(props) {
         props.increaseQuantity(productId)
     }
     const decreaseQuantityClick = productId => {
-        
         props.decreaseQuantity(productId)
-    }
-    if(props.quantity < 1 ) {
-        deleteItemClick(props.id)
-    }
+        if(props.quantity < 2 ) {
+                deleteItemClick(productId)
+        } 
+    }  
+
+           
+        
+    
+    
 
     return (
         

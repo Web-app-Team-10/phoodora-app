@@ -25,7 +25,7 @@ const transform = {
     duration: 3,
     stiffness: 30,
 };
-export default function RegisterForm() {
+export default function RegisterForm(props) {
     const [isExpanded, setExpanded] = useState(true);
     const { login } = useContext(FormContext);
     const [loginState, setLoginState] = useState("idle");
@@ -40,9 +40,13 @@ export default function RegisterForm() {
     }
     const handleRegister = async (event) => {
         event.preventDefault();
+        const isValid = props.validate();
         console.log(event.target.username.value);
         console.log(event.target.password.value);
-        setLoginState('processing')
+        if(isValid === true) {
+            setLoginState('processing')
+            props.setUsernameErr("");
+            props.setPasswordErr("");
         
         try {
             const credentials = JSON.stringify({
@@ -61,7 +65,7 @@ export default function RegisterForm() {
             setLoginState("error")
             setTimeout(() => setLoginState("idle"), 1500);
         }
-    }
+    }}
 
     let buttonState; 
     switch(loginState) {
@@ -97,9 +101,11 @@ export default function RegisterForm() {
                 <form className={ styles.form } onSubmit={ handleRegister }>
                 <span className={ styles.titles2 }>Register as a customer</span>
                 <span className={ styles.titles }>Username</span>
-                <input className={ styles.input } name="username" placeholder="Username"></input>
+                <input className={ styles.input } name="username" onChange={ (event) => { props.setUsername(event.target.value)}} placeholder="Username"></input>
+                <div className={ styles.errorMsg }>{ props.usernameErr } </div>
                 <span className={ styles.titles }>Password</span>
-                <input className={ styles.input } name="password" placeholder="Password" type="password"></input>
+                <input className={ styles.input } name="password" onChange={ (event) => { props.setPassword(event.target.value)} } placeholder="Password" type="password"></input>
+                <div className={ styles.errorMsg }>{ props.passwordErr }</div>
                 <div className={ styles.setButton }>{ buttonState }</div>
                 </form>
             </div>

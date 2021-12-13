@@ -26,7 +26,7 @@ const transform = {
     stiffness: 30,
 };
 
-export default function ManagerLogin() {
+export default function ManagerLogin(props) {
     const [isExpanded, setExpanded] = useState(true);
     const [loginState, setLoginState] = useState("idle");
     const navigate = useNavigate();
@@ -64,9 +64,15 @@ export default function ManagerLogin() {
     </div>*/
     const handleRegister = async (event) => {
         event.preventDefault();
+        const isValid = props.validate();
         console.log(event.target.username.value);
         console.log(event.target.password.value);
-        setLoginState('processing')
+        
+        
+        if(isValid === true){
+            setLoginState('processing')
+            props.setUsernameErr("");
+            props.setPasswordErr("");
         
         try {
             const credentials =  JSON.stringify({
@@ -85,7 +91,7 @@ export default function ManagerLogin() {
             setLoginState("error")
             setTimeout(() => setLoginState("idle"), 1500);
         }
-    }
+    }}
 
     let buttonState; 
     switch(loginState) {
@@ -112,9 +118,11 @@ export default function ManagerLogin() {
                 <form className={ styles.form } onSubmit={ handleRegister }>
                 <span className={ styles.titles2 }>Register as a restaurant Manager</span>
                 <span className={ styles.titles }>Username</span>
-                <input className={ styles.input } name="username" placeholder="Username"/>
+                <input className={ styles.input } name="username" onChange={ (event) => { props.setUsername(event.target.value)}} placeholder="Username"/>
+                <div className={ styles.errorMsg }>{ props.usernameErr } </div>
                 <span className={ styles.titles }>Password</span>
-                <input className={ styles.input } name="password" placeholder="Password" type="password"/>
+                <input className={ styles.input } name="password" onChange={ (event) => { props.setPassword(event.target.value)} } placeholder="Password" type="password"/>
+                <div className={ styles.errorMsg }>{ props.passwordErr }</div>
                 <div className={ styles.setButton }>{ buttonState }</div>
                 </form>
             </div>

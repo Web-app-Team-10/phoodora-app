@@ -45,30 +45,61 @@ export default function LoginForm(props) {
         setTimeout(manager, 600);
     }
     const { register, manager } = useContext(FormContext);
+    /*const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [usernameErr, setUsernameErr] = useState("");
+    const [passwordErr, setPasswordErr] = useState("");*/
+
+   /* const validate = () => {
+        let isValid = true;
+        let nameError;
+        let passwordError;
+        if(username.length < 4){
+            nameError = 'Username must have atleast 4 characters.';
+            isValid = false;
+        } else if(/\s/.test(username)){ 
+            nameError = "Username must not have a space";
+            isValid = false;
+        } 
+        if(password.length < 4){
+            passwordError = 'Your password must be atleast 4 characters/digits.';
+            isValid = false;
+        }
+        setUsernameErr(nameError);
+        setPasswordErr(passwordError);
+
+        return isValid;
+    }*/
     
     
     const handleLogin = async (event) => {
         event.preventDefault();
+        const isValid = props.validate();
+
         console.log(event.target.username.value);
         console.log(event.target.password.value);
-        setLoginState('processing')
-        
-        try {
-            const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
-            const result = await axios.post('https://phoodora-app.herokuapp.com/login', credentials);
-            console.log(result);
-            const JWT = result.data.access_token;
-            const decodedToken = jwt.decode(JWT);
-            setLoginState("success");
-            setTimeout(() => { if(decodedToken.role === 'ROLE_MANAGER'){ navigate('/manager', { replace: true }, props.userLogin(JWT)) }
-                                else{ navigate('/account', { replace: true }, props.userLogin(JWT)) }}, 1500);
-        } catch (error) { 
-            console.log(error);
-            setLoginState("error")
-            setTimeout(() => setLoginState("idle"), 1500);
-        }
-    }
+        if(isValid === true) {
+            setLoginState('processing')
+            props.setUsernameErr("");
+            props.setPasswordErr("");
+            
+            try {
+                const credentials = JSON.stringify({ username: event.target.username.value, password: event.target.password.value });
+                const result = await axios.post('https://phoodora-app.herokuapp.com/login', credentials);
+                console.log(result);
+                const JWT = result.data.access_token;
+                const decodedToken = jwt.decode(JWT);
+                setLoginState("success");
+                setTimeout(() => { if(decodedToken.role === 'ROLE_MANAGER'){ navigate('/manager', { replace: true }, props.userLogin(JWT)) }
+                                    else{ navigate('/account', { replace: true }, props.userLogin(JWT)) }}, 1500);
+            } catch (error) { 
+                console.log(error);
+                setLoginState("error")
+                setTimeout(() => setLoginState("idle"), 1500);
+        }}
+    } 
 
+ 
     let buttonState; 
     switch(loginState) {
         case "idle": buttonState = <button className={ styles.button } type="submit">Log in</button>
@@ -93,8 +124,10 @@ export default function LoginForm(props) {
                     </motion.div> 
             </div>
                 <form className={ styles.inputContainer } onSubmit={ handleLogin }>
-            <span className={ styles.labels }>Username</span><input className={ styles.input } name="username" placeholder="Enter your username"/>
-            <span className={ styles.labels }>Password</span><input className={ styles.input } name="password" type="password" placeholder="Enter your password"/>
+                <span className={ styles.labels }>Username</span><input className={ styles.input }  onChange={ (event) => { props.setUsername(event.target.value)}} name="username" placeholder="Enter your username"/>
+                <div className={ styles.errorMsg }>{ props.usernameErr } </div>
+            <span className={ styles.labels }>Password</span><input className={ styles.input } onChange={ (event) => { props.setPassword(event.target.value)} } name="password" type="password" placeholder="Enter your password"/>
+            <div className={ styles.errorMsg }>{ props.passwordErr }</div>
                 { buttonState }
                 </form>
                     <div className={ styles.linkBox }> 

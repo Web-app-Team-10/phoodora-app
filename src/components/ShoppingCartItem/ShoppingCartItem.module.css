@@ -5,28 +5,28 @@ body{
 .addedItems{
     display: flex;
     flex-direction: row;
-
+    justify-content: center;
 }
 
 .item{
-    display:flex;
+    display: flex;
     justify-content: space-between;
     background-color: #ffffff;
     width: 600px;
     height: fit-content;
     border: solid  2px rgba(143,2,224,1);
     margin-bottom: 4%;
-
+    border-radius: 20px;
 }
 .closeIcon{
     color: rgba(143,2,224,1);
     cursor: pointer;
-
 }
 .image{
     width:  200px;
     height: 200px;
     object-fit: cover;
+    border-radius: 20px 0px 0px 20px;
 }
 .quantityBtn{
     border: none;
@@ -41,6 +41,5 @@ body{
     margin-top: 10px;
 }
 .itemPrice{
-margin-top: 120px;
-
+    margin-top: 120px;
 }
