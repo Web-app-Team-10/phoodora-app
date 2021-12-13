@@ -20,11 +20,12 @@ export default function ManagerRestaurant(props) {
             window.location.reload();
         }, 2000)*/
     }
+    
 
     return ( 
         <div className={ styles.container }>
         <Image className={ styles.image} cloudName="dfllxr92w" publicId={ `${props.image}` } />
-        <div>
+        <div>{console.log(props)}
             <div className={ styles.title }>Name of the restaurant:<span className={ styles.description }>{ props.name }</span> </div>
             <div className={ styles.title }>Address of your restaurant:<span className={ styles.description }>{ props.address }</span></div>
             <div className={ styles.title }>City & postal code:<span className={ styles.description }>{ props.city }, { props.postal_code }</span></div>

@@ -30,6 +30,33 @@ export default function App()
   const [userJwt, setUserJwt] = useState(jwtFromStorage);
   const [shoppingCart, setShoppingCart] = useState(storedShopppingCart);
   const [totalPrice, setTotalPrice] = useState("");
+
+  /*const [restaurantName, setRestaurantName] = useState("");
+  const [restaurantAddress, setRestaurantAddress] = useState("");
+  const [restaurantCity, setRestaurantCity] = useState("");
+  const [restaurantPost, setRestaurantPost] = useState("");
+  const [operatingHours, setOperatingHours] = useState("");
+  const [restaurantType, setRestaurantType] = useState("");
+  const [restaurantPrice, setRestaurantPrice] = useState("");
+  const [restaurantImage, setRestaurantImage] = useState("");
+
+  const [restaurantNameErr, setRestaurantNameErr] = useState("");
+  const [restaurantAddressErr, setRestaurantAddressErr] = useState("");
+  const [restaurantCityErr, setRestaurantCityErr] = useState("");
+  const [restaurantPostErr, setRestaurantPostErr] = useState("");
+  const [operatingHoursErr, setOperatingHoursErr] = useState("");
+  const [restaurantTypeErr, setRestaurantTypeErr] = useState("");
+  const [restaurantPriceErr, setRestaurantPriceErr] = useState("");
+  const [restaurantImageErr, setRestaurantImageErr] = useState("");*/
+  /*setRestaurantName={ setRestaurantName } setRestaurantAddress={ setRestaurantAddress } setRestaurantCity={ setRestaurantCity }
+  setRestaurantCity={ setRestaurantCity } setRestaurantPost={ setRestaurantPost } setOperatingHours={ setOperatingHours }
+  setRestaurantType={ setRestaurantType } setRestaurantPrice={ setRestaurantPrice } setRestaurantImage={ setRestaurantImage }
+  restaurantNameErr={ restaurantNameErr } setRestaurantNameErr={ setRestaurantNameErr } restaurantAddressErr={ restaurantAddressErr }
+  setRestaurantAddressErr={ setRestaurantAddressErr } restaurantCityErr={ restaurantCityErr } setRestaurantCityErr={ setRestaurantCityErr }
+  restaurantPostErr={ restaurantPostErr } setRestaurantPostErr={ setRestaurantPostErr } operatingHoursErr={ operatingHoursErr }
+  setOperatingHoursErr={ setOperatingHoursErr } restaurantTypeErr={ restaurantTypeErr } setRestaurantTypeErr={ setRestaurantTypeErr }
+  restaurantPriceErr={ restaurantPriceErr } setRestaurantPriceErr={ setRestaurantPriceErr } restaurantImageErr={ restaurantImageErr }
+  setRestaurantImageErr={ setRestaurantImageErr }*/
   
   let restaurantOrders;
   let uniqCity = [];
@@ -37,6 +64,29 @@ export default function App()
   restaurants.map( unique => { 
       if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
   });
+
+  // Validate new restaurant and product input fields
+
+  /*const validate = () => {
+    let isValid = true;
+    let nameError;
+    let addressError;
+    if(restaurantName.length < 4){
+        nameError = 'Restaurant name must have atleast 4 characters.';
+        isValid = false;
+    } else if(/\s/.test(restaurantName)){ 
+        nameError = "Restaurant name must not have a space";
+        isValid = false;
+    } 
+    if(restaurantAddress.length < 4){
+        addressError = 'Address must be atleast 4 characters.';
+        isValid = false;
+    }
+    setRestaurantNameErr(restaurantNameErr);
+    setRestaurantAddressErr(restaurantAddressErr);
+
+    return isValid;
+}*/
 
   
 
@@ -125,16 +175,17 @@ export default function App()
   }
   
   // Manager function to create a new restaurant
-  const addNewRestaurant = async (name, address, city, operating_hours,  type, price_level, image, postal_code) => {
+  const addNewRestaurant = async (name, address, city, postal_code, operating_hours, type, price_level, image) => {
+    console.log("haloo")
     let newRestaurant = JSON.stringify({
     name: name,
     address: address,
     city: city,
+    postal_code: postal_code,
     operating_hours: operating_hours,
     type: type,
     price_level: price_level,
-    image: image,
-    postal_code: postal_code
+    image: image
   });
     
     const headers = {
@@ -169,17 +220,13 @@ export default function App()
       console.log(error);
     }
   }
-
-  const validateForms = () => {
-    console.log("hello validate")
-  }
   
   if (SearchTerm.length > 0){
     restaurants = restaurants.filter((restaurants) => restaurants.name.toLowerCase().includes(SearchTerm.toLowerCase()))
   }
   let login;
   let authRoutes = <>
-  <Route path="/forms" element={ <Login validateForms={ validateForms } getManagerRestaurant={ getManagerRestaurant } newJwt={ newJwt => { setUserJwt(newJwt); window.localStorage.setItem('storedJwt', newJwt); } } /> }></Route>
+  <Route path="/forms" element={ <Login getManagerRestaurant={ getManagerRestaurant } newJwt={ newJwt => { setUserJwt(newJwt); window.localStorage.setItem('storedJwt', newJwt); } } /> }></Route>
   <Route path="/account" element={ <NotLoggedIn />}></Route>
   <Route path="/manager" element={ <NotLoggedIn />}></Route>
   </>;

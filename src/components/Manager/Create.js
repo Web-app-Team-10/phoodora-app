@@ -5,38 +5,129 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export default function Create(props) {
-
-    const [ newName, setNewName ] = useState("");
-    const [ newAddress, setNewAddress ] = useState("");
-    const [ newCity, setNewCity ] = useState("");
-    const [ newHours, setNewHours ] = useState("");
-    const [ newType, setNewType ] = useState("");
-    const [ newPricerange, setNewPricerange ] = useState("");
     let [ newImage ] = useState("");
-    const [ newPostalCode, setNewPostalCode ] = useState("");
-    const [ imageSelected, setImageSelected ] = useState("");
+    const [restaurantName, setRestaurantName] = useState("");
+    const [restaurantAddress, setRestaurantAddress] = useState("");
+    const [restaurantCity, setRestaurantCity] = useState("");
+    const [restaurantPost, setRestaurantPost] = useState("");
+    const [operatingHours, setOperatingHours] = useState("");
+    const [restaurantType, setRestaurantType] = useState("");
+    const [restaurantPrice, setRestaurantPrice] = useState("");
+    const [restaurantImage, setRestaurantImage] = useState("");
+
+    const [restaurantNameErr, setRestaurantNameErr] = useState("");
+    const [restaurantAddressErr, setRestaurantAddressErr] = useState("");
+    const [restaurantCityErr, setRestaurantCityErr] = useState("");
+    const [restaurantPostErr, setRestaurantPostErr] = useState("");
+    const [operatingHoursErr, setOperatingHoursErr] = useState("");
+    const [restaurantTypeErr, setRestaurantTypeErr] = useState("");
+    const [restaurantPriceErr, setRestaurantPriceErr] = useState("");
+    const [restaurantImageErr, setRestaurantImageErr] = useState("");
 
     const [ processing, setProcessing ] = useState("idle");
     const navigate = useNavigate();
 
+    const validate = () => {
+        let isValid = true;
+        let nameError;
+        let addressError;
+        let cityError;
+        let postError;
+        let hoursError;
+        let typeError;
+        let priceError;
+        let imageError;
+
+        if(restaurantName.length < 4){
+            nameError = 'Restaurant name must have atleast 4 characters.';
+            isValid = false;
+        } else if(restaurantName.length > 20){
+            nameError = 'Restaurant name is too long';
+            isValid = false;
+        }
+        if(restaurantAddress.length < 4){
+            addressError = 'Address must be atleast 4 characters.';
+            isValid = false;
+        } else if(restaurantAddress.length > 25){
+            addressError = 'Address is too long';
+            isValid = false;
+        }
+        if(restaurantCity.length < 3){
+            cityError = 'City must be atleast 3 characters.';
+            isValid = false;
+        } else if(/\s/.test(restaurantCity)){ 
+            cityError = "Restaurant city must not have a space";
+            isValid = false;
+        } else if(restaurantCity.length > 15){
+            cityError = 'City is too long';
+            isValid = false;
+        }
+        if(restaurantPost.length < 4){
+            postError = 'Postal code must be atleast 4 digits.';
+            isValid = false;
+        } else if(restaurantPost.length > 6){
+            postError = 'Postal code is too long';
+            isValid = false;
+        }
+        if(operatingHours.length < 2){
+            hoursError = 'This field cannot be empty';
+            isValid = false;
+        } else if(operatingHours.length > 12){
+            hoursError = 'Operating hours is too long';
+            isValid = false;
+        }
+        if(restaurantType === ""){
+            typeError = 'You have to select a type';
+            isValid = false;
+        } 
+        if(restaurantPrice === ""){
+            priceError = 'You have to select a pricelevel';
+            isValid = false;
+        } 
+        if(restaurantImage === ""){
+            imageError = 'You have to upload a image';
+            isValid = false;
+        }
+        setRestaurantNameErr(nameError);
+        setRestaurantAddressErr(addressError);
+        setRestaurantCityErr(cityError);
+        setRestaurantPostErr(postError);
+        setOperatingHoursErr(hoursError);
+        setRestaurantTypeErr(typeError);
+        setRestaurantPriceErr(priceError);
+        setRestaurantImageErr(imageError);
+        return isValid;
+    }
+
+    const validation = () => {
+    const isValid = validate();
+
+    if(isValid === true) {
+        uploadImage();
+        setRestaurantNameErr("");
+        setRestaurantAddressErr("");
+        setRestaurantCityErr("");
+        setRestaurantPostErr("");
+        setOperatingHoursErr("");
+        setRestaurantTypeErr("");
+        setRestaurantPriceErr("");
+        setRestaurantImageErr("");
+    }
+    }
 
     const uploadImage = async () => {
-        const formData = new FormData()
-        formData.append("file", imageSelected);
-        formData.append("upload_preset", "i8hy3ryy");
-
         let result;
+        const formData = new FormData()
+        formData.append("file", restaurantImage);
+        formData.append("upload_preset", "i8hy3ryy");
         await axios.post("https://api.cloudinary.com/v1_1/dfllxr92w/image/upload/", formData).then((response) => {
             result = response.data.secure_url;
         });
-        console.log(result);
         newImage = result
-        console.log(newImage);
-        addNewRestaurant();
+        addNewRestaurant();  
     }
-
     const addNewRestaurant = () => {
-        props.addNewRestaurant(newName, newAddress, newCity, newHours, newType, newPricerange, newImage, newPostalCode);
+        props.addNewRestaurant(restaurantName, restaurantAddress, restaurantCity, restaurantPost, operatingHours, restaurantType, restaurantPrice, newImage);
         setProcessing("creating");
         setTimeout(() => {
             navigate('/manager');
@@ -45,50 +136,6 @@ export default function Create(props) {
     
   
     let output;
-    //Postal code not accepted right now--  -- --
-
-/*
-    <WidgetLoader /> 
-    <Widget
-      sources={['local', 'camera', 'dropbox']}
-      sourceKeys={{dropboxAppKey: '1dsf42dl1i2', instagramClientId: 'd7aadf962m'}}
-      resourceType={'image'}
-      cloudName={'dfllxr92w'} // your cloudinary account cloud name. // Located on https://cloudinary.com/console/
-      uploadPreset={'i8hy3ryy'} // check that an upload preset exists and check mode is signed or unisgned
-      buttonText={'Open'}
-      style={{ color: 'white', 
-          border: 'none', 
-          width: '120px',
-          backgroundColor: 'rgba(143,2,224,1)', 
-          borderRadius: '4px',
-          height: '25px'
-          }}
-      folder={'Phoodora'} // set cloudinary folder name to send file
-      cropping={false}
-      onSuccess={(res) => console.log(res)} // add success callback -> returns result
-      onFailure={(res) => console.log(res)} // add failure callback -> returns 'response.error' + 'response.result'
-      logging={false} // logs will be provided for success and failure messages, 
-      // set to false for production -> default = true
-      customPublicId={'sample'} // set a specific custom public_id. 
-      // To use the file name as the public_id use 'use_filename={true}' parameter
-      eager={'w_400,h_300,c_pad|w_260,h_200,c_crop'}
-      use_filename={false} 
-      // 👇 FOR SIGNED UPLOADS ONLY 👇
-
-      /*generateSignatureUrl={'http://my_domain.com/api/v1/media/generate_signature'} // pass the api 
-      // endpoint for generating a signature -> check cloudinary docs and SDK's for signing uploads
-      apiKey={736541435772684} // cloudinary API key -> number format
-      accepts={'application/json'} // for signed uploads only -> default = 'application/json'
-      contentType={'application/json'} // for signed uploads only -> default = 'application/json'
-      withCredentials={true} // default = true -> check axios documentation for more information
-      unique_filename={true} // setting it to false, you can tell Cloudinary not to attempt to make 
-      // the Public ID unique, and just use the normalized file name -> default = true
-      <div><input className={ styles.input } onChange={ (event) => setNewImage(event.target.value) } type="text" placeholder="Image address"></input></div>
-      */
-     /*  />
-    
-    */
-    
     
     switch(processing) {
         case "idle":
@@ -97,53 +144,64 @@ export default function Create(props) {
             <button className={ styles.button } onClick={ () => navigate('/manager') }>Go back</button>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant name:</div>
-                <div><input className={ styles.input } onChange={ (event) => setNewName(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="Name restaurant"></input></div>
+                <div><input className={ styles.input } onChange={ (event) => {setRestaurantName(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1))} } type="text" placeholder="Name restaurant"></input>
+                    <div className={ styles.errorMsg }>{ restaurantNameErr } </div>
+                </div>
             </div> 
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant address:</div>
-                <div><input className={ styles.input } onChange={ (event) => setNewAddress(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="Address of your restaurant"></input></div>
+                <div><input className={ styles.input } onChange={ (event) => setRestaurantAddress(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="Address of your restaurant"></input>
+                    <div className={ styles.errorMsg }>{ restaurantAddressErr } </div>
+                </div>
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>City of operation:</div>
-                <div><input className={ styles.input } onChange={ (event) => setNewCity(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="City of operation"></input></div>
+                <div><input className={ styles.input } onChange={ (event) => setRestaurantCity(event.target.value = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)) } type="text" placeholder="City of operation"></input>
+                    <div className={ styles.errorMsg }>{ restaurantCityErr } </div>
+                </div>    
             </div>
 <div className={ styles.box }>
                 <div className={ styles.title2 }>Postal code:</div>
-                <div><input className={ styles.input } onChange={ (event) => setNewPostalCode(event.target.value) }  onKeyPress={ (event) => { if(!/[0-9]/.test(event.key)) { event.preventDefault(); } }} type="text" placeholder="Postal code"></input></div>
+                <div><input className={ styles.input } onChange={ (event) => setRestaurantPost(event.target.value) }  onKeyPress={ (event) => { if(!/[0-9]/.test(event.key)) { event.preventDefault(); } }} type="text" placeholder="Postal code"></input>
+                    <div className={ styles.errorMsg }>{ restaurantPostErr } </div>
+                </div>
             </div>
 
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Operating hours:</div>
-                <div><input className={ styles.input } onChange={ (event) => setNewHours(event.target.value) } type="text" placeholder="Hours e.g. 11:00-21:00"></input></div>
+                <div><input className={ styles.input } onChange={ (event) => setOperatingHours(event.target.value) } type="text" placeholder="Hours e.g. 11:00-21:00"></input>
+                    <div className={ styles.errorMsg }>{ operatingHoursErr } </div>
+                </div>
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant type:</div>
-                <div><select defaultValue="" className={ styles.select } onChange={ (event) => setNewType(event.target.value) }>
+                <div><select defaultValue="" className={ styles.select } onChange={ (event) => setRestaurantType(event.target.value) }>
+                
                     <option value="" hidden disabled>Choose here</option>
                     <option value="Fast food">Fast food</option>
                     <option value="Fast casual">Fast casual</option>
                     <option value="Casual dining">Casual dining</option>
                     <option value="Fine dining">Fine dining</option>
-                    </select></div>
+                    </select><div className={ styles.errorMsg }>{ restaurantTypeErr } </div> </div>
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Restaurant price level:</div>
-                <div><select defaultValue="" className={ styles.select } onChange={ (event) => setNewPricerange(event.target.value) }>
+                <div><select defaultValue="" className={ styles.select } onChange={ (event) => setRestaurantPrice(event.target.value) }>
+                
                     <option value="" hidden disabled>Choose here</option>
                     <option value="€">€</option>
                     <option value="€€">€€</option>
                     <option value="€€€">€€€</option>
                     <option value="€€€€">€€€€</option>
-                    </select></div>
+                    </select><div className={ styles.errorMsg }>{ restaurantPriceErr } </div></div>
             </div>
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Image for your restaurant:</div>
-                <input type="file" onChange={(event) => { setImageSelected(event.target.files[0]);}}/>
+                <div className={ styles.label }><label className={ styles.upload } for="image">Choose file</label><input name="image" id="image" type="file" onChange={(event) => { setRestaurantImage(event.target.files[0]);}}/>
+                <div className={ styles.errorMsg } style={{marginTop:"10px"}}>{ restaurantImageErr } </div></div>
                 
             </div>
-
-            
-            <button className={ styles.button2 } onClick={ uploadImage }>Create Restaurant</button>
+            <button className={ styles.button2 } onClick={ validation }>Create Restaurant</button>
             </>;
             break;
 

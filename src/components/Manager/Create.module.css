@@ -74,3 +74,27 @@
     font-weight: 600;
     align-self: center;
 }
+.errorMsg{
+    color: red;
+    display: flex;
+    flex-direction: row;
+    margin-left: 155px;
+}
+.upload {
+    color: white;
+    background-color: rgba(143,2,224,1);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+input[type="file"] {
+    display: none;
+}
+.label {
+    margin-top: 20px;
+}
+
+   
