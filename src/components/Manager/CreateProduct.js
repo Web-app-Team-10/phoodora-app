@@ -40,7 +40,7 @@ export default function CreateProduct(props) {
         if(newDescription.length < 4){
             descErr = 'Description too short';
             isValid = false;
-        } else if(newDescription.length > 25){
+        } else if(newDescription.length > 40){
             descErr = 'Description is too long';
             isValid = false;
         }

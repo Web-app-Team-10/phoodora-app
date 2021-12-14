@@ -41,7 +41,7 @@ export default function Create(props) {
         if(restaurantName.length < 4){
             nameError = 'Restaurant name must have atleast 4 characters.';
             isValid = false;
-        } else if(restaurantName.length > 20){
+        } else if(restaurantName.length > 26){
             nameError = 'Restaurant name is too long';
             isValid = false;
         }
