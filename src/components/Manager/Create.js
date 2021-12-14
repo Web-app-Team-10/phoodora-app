@@ -26,6 +26,7 @@ export default function Create(props) {
 
     const [ processing, setProcessing ] = useState("idle");
     const navigate = useNavigate();
+    let fileName;
 
     const validate = () => {
         let isValid = true;
@@ -37,6 +38,7 @@ export default function Create(props) {
         let typeError;
         let priceError;
         let imageError;
+        
 
         if(restaurantName.length < 4){
             nameError = 'Restaurant name must have atleast 4 characters.';
@@ -86,6 +88,7 @@ export default function Create(props) {
         } 
         if(restaurantImage === ""){
             imageError = 'You have to upload a image';
+            fileName = <></>
             isValid = false;
         }
         setRestaurantNameErr(nameError);
@@ -97,6 +100,10 @@ export default function Create(props) {
         setRestaurantPriceErr(priceError);
         setRestaurantImageErr(imageError);
         return isValid;
+    }
+    if(restaurantImage !== ""){
+        console.log(restaurantImage, "imahge")
+        fileName = <div className={ styles.fileName }>{restaurantImage.name}</div>
     }
 
     const validation = () => {
@@ -197,7 +204,7 @@ export default function Create(props) {
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Image for your restaurant:</div>
                 <div className={ styles.label }><label className={ styles.upload } for="image">Choose file</label><input name="image" id="image" type="file" onChange={(event) => { setRestaurantImage(event.target.files[0]);}}/>
-                <div className={ styles.errorMsg } style={{marginTop:"10px"}}>{ restaurantImageErr } </div></div>
+                <div className={ styles.errorMsg } style={{marginTop:"10px"}}>{ fileName }{ restaurantImageErr } </div></div>
                 
             </div>
             <button className={ styles.button2 } onClick={ validation }>Create Restaurant</button>

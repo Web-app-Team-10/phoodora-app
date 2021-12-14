@@ -23,6 +23,11 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
+.fileName{
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
 .box {
     display: flex;
     flex-direction: row;

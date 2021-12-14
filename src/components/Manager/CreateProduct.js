@@ -22,6 +22,8 @@ export default function CreateProduct(props) {
     const [ restaurantId ] = useState(id);
     const [ processing, setProcessing ] = useState("idle");
 
+    let fileName;
+
     const validate = () => {
         let isValid = true;
         let nameErr;
@@ -64,6 +66,7 @@ export default function CreateProduct(props) {
         
         if(imageSelected === ""){
             imageErr = 'You have to upload a image';
+            fileName = <></>;
             isValid = false;
         }
         setNameErr(nameErr);
@@ -98,6 +101,10 @@ export default function CreateProduct(props) {
         });
         newImage = result
         addNewProduct();
+    }
+    if(imageSelected !== ""){
+        fileName = <div className={ styles.fileName }>{imageSelected.name}</div>;
+
     }
 
     const addNewProduct = () => {
@@ -141,7 +148,7 @@ export default function CreateProduct(props) {
             <div className={ styles.box }>
                 <div className={ styles.title2 }>Address of image:</div>
                 <div className={ styles.label }><label className={ styles.upload } for="image">Choose file</label><input name="image" id="image" type="file" onChange={(event) => { setImageSelected(event.target.files[0]);}}/>
-                <div className={ styles.errorMsg } style={{marginTop:"10px"}}>{ imageErr } </div></div>
+                <div className={ styles.errorMsg } style={{marginTop:"10px"}}> { fileName }{ imageErr } </div></div>
             </div>
             <button className={ styles.button2 } onClick={ validation }>Create Product</button>
         </div>
