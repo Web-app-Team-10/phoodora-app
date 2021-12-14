@@ -16,3 +16,60 @@
     background-color: rgba(143,2,224,1);
     color: white;
 }
+.preparing {
+    color: white;
+    background-color: rgb(218, 218, 62);
+    cursor: pointer;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    border: 2px solid rgb(218, 218, 62);
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 20px
+}
+.delivering {
+    color: white;
+    background-color: rgb(17, 4, 206);
+    cursor: pointer;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    border: 2px solid rgb(17, 4, 206);
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 20px
+}
+.delivered {
+    color: white;
+    background-color: rgb(19, 247, 224);
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    border: 2px solid rgb(19, 247, 224);
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 20px
+}
+.waiting {
+    color: white;
+    background-color: rgb(228, 100, 15);
+    border-radius: 10px;
+    cursor: pointer;
+    height: 40px;
+    width: 100px;
+    border: 2px solid rgb(228, 100, 15);
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 20px
+}
+.received{
+    color: white;
+    background-color: green;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    border: 0px;
+    font-size: 14px;
+    font-weight: 600;
+}

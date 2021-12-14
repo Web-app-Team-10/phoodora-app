@@ -45,32 +45,6 @@ export default function LoginForm(props) {
         setTimeout(manager, 600);
     }
     const { register, manager } = useContext(FormContext);
-    /*const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [usernameErr, setUsernameErr] = useState("");
-    const [passwordErr, setPasswordErr] = useState("");*/
-
-   /* const validate = () => {
-        let isValid = true;
-        let nameError;
-        let passwordError;
-        if(username.length < 4){
-            nameError = 'Username must have atleast 4 characters.';
-            isValid = false;
-        } else if(/\s/.test(username)){ 
-            nameError = "Username must not have a space";
-            isValid = false;
-        } 
-        if(password.length < 4){
-            passwordError = 'Your password must be atleast 4 characters/digits.';
-            isValid = false;
-        }
-        setUsernameErr(nameError);
-        setPasswordErr(passwordError);
-
-        return isValid;
-    }*/
-    
     
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -99,7 +73,6 @@ export default function LoginForm(props) {
         }}
     } 
 
- 
     let buttonState; 
     switch(loginState) {
         case "idle": buttonState = <button className={ styles.button } type="submit">Log in</button>
@@ -134,7 +107,6 @@ export default function LoginForm(props) {
                     <a className={ styles.links } href="#" onClick={ registeration }>Register as customer</a>
                     <a className={ styles.links } href="#" onClick={ managerRegister }>Register as restaurant manager</a>
                 </div>
-            
         </div>
     </div>
 </>

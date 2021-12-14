@@ -84,7 +84,7 @@ export default function CreateProduct(props) {
         setPriceErr("");
         setCategoryErr("");
         setImageErr("");
-    }
+        }
     }
 
     const uploadImage = async () => {
@@ -96,9 +96,7 @@ export default function CreateProduct(props) {
         await axios.post("https://api.cloudinary.com/v1_1/dfllxr92w/image/upload/", formData).then((response) => {
             result = response.data.secure_url;
         });
-        console.log(result);
         newImage = result
-        console.log(newImage, "product image");
         addNewProduct();
     }
 

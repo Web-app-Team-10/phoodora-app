@@ -18,7 +18,6 @@ export default function Restaurant(props) {
             console.log(response.data.menu);
            foundMenu(response.data.menu);
           });
-          
       }, []);
     
     let uniqCategory = [];

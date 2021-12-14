@@ -41,8 +41,6 @@ export default function RegisterForm(props) {
     const handleRegister = async (event) => {
         event.preventDefault();
         const isValid = props.validate();
-        console.log(event.target.username.value);
-        console.log(event.target.password.value);
         if(isValid === true) {
             setLoginState('processing')
             props.setUsernameErr("");
@@ -78,16 +76,6 @@ export default function RegisterForm(props) {
         case "error": buttonState = <span className={ styles.error }>Error ...</span>
         break;
     }
-    /*
-    <---  Features not implemented --->
-<span className={ styles.titles }>Street address</span>
-                <input className={ styles.input } name="address" placeholder="Street address"></input>
-                <div className={ styles.titleP }><span className={ styles.postal }>Postal code</span><span className={ styles.city }>City</span></div>
-                <div className={ styles.postC }>  <input className={ styles.inputP } name="postalCode" placeholder="Postal code"></input>
-                    <input className={ styles.inputP } name="city" placeholder="City"></input>
-                </div>  
-                <span className={ styles.titles }>Phone number</span>
-                <input className={ styles.input } type="phoneNumber" placeholder="Phone number"></input>*/
     return (
         <div className={ styles.container } >
             <div className={ styles.loginContainer } >
@@ -97,7 +85,6 @@ export default function RegisterForm(props) {
                 </div>
                 <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                 </motion.div>
-
                 <form className={ styles.form } onSubmit={ handleRegister }>
                 <span className={ styles.titles2 }>Register as a customer</span>
                 <span className={ styles.titles }>Username</span>

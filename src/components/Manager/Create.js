@@ -133,8 +133,7 @@ export default function Create(props) {
             navigate('/manager');
         }, 2000)
     }
-    
-  
+
     let output;
     
     switch(processing) {
@@ -160,7 +159,7 @@ export default function Create(props) {
                     <div className={ styles.errorMsg }>{ restaurantCityErr } </div>
                 </div>    
             </div>
-<div className={ styles.box }>
+            <div className={ styles.box }> 
                 <div className={ styles.title2 }>Postal code:</div>
                 <div><input className={ styles.input } onChange={ (event) => setRestaurantPost(event.target.value) }  onKeyPress={ (event) => { if(!/[0-9]/.test(event.key)) { event.preventDefault(); } }} type="text" placeholder="Postal code"></input>
                     <div className={ styles.errorMsg }>{ restaurantPostErr } </div>

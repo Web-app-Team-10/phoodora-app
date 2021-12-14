@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import PopUp from '../PopUp/PopUp';
 import styles from './Payment.module.css';
-
-
 
 export default function Payment(props) {
     
@@ -18,7 +16,6 @@ export default function Payment(props) {
                 <input className={styles.paymentInput} placeholder="MM/YY"></input>
                 <input className={styles.paymentInput} type="text" placeholder="CVV/CVC"></input>
             </span>
-            
         </div>
         <button className={styles.confirmBtn} onClick={() => { setPopUpBtn(true); props.order(); window.localStorage.removeItem('storedCart');  }}>Confirm</button>
         <PopUp trigger={PopUpBtn}/>

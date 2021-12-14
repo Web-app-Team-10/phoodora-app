@@ -1,10 +1,7 @@
 import React from 'react';
 import styles from './PopUp.module.css';
 import {BsFillCheckCircleFill} from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
-//<Link to="/shopping_cart"></Link></Link>
-
-
+import { useNavigate } from 'react-router-dom';
 
 export default function PopUp(props) {
     const navigate = useNavigate();

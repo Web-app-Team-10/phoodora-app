@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styles from './RegisterForm.module.css';
 import { FormContext } from './FormContext';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import axios from 'axios';
 
@@ -29,45 +29,19 @@ const transform = {
 export default function ManagerLogin(props) {
     const [isExpanded, setExpanded] = useState(true);
     const [loginState, setLoginState] = useState("idle");
-    const navigate = useNavigate();
     const transformColor = () => {
         setExpanded(false);
     };
-    const registeration = () => {
-        transformColor();
-        setTimeout(register, 600);
-    }
     const loginAnimation = () => {
         transformColor();
         setTimeout(login, 400);
     }
     const { register, login } = useContext(FormContext);
-/*
-<---  Features not implemented --->
-<div className={ styles.container } >
-        <div className={ styles.loginContainer } >
-            <Link to="/" style={{ zIndex:10, color: "rgba(143,2,224,1)", marginLeft: "360px", marginTop: "8px", position: "absolute"}}><RiCloseCircleLine size={ 25 } /></Link>
-            <div className={ styles.formContainer } >
-                <div className= { styles.textContainer } >Log in as a</div>
-                <span className={ styles.paragraph } >Restaurant manager</span>
-                <span className={ styles.p } >Back to consumer <span className={ styles.boldLink } onClick={ loginAnimation }>Log in</span></span>
-                    <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
-                    </motion.div> 
-            </div>
-            <div className={ styles.inputContainer } >
-                <span className={ styles.labels }>Username</span><input className={ styles.input } type="username" placeholder="Enter your username"></input>
-                <span className={ styles.labels }>Password</span><input className={ styles.input } type="password" placeholder="Enter your password"></input>
-              </div> 
-                <button className={ styles.button } type="submit">Log in</button>
-            
-        </div>
-    </div>*/
     const handleRegister = async (event) => {
         event.preventDefault();
         const isValid = props.validate();
         console.log(event.target.username.value);
         console.log(event.target.password.value);
-        
         
         if(isValid === true){
             setLoginState('processing')
@@ -114,7 +88,6 @@ export default function ManagerLogin(props) {
                 </div>
                 <motion.div className={ styles.containerColor } initial={ false } animate={ isExpanded ? "expanded" : "collapsed" } variants={ colorVariants } transition={ transform }>
                 </motion.div>
-
                 <form className={ styles.form } onSubmit={ handleRegister }>
                 <span className={ styles.titles2 }>Register as a restaurant Manager</span>
                 <span className={ styles.titles }>Username</span>

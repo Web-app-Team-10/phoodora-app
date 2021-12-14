@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Manager.module.css';
 import ManageRestaurant from './ManageRestaurant';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { SpinnerRoundOutlined } from 'spinners-react';
 
@@ -9,7 +9,6 @@ export default function Manager(props) {
     const [managerRestaurants, setManagerRestaurants] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [processing, setProcessing] = useState("idle");
-    const navigate = useNavigate();
 
     useEffect(() => {
         const headers = {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Menu.module.css';
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import { Image } from 'cloudinary-react';

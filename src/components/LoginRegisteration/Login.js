@@ -24,8 +24,6 @@ export default function Login(props) {
     }
     const form = { login, register, manager };
 
-
-
     const validate = () => {
         let isValid = true;
         let nameError;
@@ -43,17 +41,8 @@ export default function Login(props) {
         }
         setUsernameErr(nameError);
         setPasswordErr(passwordError);
-
         return isValid;
-    }
-
-
-
-
-
-
-
-    
+    }  
     return (
         <FormContext.Provider value={ form }>
                 {active === 'login' && <LoginForm setUsername={ setUsername } setPassword={ setPassword } setPasswordErr={ setPasswordErr } setUsernameErr={ setUsernameErr } usernameErr={ usernameErr } passwordErr={ passwordErr }  validate={ validate } getManagerRestaurant={ props.getManagerRestaurant } userLogin={ props.userLogin } userLogin={ props.newJwt }/> }

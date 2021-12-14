@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React from 'react';
 import styles from './ShoppingCart.module.css';
 import ShoppingCartItem from '../ShoppingCartItem/ShoppingCartItem';
 import {BsFillArrowLeftCircleFill} from 'react-icons/bs';
@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 
 
 export default function ShoppingCart(props) {
-
-
-    
 
     let  total =0;
 
@@ -18,10 +15,8 @@ export default function ShoppingCart(props) {
             let price = props.shoppingCart[i].price;
             if(props.shoppingCart[i].quantity > 1) {
                 total = total + (price * props.shoppingCart[i].quantity);
-                //props.setTotalPrice(total);
             } else {
                 total += props.shoppingCart[i].price;
-               // props.setTotalPrice(total);
             }
         }
     }
@@ -45,7 +40,6 @@ export default function ShoppingCart(props) {
             localStorage.setItem("storedCart", JSON.stringify(props.shoppingCart));
         }
         let output;
-
        
         if(props.shoppingCart.length < 1){
             output = <>
@@ -64,9 +58,7 @@ export default function ShoppingCart(props) {
             </>
         }
         
-
     return (
-
         <div className={styles.ShoppingCartContainer}>
             { output }
         </div>
