@@ -33,7 +33,7 @@ export default function CreateProduct(props) {
         if(newName.length < 3){
             nameErr = 'Product name too short';
             isValid = false;
-        } else if(newName.length > 20){
+        } else if(newName.length > 30){
             nameErr = 'Product name is too long';
             isValid = false;
         }
