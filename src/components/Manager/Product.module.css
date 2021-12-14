@@ -4,6 +4,7 @@
     flex-direction: row;
     margin-bottom: 30px;
     margin-left: 12px;
+    min-width: 350px;
 }
 .container:hover {
     background-color: rgba(143,2,224,1);
@@ -13,6 +14,11 @@
 }
 .container:hover > .info > .price {
     color: white;
+}
+@media screen and (max-width:300px){
+    .container{
+        min-width: 300px;
+    }
 }
 .image {
     width: 140px;
@@ -47,7 +53,7 @@
     filter: brightness(1.2);
 }
 .category {
-    width: 180px;
+    margin-right: 20px;
 }
 .priceC {
     width: 55px

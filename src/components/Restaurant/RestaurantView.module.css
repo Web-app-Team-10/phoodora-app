@@ -23,9 +23,18 @@
 }
 .menuContainer {
     margin-top: 40px;
-    width: 40%;
+    width: 50%;
+    min-width: 730px;
     border-radius: 20px;
     background-color: rgba(175, 170, 170, 0.844);
+}
+@media screen and (max-width:800px){
+    .menuContainer{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        min-width: 370px;
+    }
 }
 .products {
     width: 100%;
