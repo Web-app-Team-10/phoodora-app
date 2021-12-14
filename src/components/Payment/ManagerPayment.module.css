@@ -1,13 +1,15 @@
-.container {
+.container { 
     width: 50%;
-    height: 400px;
     margin-left: 25%;
-    margin-top: 125px;
-    font-size: 30px;
-    font-weight: 500;
-    color: rgba(120,4,185,1);
-    filter: brightness(1.2);
+    height: 350px;
+    margin-top: 150px;
     text-align: center;
+}
+.title {
+    font-size: 30px;
+    font-weight: 700;
+    color: rgba(143,2,224,1);
+    margin-bottom: 16px;
 }
 .button{
     cursor: pointer;
@@ -19,7 +21,7 @@
     border-radius: 20px;
     font-weight: 600;
     font-size: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .button:hover {
     color: white;

@@ -52,6 +52,8 @@
 }
 .button:hover, .button2:hover, .button3:hover {
     border: 2px solid white;
+    transition: ease-in-out 120ms;
+    filter: brightness(1.3);
 }
 .button2 {
     background-color: red;

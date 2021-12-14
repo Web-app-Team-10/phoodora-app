@@ -7,7 +7,7 @@ export default function NotLoggedIn(props) {
     return (
         <div className={ styles.container }>
           <div>You're not logged in</div>
-          <div className={ styles.login } onClick={ () => navigate('/forms') }>Go to Log in</div>
+          <button className={ styles.button } onClick={ () => navigate('/forms') }>Go to Log in</button>
         </div>
     )
 }

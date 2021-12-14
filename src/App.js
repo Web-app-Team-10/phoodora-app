@@ -14,6 +14,7 @@ import AccountPage from "./components/Customer/AccountPage";
 import Footer from "./components/Footer/Footer";
 import RestaurantOrders from './components/Manager/RestaurantOrders';
 import OrderHistory from "./components/Customer/OrderHistory";
+import ManagerPayment from './components/Payment/ManagerPayment';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
@@ -176,6 +177,7 @@ export default function App()
   let authRoutes = <>
   <Route path="/forms" element={ <Login getManagerRestaurant={ getManagerRestaurant } newJwt={ newJwt => { setUserJwt(newJwt); window.localStorage.setItem('storedJwt', newJwt); } } /> }></Route>
   <Route path="/account" element={ <NotLoggedIn />}></Route>
+  <Route path="/shopping_cart/payment" element={ <NotLoggedIn />}></Route>
   <Route path="/manager" element={ <NotLoggedIn />}></Route>
   </>;
 
@@ -187,6 +189,7 @@ export default function App()
         <Route path="/manager/:id/menu" element={ <EditMenu userJwt={ userJwt } restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
         <Route path="/manager/:id/orders" element={<RestaurantOrders userJwt={ userJwt } fetchOrderAdmin={ fetchOrderAdmin } restaurantOrders={ restaurantOrders } /> }></Route>
         <Route path="/account" element={ <AccountPage decodedToken={ decodedToken } userJwt={ userJwt } setIsLoggedIn={ setIsLoggedIn }/> } ></Route>
+        <Route path="/shopping_cart/payment" element ={<ManagerPayment setUserJwt={ setUserJwt }/>}></Route>
       </>;
     } else {
       authRoutes = <> { console.log("customer")}
@@ -209,8 +212,6 @@ export default function App()
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart }/> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
-        
-
       </Routes>
       <Footer />
     </>
