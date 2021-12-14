@@ -17,7 +17,7 @@ export default function Payment(props) {
                 <input className={styles.paymentInput} type="text" placeholder="CVV/CVC"></input>
             </span>
         </div>
-        <button className={styles.confirmBtn} onClick={() => { setPopUpBtn(true); props.order(); window.localStorage.removeItem('storedCart');  }}>Confirm</button>
+        <button className={styles.confirmBtn} onClick={() => { setPopUpBtn(true); props.order() }}>Confirm</button>
         <PopUp trigger={PopUpBtn}/>
         </div>
         

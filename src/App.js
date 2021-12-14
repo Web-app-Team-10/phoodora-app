@@ -8,7 +8,7 @@ import EditMenu from './components/Manager/EditMenu';
 import CreateRestaurant from './components/Manager/Create';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import Payment from './components/Payment/Payment';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Frontpage from './components/Frontpage/Frontpage';
 import AccountPage from "./components/Customer/AccountPage";
 import Footer from "./components/Footer/Footer";
@@ -24,39 +24,10 @@ export default function App()
  {
   let [restaurants, setRestaurants] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
-  const [managerModeActive, activateManagerMode] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userJwt, setUserJwt] = useState(jwtFromStorage);
   const [shoppingCart, setShoppingCart] = useState(storedShopppingCart);
-  const [totalPrice, setTotalPrice] = useState("");
-
-  /*const [restaurantName, setRestaurantName] = useState("");
-  const [restaurantAddress, setRestaurantAddress] = useState("");
-  const [restaurantCity, setRestaurantCity] = useState("");
-  const [restaurantPost, setRestaurantPost] = useState("");
-  const [operatingHours, setOperatingHours] = useState("");
-  const [restaurantType, setRestaurantType] = useState("");
-  const [restaurantPrice, setRestaurantPrice] = useState("");
-  const [restaurantImage, setRestaurantImage] = useState("");
-
-  const [restaurantNameErr, setRestaurantNameErr] = useState("");
-  const [restaurantAddressErr, setRestaurantAddressErr] = useState("");
-  const [restaurantCityErr, setRestaurantCityErr] = useState("");
-  const [restaurantPostErr, setRestaurantPostErr] = useState("");
-  const [operatingHoursErr, setOperatingHoursErr] = useState("");
-  const [restaurantTypeErr, setRestaurantTypeErr] = useState("");
-  const [restaurantPriceErr, setRestaurantPriceErr] = useState("");
-  const [restaurantImageErr, setRestaurantImageErr] = useState("");*/
-  /*setRestaurantName={ setRestaurantName } setRestaurantAddress={ setRestaurantAddress } setRestaurantCity={ setRestaurantCity }
-  setRestaurantCity={ setRestaurantCity } setRestaurantPost={ setRestaurantPost } setOperatingHours={ setOperatingHours }
-  setRestaurantType={ setRestaurantType } setRestaurantPrice={ setRestaurantPrice } setRestaurantImage={ setRestaurantImage }
-  restaurantNameErr={ restaurantNameErr } setRestaurantNameErr={ setRestaurantNameErr } restaurantAddressErr={ restaurantAddressErr }
-  setRestaurantAddressErr={ setRestaurantAddressErr } restaurantCityErr={ restaurantCityErr } setRestaurantCityErr={ setRestaurantCityErr }
-  restaurantPostErr={ restaurantPostErr } setRestaurantPostErr={ setRestaurantPostErr } operatingHoursErr={ operatingHoursErr }
-  setOperatingHoursErr={ setOperatingHoursErr } restaurantTypeErr={ restaurantTypeErr } setRestaurantTypeErr={ setRestaurantTypeErr }
-  restaurantPriceErr={ restaurantPriceErr } setRestaurantPriceErr={ setRestaurantPriceErr } restaurantImageErr={ restaurantImageErr }
-  setRestaurantImageErr={ setRestaurantImageErr }*/
   
   let restaurantOrders;
   let uniqCity = [];
@@ -64,31 +35,6 @@ export default function App()
   restaurants.map( unique => { 
       if (uniqCity.indexOf(unique.city) === -1) { uniqCity.push(unique.city) }
   });
-
-  // Validate new restaurant and product input fields
-
-  /*const validate = () => {
-    let isValid = true;
-    let nameError;
-    let addressError;
-    if(restaurantName.length < 4){
-        nameError = 'Restaurant name must have atleast 4 characters.';
-        isValid = false;
-    } else if(/\s/.test(restaurantName)){ 
-        nameError = "Restaurant name must not have a space";
-        isValid = false;
-    } 
-    if(restaurantAddress.length < 4){
-        addressError = 'Address must be atleast 4 characters.';
-        isValid = false;
-    }
-    setRestaurantNameErr(restaurantNameErr);
-    setRestaurantAddressErr(restaurantAddressErr);
-
-    return isValid;
-}*/
-
-  
 
   const addToCart = (restaurant_name, id, name, price, description, image) => {
     let product = {
@@ -146,6 +92,8 @@ export default function App()
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${userJwt}`
     }
+    window.localStorage.removeItem('storedCart');
+    setShoppingCart("");
     orderContents = orderContents.map(({id, description, image, ...rest}) => rest);
     orderContents.map(async product => await axios.post('https://phoodora-app.herokuapp.com/customer/order', product, { headers:headers }));
   }
@@ -234,15 +182,15 @@ export default function App()
   if(userJwt !== null){
     if(decodedToken.role === 'ROLE_MANAGER'){
       authRoutes = <> { console.log("manager")}
-        <Route path="/manager" element={ <Manager fetchOrderAdmin={ fetchOrderAdmin } userJwt={ userJwt } decodedToken={ decodedToken } getManagerRestaurant={ getManagerRestaurant } activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/> } setIsLoggedIn={ setIsLoggedIn }></Route>
-        <Route path="/manager/create" element={ <CreateRestaurant activateManagerMode={ activateManagerMode } addNewRestaurant={ addNewRestaurant } /> }></Route>
+        <Route path="/manager" element={ <Manager fetchOrderAdmin={ fetchOrderAdmin } userJwt={ userJwt } decodedToken={ decodedToken } getManagerRestaurant={ getManagerRestaurant } addNewRestaurant={ addNewRestaurant } restaurants={ restaurants } deleteRestaurant={ deleteRestaurant }/> } setIsLoggedIn={ setIsLoggedIn }></Route>
+        <Route path="/manager/create" element={ <CreateRestaurant  addNewRestaurant={ addNewRestaurant } /> }></Route>
         <Route path="/manager/:id/menu" element={ <EditMenu userJwt={ userJwt } restaurants={ restaurants } setRestaurants={ setRestaurants }/>}></Route>
         <Route path="/manager/:id/orders" element={<RestaurantOrders userJwt={ userJwt } fetchOrderAdmin={ fetchOrderAdmin } restaurantOrders={ restaurantOrders } /> }></Route>
-        <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } userJwt={ userJwt } setIsLoggedIn={ setIsLoggedIn }/> } ></Route>
+        <Route path="/account" element={ <AccountPage decodedToken={ decodedToken } userJwt={ userJwt } setIsLoggedIn={ setIsLoggedIn }/> } ></Route>
       </>;
     } else {
       authRoutes = <> { console.log("customer")}
-      <Route path="/account" element={ <AccountPage activateManagerMode={ activateManagerMode } decodedToken={ decodedToken } setIsLoggedIn={ setIsLoggedIn } /> } ></Route>
+      <Route path="/account" element={ <AccountPage decodedToken={ decodedToken } setIsLoggedIn={ setIsLoggedIn } /> } ></Route>
       <Route path="/account/orders" element={ <OrderHistory decodedToken={ decodedToken } userJwt={ userJwt } /> }></Route>
       <Route path="/shopping_cart/payment" element ={<Payment order={ order } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart }/>}></Route>
     </>
@@ -252,12 +200,12 @@ export default function App()
   return ( 
   <BrowserRouter>
     <>
-      <Header decodedToken={ decodedToken } setSearchTerm={setSearchTerm} SearchTerm={SearchTerm} decodedToken={ decodedToken } userJwt={ userJwt } setUserJwt={ setUserJwt } activateManagerMode={ activateManagerMode }/>
+      <Header decodedToken={ decodedToken } setSearchTerm={setSearchTerm} SearchTerm={SearchTerm} decodedToken={ decodedToken } userJwt={ userJwt } setUserJwt={ setUserJwt }/>
       <Routes>
         <Route path="*" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         <Route path="/" element={ <Frontpage restaurants={ restaurants } uniqCity={ uniqCity } restaurants_1={ restaurants_1 } restaurants_2={ restaurants_2 } randomCity_1={ randomCity_1 } randomCity_2={ randomCity_2 } randomRestaurants_1={ randomRestaurants_1 } randomRestaurants_2={ randomRestaurants_2 }/> }> </Route>
         { authRoutes }
-        <Route path="/shopping_cart" element={<ShoppingCart orderState={ orderState } setTotalPrice={ setTotalPrice } order={ order } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } />} ></Route>
+        <Route path="/shopping_cart" element={<ShoppingCart orderState={ orderState } order={ order } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } />} ></Route>
         <Route path="/restaurants/:id" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart }/> }></Route>
         <Route path="/restaurants/:id/:category" element={ <RestaurantView restaurants={ restaurants } shoppingCart={ shoppingCart } setShoppingCart={ setShoppingCart } addToCart={ addToCart } /> }></Route>
         <Route path="/login" element={ login } setIsLoggedIn={ setIsLoggedIn }></Route>
