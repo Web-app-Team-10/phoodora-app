@@ -40,7 +40,7 @@ export default function CreateProduct(props) {
         if(newDescription.length < 4){
             descErr = 'Description too short';
             isValid = false;
-        } else if(newDescription.length > 40){
+        } else if(newDescription.length > 60){
             descErr = 'Description is too long';
             isValid = false;
         }
@@ -57,7 +57,7 @@ export default function CreateProduct(props) {
         if(newCategory.length < 3){
             categoryErr = 'Category is too short';
             isValid = false;
-        } else if(newCategory.length > 10){
+        } else if(newCategory.length > 12){
             categoryErr = 'Category is too long';
             isValid = false;
         }
