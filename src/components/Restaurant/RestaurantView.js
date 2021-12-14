@@ -24,25 +24,30 @@ export default function Restaurant(props) {
     let sortedMenu = [];
     let menu;
     let restaurant;
+    let output;
+    let welcome;
+
+    if(findMenu.length > 0) {
     props.restaurants.map(find => { if (find.id == id){ restaurant = find } });
 
     findMenu.map( unique => { 
         if ( uniqCategory.indexOf(unique.category) === -1) { uniqCategory.push(unique.category) } 
     });
-
+    output = <Link to={`/restaurants/${restaurant.id}`}><button className={ styles.all }>All</button></Link>;
+    welcome = <Welcome restaurant={ restaurant }/> ;
     if(category !== undefined) {
         sortedMenu = findMenu.filter((menu) => menu.category.toLowerCase().includes(category.toLowerCase()))
         menu = <>{ sortedMenu.map( menu => <Menu key={ menu.id } menu={ menu } restaurant={ restaurant } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart }/>)}</>
     } else {
         menu = <>{ findMenu.map( menu => <Menu key={ menu.id } menu={ menu } restaurant={ restaurant } products={ props.products } setShoppingCart={ props.setShoppingCart } addToCart={ props.addToCart } shoppingCart={ props.shoppingCart } />)}</>
-    }
+    }}
 
     return (
         <div className={ styles.container }>
-            <Welcome restaurant={ restaurant }/> 
+            { welcome }
             <div className={ styles.second }>
                 <div className={ styles.categoryContainer }> <span className={ styles.title }>Select from category</span>
-                <Link to={`/restaurants/${restaurant.id}`}><button className={ styles.all }>All</button></Link>
+                { output }
                 { uniqCategory.map( category => <Categories key={ category } restaurant={ restaurant } category={ category } />) }</div>
                 <div className={ styles.menuContainer }><div className={ styles.menuTitle }>Menu</div>
                     <div className={ styles.products }>{ menu }</div>

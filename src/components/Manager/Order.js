@@ -11,6 +11,10 @@ export default function Order(props) {
     let index = time.indexOf("T");
     let date = time.slice(0, index);
     time = time.slice(index + 1, 19);
+    let hours = time.slice(0,2);
+    time = time.slice(2,8)
+    let hoursInt = parseInt(hours)
+    hoursInt = hoursInt +2;
     let output;
 
     const orderState = async (state) => {
@@ -32,7 +36,6 @@ export default function Order(props) {
     }
     
     if (props.preparing === false){
-        
         output = <>
             <div className={ styles.title }>Status: <b>New order received</b></div>
             <div style={{marginLeft:"8px"}}>Send to next state:<button className={ styles.waiting } onClick={ () => handleStatus("preparing") }>Confirm order</button></div>
@@ -63,7 +66,7 @@ export default function Order(props) {
             <div className={ styles.title }>Quantity: <b>{props.order_data.quantity}</b></div>
             <div className={ styles.title }>Total price of order: <b>{total} €</b></div>
             <div className={ styles.title }>Date: <b>{date}</b></div>
-            <div className={ styles.title }>Time: <b>{time}</b></div>
+            <div className={ styles.title }>Time of order: <b>{hoursInt}{time}</b></div>
             { output }
         </div>
     )
